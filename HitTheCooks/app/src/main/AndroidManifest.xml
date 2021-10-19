@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -31,6 +32,8 @@
 
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.appverse.hitthecooks">
@@ -43,12 +46,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HitTheCooks">
         <activity
+<<<<<<< Updated upstream
             android:name=".FoodList"
             android:exported="true" />
         <activity
             android:name=".ListaAlimentos"
             android:exported="true" />
         <activity
+=======
+>>>>>>> Stashed changes
             android:name=".MainActivity"
             android:exported="true" />
         <activity
@@ -56,11 +62,15 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+<<<<<<< Updated upstream
 
 =======
 <?xml version="1.0" encoding="utf-8"?>
@@ -90,4 +100,6 @@
 
 >>>>>>> main
 >>>>>>> main
+=======
+>>>>>>> Stashed changes
 </manifest>
