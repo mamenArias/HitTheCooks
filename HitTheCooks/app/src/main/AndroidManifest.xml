@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HitTheCooks">
         <activity
+            android:name=".FoodList"
+            android:exported="true" />
+        <activity
             android:name=".ListaAlimentos"
             android:exported="true" />
         <activity
