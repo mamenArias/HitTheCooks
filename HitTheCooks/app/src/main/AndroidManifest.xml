@@ -10,6 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HitTheCooks">
         <activity
+            android:name=".Configuration"
+            android:exported="true"
+            android:label="@string/title_activity_configuration" />
+        <activity
+            android:name=".Configuracion"
+            android:exported="true"
+            android:label="@string/title_activity_configuracion" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
