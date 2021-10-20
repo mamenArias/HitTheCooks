@@ -1,5 +1,6 @@
 package com.appverse.hitthecooks
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.appverse.hitthecooks.databinding.ActivityMainBinding
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun navigateToAboutUs(view: android.view.View) {
-
+        startActivity(Intent(this, AboutUs::class.java))
     }
 
     fun navigateToConfiguration(view: android.view.View) {
