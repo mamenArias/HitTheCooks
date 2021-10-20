@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:drawable="@color/background"></item>
+        <item>
+            <bitmap  android:src="@drawable/small_logo_hit_the_cooks" android:gravity="center"></bitmap>
+        </item>
+</layer-list>
