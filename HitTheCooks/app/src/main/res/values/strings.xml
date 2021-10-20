@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">HitTheCooks</string>
     <string name="usernameHere">Username Here</string>
+    <string name="myLists">Mis Listas</string>
+    <string name="createAList">Crear Una Lista</string>
+    <string name="aboutUs">Sobre Nosotros</string>
 </resources>

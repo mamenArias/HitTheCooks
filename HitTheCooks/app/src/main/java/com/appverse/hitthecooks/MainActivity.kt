@@ -12,4 +12,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
     }
+
+    fun navigateToMyLists(view: android.view.View) {
+
+    }
+
+    fun navigateToCreateAList(view: android.view.View) {
+
+    }
+
+    fun navigateToAboutUs(view: android.view.View) {
+
+    }
+
+    fun navigateToConfiguration(view: android.view.View) {
+
+    }
+
 }

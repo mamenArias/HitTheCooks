@@ -9,12 +9,16 @@
 
     <ImageButton
         android:id="@+id/configButton"
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:background="@color/background"
+        android:scaleType="centerInside"
+        android:onClick="navigateToConfiguration"
+        app:layout_constraintEnd_toStartOf="@+id/logoutButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/conf_icon"
@@ -22,12 +26,15 @@
 
     <ImageButton
         android:id="@+id/logoutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:background="@color/background"
+        android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/configButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logout_icon"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -39,9 +46,71 @@
         android:layout_marginEnd="10dp"
         android:text="@string/usernameHere"
         android:textColor="@color/whiteEgg"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/logoutButton"
         app:layout_constraintEnd_toStartOf="@+id/logoutButton"
         app:layout_constraintTop_toTopOf="@+id/logoutButton" />
+
+    <Button
+        android:id="@+id/myListsButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/darkGrey"
+        android:padding="20dp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:onClick="navigateToMyLists"
+        android:text="@string/myLists"
+        app:layout_constraintBottom_toTopOf="@+id/createAListButton"
+        app:layout_constraintEnd_toEndOf="@+id/createAListButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/createAListButton"
+        app:layout_constraintTop_toBottomOf="@+id/appLogo" />
+
+    <Button
+        android:id="@+id/AboutUsButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:backgroundTint="@color/darkGrey"
+        android:padding="20dp"
+        android:text="@string/aboutUs"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:onClick="navigateToAboutUs"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/createAListButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/createAListButton"
+        app:layout_constraintTop_toBottomOf="@+id/createAListButton" />
+
+    <Button
+        android:id="@+id/createAListButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:backgroundTint="@color/darkGrey"
+        android:padding="20dp"
+        android:onClick="navigateToCreateAList"
+        android:text="@string/createAList"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/AboutUsButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myListsButton" />
+
+    <ImageView
+        android:id="@+id/appLogo"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:scaleType="fitEnd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.85"
+        app:srcCompat="@drawable/logo_hit_the_cook" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
