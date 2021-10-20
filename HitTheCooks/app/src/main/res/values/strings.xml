@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HitTheCooks</string>
+    <string name="usernameHere">Username Here</string>
 </resources>
