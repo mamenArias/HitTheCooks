@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/iconos_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HitTheCooks">
+        <!--<activity
+            android:name=".ShoppingListActivity"
+            android:exported="true" />-->
         <activity
             android:name=".ShoppingListActivity"
-            android:exported="true" />
-        <activity
-            android:name=".MainActivity"
             android:exported="true">
            <!-- android:theme="@style/SplashScreen"-->
             <intent-filter>
