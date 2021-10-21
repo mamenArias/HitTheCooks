@@ -14,15 +14,15 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:background="@color/background"
-        android:scaleType="centerInside"
         android:onClick="navigateToConfiguration"
+        android:scaleType="centerInside"
         app:layout_constraintEnd_toStartOf="@+id/logoutButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/conf_icon"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/logoutButton"
@@ -37,7 +37,7 @@
         app:layout_constraintStart_toEndOf="@+id/configButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logout_icon"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/usernameText"
@@ -49,21 +49,22 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/logoutButton"
         app:layout_constraintEnd_toStartOf="@+id/logoutButton"
-        app:layout_constraintTop_toTopOf="@+id/logoutButton" />
+        app:layout_constraintTop_toTopOf="@+id/logoutButton"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/myListsButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/darkGrey"
+        android:onClick="navigateToMyLists"
         android:padding="20dp"
+        android:text="@string/myLists"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:onClick="navigateToMyLists"
-        android:text="@string/myLists"
         app:layout_constraintBottom_toTopOf="@+id/createAListButton"
         app:layout_constraintEnd_toEndOf="@+id/createAListButton"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/createAListButton"
         app:layout_constraintTop_toBottomOf="@+id/appLogo" />
 
@@ -73,14 +74,14 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
         android:backgroundTint="@color/darkGrey"
+        android:onClick="navigateToAboutUs"
         android:padding="20dp"
         android:text="@string/aboutUs"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:onClick="navigateToAboutUs"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/createAListButton"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/createAListButton"
         app:layout_constraintTop_toBottomOf="@+id/createAListButton" />
 
@@ -91,25 +92,27 @@
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
         android:backgroundTint="@color/darkGrey"
-        android:padding="20dp"
         android:onClick="navigateToCreateAList"
+        android:padding="20dp"
         android:text="@string/createAList"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/AboutUsButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myListsButton" />
 
     <ImageView
         android:id="@+id/appLogo"
         android:layout_width="0dp"
-        android:layout_height="250dp"
-        android:scaleType="fitEnd"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/myListsButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/configButton"
         app:layout_constraintWidth_percent="0.85"
         app:srcCompat="@drawable/logo_hit_the_cook" />
 
