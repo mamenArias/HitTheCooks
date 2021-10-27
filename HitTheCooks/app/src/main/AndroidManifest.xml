@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HitTheCooks">
         <activity
-            android:name=".FoodList"
+            android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".FoodList"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
