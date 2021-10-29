@@ -8,32 +8,14 @@
     tools:context=".FoodList">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutSearch"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="4"
         android:background="@color/background">
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/searchFood"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
-
-        <SearchView
-            android:id="@+id/searchFood"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/foodList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/list"
@@ -43,18 +25,38 @@
             app:layout_constraintBottom_toTopOf="@+id/searchFood"
             app:layout_constraintEnd_toEndOf="@+id/searchFood"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/searchFood"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/searchFood" />
 
-        <ImageView
-            android:id="@+id/imageView3"
+        <SearchView
+            android:id="@+id/searchFood"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/buttonBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="15dp"
-            app:layout_constraintBottom_toTopOf="@+id/searchFood"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/flechaatras" />
+            app:srcCompat="@drawable/flechaatras"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/buttonUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/user"
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -64,6 +66,7 @@
         android:layout_weight="1">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/foodListRecycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </FrameLayout>
