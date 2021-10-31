@@ -78,20 +78,6 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_marginTop="5dp"
-            android:gravity="start|center"
-            android:id="@+id/createListText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/addList"
-            android:textColor="@color/white"
-            android:visibility="gone"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:drawableStartCompat="@drawable/add_icon" />
 
     </LinearLayout>
-
-
 </LinearLayout>
