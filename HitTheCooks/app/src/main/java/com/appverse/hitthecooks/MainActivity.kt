@@ -29,8 +29,8 @@ class MainActivity : AppCompatActivity() {
 
 
        binding.signInButton.setOnClickListener {
-            val intento = Intent(this, PantallaPrincipal::class.java)
-            startActivity(intento)
+            val intent= Intent(this, PantallaPrincipal::class.java)
+            startActivity(intent)
         }
     }
 
