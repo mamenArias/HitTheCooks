@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">HitTheCooks</string>
+    <string name="userImageDescription">Imagen de avatar del usuario</string>
+    <string name="shoppingListTitle">Título de la lista</string>
+    <string name="addList">Crear lista</string>
+    <string name="deletionConfirmation">¿Estás seguro que deseas borrar la lista?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
 </resources>
