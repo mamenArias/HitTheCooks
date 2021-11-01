@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "789300936703",
+    "project_id": "hit-the-cooks",
+    "storage_bucket": "hit-the-cooks.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789300936703:android:5440b306f55cd685d431ca",
+        "android_client_info": {
+          "package_name": "com.appverse.hitthecooks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789300936703-lg585dme27fclh4gfj883gbmk05cc43b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAVRqWrc49OVz5IZ3Gqu5NZ0uomJ5Xtro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789300936703-lg585dme27fclh4gfj883gbmk05cc43b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
