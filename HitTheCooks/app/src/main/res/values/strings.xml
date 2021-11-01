@@ -36,4 +36,5 @@
     <string name="email">EMAIL</string>
     <string name="profileImageDescription">Imagen de perfil</string>
     <string name="backArrow">Imagen flecha hacia atrás</string>
+    <string name="list">Lista de Alimentos</string>
 </resources>
