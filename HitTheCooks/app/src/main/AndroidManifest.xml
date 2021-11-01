@@ -13,7 +13,10 @@
             android:name=".ShoppingListActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".AboutUs"
+            android:exported="true" />
+        <activity
+            android:name=".PantallaPrincipal"
             android:exported="true">
            <!-- android:theme="@style/SplashScreen"-->
             <intent-filter>
