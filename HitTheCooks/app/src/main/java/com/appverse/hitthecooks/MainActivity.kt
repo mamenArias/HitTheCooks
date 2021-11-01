@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
 
        binding.signInButton.setOnClickListener {
-            val intento = Intent(this, EditProfile::class.java)
+            val intento = Intent(this, PantallaPrincipal::class.java)
             startActivity(intento)
         }
     }
