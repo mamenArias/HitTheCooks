@@ -19,9 +19,9 @@ import com.google.firebase.auth.GoogleAuthProvider
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.SplashScreen)
+        Thread.sleep(2000)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         var text:TextView = binding.googleButton.getChildAt(0) as TextView
