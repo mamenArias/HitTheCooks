@@ -4,4 +4,13 @@
     <string name="myLists">Mis Listas</string>
     <string name="createAList">Crear Una Lista</string>
     <string name="aboutUs">Sobre Nosotros</string>
+    <string name="aboutUsText">HitTheCooks es una app creada con fines académicos para la asignatura de Programación Multimedia y Dispositivos Móviles.
+        Nace de la colaboración de 5 alumnos de segundo curso de Grado Superior de Desarrollo de Aplicaciones Multiplataforma como parte de la evaluación trimestral</string>
+    <string name="student">Alumno de 2º DAM</string>
+    <string name="configButtonDescription">Botón de configuración</string>
+    <string name="userButtonDescription">Foto y botón de usuario</string>
+    <string name="logoDescription">Logo de la aplicación</string>
+    <string name="backButtonDescription">Botón de volver</string>
+    <string name="studentPictureDescription">Retrato del colaborador</string>
+    <string name="studentNameHere">Nombre de alumno aquí</string>
 </resources>

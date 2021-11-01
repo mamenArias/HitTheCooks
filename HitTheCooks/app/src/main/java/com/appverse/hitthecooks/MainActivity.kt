@@ -7,8 +7,8 @@ import com.appverse.hitthecooks.databinding.ActivityMainBinding
 
 /**
  * Actividad de la pantalla principal desde la que navegar al resto de pantallas
- * @author Manuel Carrillo
- * @since 1.0
+ * @author
+ * @since
  */
 class MainActivity : AppCompatActivity() {
 
