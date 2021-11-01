@@ -19,8 +19,8 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/shoppingList"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:focusable="true"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 app:cardCornerRadius="10dp"

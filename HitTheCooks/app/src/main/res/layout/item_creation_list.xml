@@ -9,6 +9,8 @@
         android:id="@+id/createListText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
         android:text="@string/addList"
         android:textColor="@color/white"
         android:textSize="18sp"

@@ -1,32 +1,34 @@
 package com.appverse.hitthecooks
 
-import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.appverse.hitthecooks.classes.ShoppingList
+import com.appverse.hitthecooks.model.ShoppingList
 import com.google.android.material.snackbar.Snackbar
-import org.w3c.dom.Text
 
-class ShoppingListAdapter(private val shoppingList : MutableList<ShoppingList>,private val view: View): RecyclerView.Adapter<ShoppingListAdapter.ShoppingListHolder>(){
+class ShoppingListAdapter(private val shoppingList : MutableList<ShoppingList>,private val view: View, private val context: Context): RecyclerView.Adapter<ShoppingListAdapter.ShoppingListHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingListHolder {
-       var layoutInflater = if(viewType == R.layout.item_shopping_list){
-            LayoutInflater.from(parent.context).inflate(R.layout.item_shopping_list,parent,false)
+       var layoutInflater : View?
+           if(viewType == R.layout.item_shopping_list){
+           layoutInflater= LayoutInflater.from(parent.context).inflate(R.layout.item_shopping_list,parent,false)
+
         }else{
-            LayoutInflater.from(parent.context).inflate(R.layout.item_creation_list,parent,false)
+         layoutInflater =   LayoutInflater.from(parent.context).inflate(R.layout.item_creation_list,parent,false)
         }
-        return ShoppingListHolder(layoutInflater)
+        return ShoppingListHolder(layoutInflater!!)
     }
 
     override fun onBindViewHolder(holder: ShoppingListHolder, position: Int) {
-      if(position ==shoppingList.size){
-          //Acción del botón iría aquí
+      if(position==shoppingList.size){
+          holder.itemView.findViewById<TextView>(R.id.createListText).setOnClickListener {
+             Toast.makeText(context,"Aquí se debería insertar una nueva lista",Toast.LENGTH_SHORT).show()
+          }
       }else{
           holder.render(shoppingList[position])
       }
@@ -44,16 +46,24 @@ class ShoppingListAdapter(private val shoppingList : MutableList<ShoppingList>,p
         Snackbar.make(view,"Has borrado la lista de ${shoppingList[position].name}",Snackbar.LENGTH_SHORT).show()
         shoppingList.removeAt(position)
         notifyItemRemoved(position)
-
-
     }
 
     class ShoppingListHolder(private val view: View):RecyclerView.ViewHolder(view){
         fun render(shoppingList: ShoppingList){
-            view.findViewById<TextView>(R.id.shoppingListName).text = shoppingList.name
+           var textView = view.findViewById<TextView>(R.id.shoppingListName)
+            textView.text = shoppingList.name
+
+
+            var cardView = view.findViewById<CardView>(R.id.shoppingList)
+            cardView.setOnClickListener {
+
             }
+
         }
     }
+}
+
+
 
 
 
