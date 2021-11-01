@@ -21,7 +21,6 @@
     <string name="studentNameHere">Nombre de alumno aquí</string>
     <string name="backgroundDescription">Fondo de pantalla</string>
     <string name="pizzaIconDescription">Icono de pizza</string>
-    <string name="logoDescription">Logo principal de la aplicación</string>
     <string name="userName">USUARIO</string>
     <string name="userPass">CONTRASEÑA</string>
     <string name="nameDescription">Campo con el nombre</string>
