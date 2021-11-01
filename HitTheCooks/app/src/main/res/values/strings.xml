@@ -36,4 +36,10 @@
     <string name="profileImageDescription">Imagen de perfil</string>
     <string name="backArrow">Imagen flecha hacia atrás</string>
     <string name="list">Lista de Alimentos</string>
+    <string name="configuration">Configuración</string>
+    <string name="edit">Edita la app</string>
+    <string name="editProfile">Editar perfil</string>
+    <string name="theme">Tema claro / oscuro</string>
+    <string name="logOut">Cerrar sesión</string>
+    <string name="more">Más</string>
 </resources>
