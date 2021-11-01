@@ -27,14 +27,14 @@ class PantallaPrincipal : AppCompatActivity() {
      * Función que permite navegar a la pantalla de "Mis Listas"
      */
     fun navigateToMyLists(view: android.view.View) {
-
+        startActivity(Intent(this, ShoppingListActivity::class.java))
     }
 
     /**
      * Función que permite navegar a la pantalla de "Crear Lista"
      */
     fun navigateToCreateAList(view: android.view.View) {
-
+        startActivity(Intent(this, FoodList::class.java))
     }
 
     /**
@@ -48,7 +48,11 @@ class PantallaPrincipal : AppCompatActivity() {
      * Función que permite navegar a la pantalla de configuración
      */
     fun navigateToConfiguration(view: android.view.View) {
+        startActivity(Intent(this, ConfigurationActivity::class.java))
+    }
 
+    fun navigateToEditProfile(view: android.view.View) {
+        startActivity(Intent(this, EditProfile::class.java))
     }
 
 }
