@@ -17,6 +17,8 @@ class EditProfile : AppCompatActivity() {
         binding.goBackButton.setOnClickListener {
             onBackPressed()
         }
+
+
     }
 
 }

@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.Button
 import com.appverse.hitthecooks.databinding.ActivityConfigurationBinding
 import com.appverse.hitthecooks.databinding.ActivityMainBinding
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class ConfigurationActivity : AppCompatActivity() {
 
@@ -20,6 +22,12 @@ class ConfigurationActivity : AppCompatActivity() {
         /** Botón para cambiar de pantalla **/
         buttonProfile.setOnClickListener {
             startActivity(Intent(this@ConfigurationActivity, EditProfile::class.java))
+        }
+
+        binding.buttonLogOut.setOnClickListener {
+            Firebase.auth.signOut()
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
         }
     }
 }
