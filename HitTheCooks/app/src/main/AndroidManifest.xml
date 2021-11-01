@@ -13,7 +13,7 @@
             android:name=".AboutUs"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".PantallaPrincipal"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -27,6 +27,6 @@ class AboutUs : AppCompatActivity() {
      * Función que permite navegar a la pantalla principal
      */
     fun navigateToMain(view: android.view.View) {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, PantallaPrincipal::class.java))
     }
 }
