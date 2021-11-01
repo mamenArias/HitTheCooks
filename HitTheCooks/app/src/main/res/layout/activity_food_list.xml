@@ -40,8 +40,10 @@
             android:id="@+id/buttonBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
             android:backgroundTint="@color/background"
+            app:tint="@color/orangeEgg"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/flechaatras"
@@ -51,11 +53,25 @@
             android:id="@+id/buttonUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:backgroundTint="@color/background"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonConfiguration"
+            app:layout_constraintEnd_toStartOf="@+id/buttonConfiguration"
+            app:layout_constraintTop_toTopOf="@+id/buttonConfiguration"
+            app:srcCompat="@drawable/user"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/buttonConfiguration"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:backgroundTint="@color/background"
+            android:scaleType="centerInside"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/user"
+            app:srcCompat="@drawable/conf_icon"
+            app:tint="@color/orangeEgg"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
