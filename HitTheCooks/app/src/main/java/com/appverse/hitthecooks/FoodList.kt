@@ -16,8 +16,7 @@ class FoodList : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonBack.setOnClickListener {
-            val intent = Intent(this, ShoppingListActivity::class.java)
-            startActivity(intent)
+            onBackPressed()
         }
 
         binding.buttonUser.setOnClickListener {
