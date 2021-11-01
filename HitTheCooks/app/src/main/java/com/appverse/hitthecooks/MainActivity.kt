@@ -23,9 +23,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(binding.root)
         var text:TextView = binding.googleButton.getChildAt(0) as TextView
         text.setText("Iniciar sesión con Google")
-        setContentView(binding.root)
+
 
        binding.signInButton.setOnClickListener {
             val intento = Intent(this, EditProfile::class.java)
