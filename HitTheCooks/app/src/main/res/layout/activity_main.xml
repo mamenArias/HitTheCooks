@@ -1,19 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/outerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/prueba"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/rightPizza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/pizzaIconDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/pizzadcha" />
+
+        <ImageView
+            android:id="@+id/leftPizza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/pizzaIconDescription"
+            android:scaleX="-1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/pizzadcha" />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/logoDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/leftPizza"
+            app:srcCompat="@drawable/logo" />
+
+        <EditText
+            android:id="@+id/nameGap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:background="@drawable/round_edit_text"
+            android:ems="15"
+            android:fontFamily="sans-serif"
+            android:hint="@string/userName"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:textColorHint="@color/hintColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+        <EditText
+            android:id="@+id/passwordGap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/round_edit_text"
+            android:ems="15"
+            android:hint="@string/userPass"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:textColorHint="@color/hintColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameGap" />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/googleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/botonInicioSesion"
+            app:layout_constraintVertical_bias="0.26" />
+
+        <Button
+            android:id="@+id/botonInicioSesion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/yellowEgg"
+            android:text="@string/signIn"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+
+            app:layout_constraintEnd_toStartOf="@+id/botonRegistro"
+            app:layout_constraintStart_toStartOf="@+id/passwordGap"
+            app:layout_constraintTop_toBottomOf="@+id/passwordGap" />
+
+        <ImageView
+            android:id="@+id/logoAppVerse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@string/appVerseLogoDescription"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/logoappverse"
+            tools:ignore="ImageContrastCheck" />
+
+        <Button
+            android:id="@+id/botonRegistro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/orangeEgg"
+            android:fontFamily="sans-serif-condensed-light"
+            android:text="@string/signUp"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/passwordGap"
+            app:layout_constraintTop_toTopOf="@+id/botonInicioSesion"
+            tools:ignore="TextContrastCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

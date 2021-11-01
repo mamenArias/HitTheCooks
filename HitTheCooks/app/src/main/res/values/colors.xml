@@ -11,4 +11,8 @@
     <color name="whiteEgg">#efefef</color>
     <color name="yellowEgg">#fccf3f</color>
     <color name="orangeEgg">#efa335</color>
+    <color name="backGroundText">#B51F37</color>
+    <color name="hintColor">#FFCDD2</color>
+    <color name="linkColor">#FAA36D</color>
+    <color name="noColor">#00FFFFFF</color>
 </resources>
