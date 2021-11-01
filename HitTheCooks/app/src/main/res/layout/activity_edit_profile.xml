@@ -2,18 +2,20 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/outerFrame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditProfile"
-    android:background="@color/background">
+    android:background="@color/background"
+    tools:context=".EditProfile">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/innerFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
         <ImageButton
-            android:id="@+id/botonIrAtras"
+            android:id="@+id/goBackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -25,10 +27,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="?attr/homeAsUpIndicator"
-            app:tint="@color/orangeEgg" />
+            app:tint="@color/orangeEgg"
+            tools:ignore="ImageContrastCheck" />
 
         <Button
-            android:id="@+id/botonRegistro2"
+            android:id="@+id/registerButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
@@ -45,7 +48,7 @@
             tools:ignore="TextContrastCheck" />
 
         <ImageView
-            android:id="@+id/logoAppVerse2"
+            android:id="@+id/appVerseIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -71,7 +74,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/profileIcon"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="32dp"
@@ -91,7 +94,7 @@
             android:textColor="@color/whiteEgg"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/editProfileText"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/profileIcon"
             tools:ignore="TextContrastCheck" />
 
         <ImageButton

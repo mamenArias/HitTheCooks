@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         text.setText("Iniciar sesión con Google")
         setContentView(binding.root)
 
-        binding.botonInicioSesion.setOnClickListener {
+       binding.signInButton.setOnClickListener {
             val intento = Intent(this, EditProfile::class.java)
             startActivity(intento)
         }
