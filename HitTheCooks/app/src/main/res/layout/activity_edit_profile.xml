@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/outerFrame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".EditProfile">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/innerFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageButton
+            android:id="@+id/goBackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/noColor"
+            android:contentDescription="@string/backArrow"
+            android:scaleX="2"
+            android:scaleY="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="?attr/homeAsUpIndicator"
+            app:tint="@color/orangeEgg"
+            tools:ignore="ImageContrastCheck" />
+
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginRight="25dp"
+            android:backgroundTint="@color/orangeEgg"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/update"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password"
+            tools:ignore="TextContrastCheck" />
+
+        <ImageView
+            android:id="@+id/appVerseIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@string/appVerseLogoDescription"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/logoappverse"
+            tools:ignore="ImageContrastCheck" />
+
+        <TextView
+            android:id="@+id/editProfileText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="128dp"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/editProfileText"
+            android:textColor="@color/whiteEgg"
+            android:textSize="40sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/profileIcon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="32dp"
+            android:contentDescription="@string/profileImageDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editProfileText"
+            app:srcCompat="@drawable/profile" />
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/userName"
+            android:textColor="@color/whiteEgg"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/editProfileText"
+            app:layout_constraintTop_toBottomOf="@+id/profileIcon"
+            tools:ignore="TextContrastCheck" />
+
+        <ImageButton
+            android:id="@+id/editUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/noColor"
+            android:contentDescription="@string/editImage"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            app:layout_constraintBottom_toBottomOf="@+id/userName"
+            app:layout_constraintEnd_toEndOf="@+id/editProfileText"
+            app:layout_constraintTop_toTopOf="@+id/userName"
+            app:srcCompat="@android:drawable/ic_menu_edit"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck,DuplicateSpeakableTextCheck" />
+
+        <TextView
+            android:id="@+id/password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/userPass"
+            android:textColor="@color/whiteEgg"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/editProfileText"
+            app:layout_constraintTop_toBottomOf="@+id/userName"
+            tools:ignore="TextContrastCheck" />
+
+        <ImageButton
+            android:id="@+id/editPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/noColor"
+            android:contentDescription="@string/editImage"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            app:layout_constraintBottom_toBottomOf="@+id/password"
+            app:layout_constraintEnd_toEndOf="@+id/editProfileText"
+            app:layout_constraintTop_toTopOf="@+id/password"
+            app:srcCompat="@android:drawable/ic_menu_edit"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/email"
+            android:textColor="@color/whiteEgg"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/editProfileText"
+            app:layout_constraintTop_toBottomOf="@+id/password"
+            tools:ignore="TextContrastCheck" />
+
+        <ImageButton
+
+            android:id="@+id/editEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/noColor"
+            android:contentDescription="@string/editImage"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            app:layout_constraintBottom_toBottomOf="@+id/email"
+            app:layout_constraintEnd_toEndOf="@+id/editProfileText"
+            app:layout_constraintTop_toTopOf="@+id/email"
+            app:srcCompat="@android:drawable/ic_menu_edit"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

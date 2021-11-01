@@ -19,4 +19,21 @@
     <string name="backButtonDescription">Botón de volver</string>
     <string name="studentPictureDescription">Retrato del colaborador</string>
     <string name="studentNameHere">Nombre de alumno aquí</string>
+    <string name="backgroundDescription">Fondo de pantalla</string>
+    <string name="pizzaIconDescription">Icono de pizza</string>
+    <string name="logoDescription">Logo principal de la aplicación</string>
+    <string name="userName">USUARIO</string>
+    <string name="userPass">CONTRASEÑA</string>
+    <string name="nameDescription">Campo con el nombre</string>
+    <string name="passwordDescription">Campo con el password</string>
+    <string name="signUp"><i>Registrarse</i></string>
+    <string name="signIn"><b>Iniciar Sesión</b></string>
+    <string name="designedBy"><i>Designed by</i></string>
+    <string name="appVerseLogoDescription">AppVerse Logo</string>
+    <string name="editProfileText">Editar Perfil</string>
+    <string name="update">Actualizar Datos</string>
+    <string name="editImage">Imagen para editar</string>
+    <string name="email">EMAIL</string>
+    <string name="profileImageDescription">Imagen de perfil</string>
+    <string name="backArrow">Imagen flecha hacia atrás</string>
 </resources>

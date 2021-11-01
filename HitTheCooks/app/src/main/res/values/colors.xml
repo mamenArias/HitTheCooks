@@ -13,4 +13,8 @@
     <color name="orangeEgg">#efa335</color>
     <color name="grey">#808080</color>
     <color name="darkGrey">#4d4d4d</color>
+    <color name="backGroundText">#B51F37</color>
+    <color name="hintColor">#FFCDD2</color>
+    <color name="linkColor">#FAA36D</color>
+    <color name="noColor">#00FFFFFF</color>
 </resources>
