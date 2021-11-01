@@ -13,7 +13,11 @@ class EditProfile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-    }
 
+        binding.goBackButton.setOnClickListener {
+            val intento = Intent(this, ConfigurationActivity::class.java)
+            startActivity(intento)
+        }
+    }
 
 }

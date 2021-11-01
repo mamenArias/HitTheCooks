@@ -26,8 +26,11 @@
             android:exported="true" />
         <activity
             android:name=".ConfigurationActivity"
-            android:exported="true">
-           <!-- android:theme="@style/SplashScreen"-->
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
