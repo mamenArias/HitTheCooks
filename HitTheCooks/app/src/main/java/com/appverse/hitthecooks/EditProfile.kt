@@ -15,8 +15,7 @@ class EditProfile : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.goBackButton.setOnClickListener {
-            val intento = Intent(this, ConfigurationActivity::class.java)
-            startActivity(intento)
+            onBackPressed()
         }
     }
 
