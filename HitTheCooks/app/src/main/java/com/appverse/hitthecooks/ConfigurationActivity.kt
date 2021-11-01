@@ -13,6 +13,7 @@ class ConfigurationActivity : AppCompatActivity() {
     private val buttonProfile : Button by lazy { binding.buttonProfile }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
