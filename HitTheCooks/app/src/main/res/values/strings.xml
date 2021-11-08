@@ -42,6 +42,7 @@
     <string name="theme">Tema claro / oscuro</string>
     <string name="logOut">Cerrar sesión</string>
     <string name="more">Más</string>
+    <string name="loading">Cargando</string>
     <string name="web_client_id">789300936703-lg585dme27fclh4gfj883gbmk05cc43b.apps.googleusercontent.com</string>
 
 </resources>

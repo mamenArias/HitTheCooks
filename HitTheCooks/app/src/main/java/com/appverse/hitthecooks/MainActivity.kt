@@ -37,8 +37,6 @@ class MainActivity : AppCompatActivity() {
         auth = Firebase.auth
 
 
-
-
         var text:TextView = binding.googleButton.getChildAt(0) as TextView
         text.setText("Iniciar sesión con Google")
 
@@ -46,7 +44,6 @@ class MainActivity : AppCompatActivity() {
        binding.signInButton.setOnClickListener {
             startActivity(goToPantallaPrincipal)
         }
-
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.web_client_id))
@@ -66,14 +63,11 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         checkUser()
     }
-
     private fun checkUser(){
         if(auth.currentUser!=null) {
             startActivity(goToPantallaPrincipal)
         }
     }
-
-
 
     private val responseLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         if(it.resultCode== Activity.RESULT_OK){
@@ -94,7 +88,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-
-
 }
