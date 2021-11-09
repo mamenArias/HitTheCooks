@@ -38,7 +38,6 @@ class AboutUs : AppCompatActivity() {
         binding.recyclerStudents.adapter = adapter
         binding.recyclerStudents.layoutManager = LinearLayoutManager(this)
 
-
     }
 
     /**
