@@ -25,13 +25,15 @@ class AboutUs : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        //Crea el ArrayList de alumnos
         val students : ArrayList<Student> = arrayListOf<Student>()
-        students.add(Student("Mamen Arias", "icono"))
         students.add(Student("Miguel Angel Arcos", "icono"))
+        students.add(Student("Mamen Arias", "icono"))
         students.add(Student("Manuel Carrillo", "icono"))
         students.add(Student("Christian García", "icono"))
         students.add(Student("Sergio Lopez", "icono"))
 
+        //Crea el adapter y lo aplica al RecyclerView
         val adapter : AboutUsAdapter = AboutUsAdapter(this, students)
         binding.recyclerStudents.adapter = adapter
         binding.recyclerStudents.layoutManager = LinearLayoutManager(this)
