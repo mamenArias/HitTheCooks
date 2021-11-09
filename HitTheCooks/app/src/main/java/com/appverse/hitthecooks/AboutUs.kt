@@ -3,7 +3,10 @@ package com.appverse.hitthecooks
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import classes.Student
 import com.appverse.hitthecooks.databinding.ActivityAboutUsBinding
+import recyclers.AboutUsAdapter
 
 /**
  * Clase que contiene el reclicler con los miembros del grupo
@@ -21,6 +24,19 @@ class AboutUs : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        val students : ArrayList<Student> = arrayListOf<Student>()
+        students.add(Student("Mamen Arias", "icono"))
+        students.add(Student("Miguel Angel Arcos", "icono"))
+        students.add(Student("Manuel Carrillo", "icono"))
+        students.add(Student("Christian García", "icono"))
+        students.add(Student("Sergio Lopez", "icono"))
+
+        val adapter : AboutUsAdapter = AboutUsAdapter(this, students)
+        binding.recyclerStudents.adapter = adapter
+        binding.recyclerStudents.layoutManager = LinearLayoutManager(this)
+
+
     }
 
     /**
