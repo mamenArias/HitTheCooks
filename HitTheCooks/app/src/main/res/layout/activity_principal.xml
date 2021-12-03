@@ -9,12 +9,12 @@
 
     <ImageButton
         android:id="@+id/configButton"
-        app:tint="@color/orangeEgg"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:background="@color/background"
+        android:contentDescription="@string/configButtonDescription"
         android:onClick="navigateToConfiguration"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toStartOf="@+id/userButton"
@@ -23,25 +23,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/conf_icon"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-        android:contentDescription="@string/configButtonDescription" />
+        app:tint="@color/orangeEgg"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/userButton"
-        android:onClick="navigateToEditProfile"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:background="@color/background"
+        android:contentDescription="@string/userButtonDescription"
+        android:onClick="navigateToEditProfile"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/configButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icono"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-        android:contentDescription="@string/userButtonDescription" />
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/usernameText"
@@ -60,16 +60,18 @@
         android:id="@+id/myListsButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
         android:backgroundTint="@color/darkGrey"
         android:onClick="navigateToMyLists"
         android:padding="20dp"
         android:text="@string/myLists"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/createAListButton"
-        app:layout_constraintEnd_toEndOf="@+id/createAListButton"
+        app:layout_constraintBottom_toTopOf="@+id/AboutUsButton"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/createAListButton"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appLogo" />
 
     <Button
@@ -85,27 +87,8 @@
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/createAListButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/createAListButton"
-        app:layout_constraintTop_toBottomOf="@+id/createAListButton" />
-
-    <Button
-        android:id="@+id/createAListButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:backgroundTint="@color/darkGrey"
-        android:onClick="navigateToCreateAList"
-        android:padding="20dp"
-        android:text="@string/createAList"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/AboutUsButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/myListsButton"
+        app:layout_constraintStart_toStartOf="@+id/myListsButton"
         app:layout_constraintTop_toBottomOf="@+id/myListsButton" />
 
     <ImageView
@@ -113,13 +96,13 @@
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginTop="10dp"
+        android:contentDescription="@string/logoDescription"
         app:layout_constraintBottom_toTopOf="@+id/myListsButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/configButton"
         app:layout_constraintWidth_percent="0.85"
-        app:srcCompat="@drawable/logo_hit_the_cook"
-        android:contentDescription="@string/logoDescription" />
+        app:srcCompat="@drawable/logo_hit_the_cook" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

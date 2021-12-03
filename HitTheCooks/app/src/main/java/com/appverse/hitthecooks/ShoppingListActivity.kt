@@ -6,26 +6,19 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.appverse.hitthecooks.model.ShoppingList
 import com.appverse.hitthecooks.databinding.ActivityShoppingListBinding
+import com.appverse.hitthecooks.model.User
+import recyclers.ShoppingListAdapter
 
 class ShoppingListActivity : AppCompatActivity() {
 
     private var  shoppingList = mutableListOf(
-        ShoppingList("Lista de Casa de Pepe", listOf("Pepe","Manuel")),
-            ShoppingList("Lista con Amigos", listOf("Fran","Alex")),
-        ShoppingList("Lista con Boni", listOf("Fran","Alex")),
-        ShoppingList("Lista con Jesús", listOf("Fran","Alex")),
-        ShoppingList("Lista con compis de piso", listOf("Fran","Alex")),
-        ShoppingList("Lista con Samuel", listOf("Fran","Alex")),
-        ShoppingList("Lista con Pedro", listOf("Fran","Alex")),
-
+        ShoppingList("fsfsfd",0,"", arrayListOf<User>())
         )
     private val binding by lazy { ActivityShoppingListBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         initRecycler()
-
-
     }
 
    private fun initRecycler(){

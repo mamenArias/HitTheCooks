@@ -1,6 +1,8 @@
-package com.appverse.hitthecooks
+package recyclers
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,16 +10,18 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.appverse.hitthecooks.FoodList
+import com.appverse.hitthecooks.ListCreationActivity
+import com.appverse.hitthecooks.R
 import com.appverse.hitthecooks.model.ShoppingList
 import com.google.android.material.snackbar.Snackbar
 
-class ShoppingListAdapter(private val shoppingList : MutableList<ShoppingList>,private val view: View, private val context: Context): RecyclerView.Adapter<ShoppingListAdapter.ShoppingListHolder>(){
+class ShoppingListAdapter(private val shoppingList : MutableList<ShoppingList>,private val view: View, private val context: Context): RecyclerView.Adapter<ShoppingListHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingListHolder {
        var layoutInflater : View?
            if(viewType == R.layout.item_shopping_list){
            layoutInflater= LayoutInflater.from(parent.context).inflate(R.layout.item_shopping_list,parent,false)
-
         }else{
          layoutInflater =   LayoutInflater.from(parent.context).inflate(R.layout.item_creation_list,parent,false)
         }
@@ -27,10 +31,14 @@ class ShoppingListAdapter(private val shoppingList : MutableList<ShoppingList>,p
     override fun onBindViewHolder(holder: ShoppingListHolder, position: Int) {
       if(position==shoppingList.size){
           holder.itemView.findViewById<TextView>(R.id.createListText).setOnClickListener {
-             Toast.makeText(context,"Aquí se debería insertar una nueva lista",Toast.LENGTH_SHORT).show()
+              context.startActivity(Intent(context,ListCreationActivity::class.java))
           }
       }else{
-          holder.render(shoppingList[position])
+          holder.textViewShoppingListName.text = shoppingList[position].name
+          holder.cardViewList.setOnClickListener {
+              //Aquí se debería pasar a la lista con la id correspondiente
+              context.startActivity(Intent(context,FoodList::class.java))
+          }
       }
     }
 
@@ -48,19 +56,7 @@ class ShoppingListAdapter(private val shoppingList : MutableList<ShoppingList>,p
         notifyItemRemoved(position)
     }
 
-    class ShoppingListHolder(private val view: View):RecyclerView.ViewHolder(view){
-        fun render(shoppingList: ShoppingList){
-           var textView = view.findViewById<TextView>(R.id.shoppingListName)
-            textView.text = shoppingList.name
 
-
-            var cardView = view.findViewById<CardView>(R.id.shoppingList)
-            cardView.setOnClickListener {
-
-            }
-
-        }
-    }
 }
 
 
