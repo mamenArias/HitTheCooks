@@ -15,7 +15,6 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:background="@color/background"
-        android:onClick="navigateToConfiguration"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toStartOf="@+id/userButton"
         app:layout_constraintHorizontal_bias="0.5"
@@ -28,7 +27,6 @@
 
     <ImageButton
         android:id="@+id/userButton"
-        android:onClick="navigateToEditProfile"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
@@ -61,7 +59,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/darkGrey"
-        android:onClick="navigateToMyLists"
         android:padding="20dp"
         android:text="@string/myLists"
         android:textSize="15sp"
@@ -73,13 +70,12 @@
         app:layout_constraintTop_toBottomOf="@+id/appLogo" />
 
     <Button
-        android:id="@+id/AboutUsButton"
+        android:id="@+id/aboutUsButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
         android:backgroundTint="@color/darkGrey"
         android:drawableStart="@drawable/icono_sobre_nosotros"
-        android:onClick="navigateToAboutUs"
         android:padding="20dp"
         android:text="@string/aboutUs"
         android:textSize="15sp"
@@ -97,12 +93,11 @@
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
         android:backgroundTint="@color/darkGrey"
-        android:onClick="navigateToCreateAList"
         android:padding="20dp"
         android:text="@string/createAList"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/AboutUsButton"
+        app:layout_constraintBottom_toTopOf="@+id/aboutUsButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

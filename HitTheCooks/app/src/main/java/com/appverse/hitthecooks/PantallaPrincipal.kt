@@ -21,38 +21,35 @@ class PantallaPrincipal : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-    }
 
-    /**
-     * Función que permite navegar a la pantalla de "Mis Listas"
-     */
-    fun navigateToMyLists(view: android.view.View) {
-        startActivity(Intent(this, ShoppingListActivity::class.java))
-    }
+        /**
+         * Función que permite navegar a la pantalla de configuración
+         */
+        binding.configButton.setOnClickListener {
+            startActivity(Intent(this, ConfigurationActivity::class.java))
+        }
 
-    /**
-     * Función que permite navegar a la pantalla de "Crear Lista"
-     */
-    fun navigateToCreateAList(view: android.view.View) {
-        startActivity(Intent(this, FoodList::class.java))
-    }
+        /**
+         * Función que permite navegar a la pantalla de editar perfil
+         */
+        binding.userButton.setOnClickListener {
+            startActivity(Intent(this, EditProfile::class.java))
+        }
 
-    /**
-     * Función que permite navegar a la pantalla de "Sobre Nosotros"
-     */
-    fun navigateToAboutUs(view: android.view.View) {
-        startActivity(Intent(this, AboutUs::class.java))
-    }
+        /**
+         * Función que permite navegar a la pantalla de "Mis Listas"
+         */
+        binding.myListsButton.setOnClickListener {
+            startActivity(Intent(this, ShoppingListActivity::class.java))
+        }
 
-    /**
-     * Función que permite navegar a la pantalla de configuración
-     */
-    fun navigateToConfiguration(view: android.view.View) {
-        startActivity(Intent(this, ConfigurationActivity::class.java))
-    }
+        /**
+         * Función que permite navegar a la pantalla de "Sobre Nosotros"
+         */
+        binding.aboutUsButton.setOnClickListener {
+            startActivity(Intent(this, AboutUs::class.java))
+        }
 
-    fun navigateToEditProfile(view: android.view.View) {
-        startActivity(Intent(this, EditProfile::class.java))
     }
 
 }
