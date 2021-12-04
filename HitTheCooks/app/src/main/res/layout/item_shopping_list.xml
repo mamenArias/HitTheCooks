@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -25,55 +26,76 @@
                 android:layout_height="130dp"
                 app:cardCornerRadius="10dp"
                 app:cardUseCompatPadding="true"
-                app:cardElevation="2dp"
-                app:contentPadding="15dp">
+                app:cardElevation="2dp">
 
-                <TextView
-                    android:id="@+id/shoppingListName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/shoppingListTitle"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
+                <ImageView
+                    android:id="@+id/backgroundImageShoppingList"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_gravity="bottom"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/background_list_1"></ImageView>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/userImageContainer"
-                        android:layout_width="30dp"
+
+                    <TextView
+                        android:id="@+id/shoppingListName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/shoppingListTitle"
+                        android:textColor="@color/white"
+                        android:textSize="19sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout2"
+                        android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        app:cardCornerRadius="20dp">
+                        android:layout_gravity="bottom"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
 
-                        <ImageView
-                            android:id="@+id/userImage"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:contentDescription="@string/userImageDescription"
-                            android:src="@drawable/icono" />
-                    </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/userImageContainer"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            app:cardCornerRadius="20dp">
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        app:cardCornerRadius="30dp"
-                        android:layout_marginStart="10dp"
-                        android:clickable="true"
-                        android:focusable="true">
+                            <ImageView
+                                android:id="@+id/userImage"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@string/userImageDescription"
+                                android:src="@drawable/icono" />
 
-                        <ImageView
-                            android:id="@+id/addMemberButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/grey"
-                            app:srcCompat="@drawable/add_icon" />
-                    </androidx.cardview.widget.CardView>
+                        </androidx.cardview.widget.CardView>
 
-                </LinearLayout>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="10dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardCornerRadius="30dp">
 
+                            <ImageView
+                                android:id="@+id/addMemberButton"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/grey"
+                                app:srcCompat="@drawable/add_icon" />
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>

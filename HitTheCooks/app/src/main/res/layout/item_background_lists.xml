@@ -14,7 +14,7 @@
         android:layout_height="125dp">
 
         <ImageView
-            android:id="@+id/backgroundImage"
+            android:id="@+id/backgroundImageShoppingList"
             android:layout_width="0dp"
             android:scaleType="centerCrop"
             android:layout_height="0dp"
@@ -29,10 +29,10 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:lottie_rawRes="@raw/checked"
-            app:layout_constraintBottom_toBottomOf="@+id/backgroundImage"
-            app:layout_constraintEnd_toEndOf="@+id/backgroundImage"
-            app:layout_constraintStart_toStartOf="@+id/backgroundImage"
-            app:layout_constraintTop_toTopOf="@+id/backgroundImage">
+            app:layout_constraintBottom_toBottomOf="@+id/backgroundImageShoppingList"
+            app:layout_constraintEnd_toEndOf="@+id/backgroundImageShoppingList"
+            app:layout_constraintStart_toStartOf="@+id/backgroundImageShoppingList"
+            app:layout_constraintTop_toTopOf="@+id/backgroundImageShoppingList">
 
         </com.airbnb.lottie.LottieAnimationView>
     </androidx.constraintlayout.widget.ConstraintLayout>

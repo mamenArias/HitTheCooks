@@ -5,6 +5,10 @@ import android.content.Context
 import android.content.DialogInterface
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.appverse.hitthecooks.utils.FirestoreCollections
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import recyclers.ShoppingListAdapter
 
 class SwipeToDelete(private var adapter: ShoppingListAdapter, private val context: Context) : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {

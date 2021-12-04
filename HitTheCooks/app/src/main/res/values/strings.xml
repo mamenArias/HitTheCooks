@@ -44,4 +44,6 @@
     <string name="more">Más</string>
     <string name="nameList">Nombre de la lista</string>
     <string name="next">Siguiente</string>
+    <string name="imageListNotSelected">Tienes que seleccionar una imagen</string>
+    <string name="nameListIsEmpty">El nombre de la lista no puede estar vacío</string>
 </resources>
