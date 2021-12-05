@@ -24,13 +24,12 @@ class ConfigurationActivity : SuperActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        applyDarkMode(binding.root)
+
         /** Botón para cambiar de pantalla **/
         buttonProfile.setOnClickListener {
             startActivity(Intent(this@ConfigurationActivity, EditProfile::class.java))
         }
-
-        //Gestiona las preferencias de la app
-        val preferences: SharedPreferences = this.getSharedPreferences("preferences", Context.MODE_PRIVATE)
 
         //Inicializa el editor de preferencias con el gestor preferences
         preferencesEditor = preferences.edit()
@@ -41,7 +40,6 @@ class ConfigurationActivity : SuperActivity() {
         if(darkMode){
             //Si el valor es verdadero, activa el switch del modo oscuro
             binding.switchNight.isChecked = true
-            //binding.rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
         }
 
         binding.switchNight.setOnClickListener {
@@ -53,8 +51,6 @@ class ConfigurationActivity : SuperActivity() {
                 applyChanges()
             }
         }
-
-        Toast.makeText(this, ""+darkMode.toString(), Toast.LENGTH_LONG).show()
 
     }
 

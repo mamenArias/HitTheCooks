@@ -25,6 +25,8 @@ class ShoppingListActivity : SuperActivity() {
         setContentView(binding.root)
         initRecycler()
 
+        applyDarkMode(binding.root)
+
 
     }
 

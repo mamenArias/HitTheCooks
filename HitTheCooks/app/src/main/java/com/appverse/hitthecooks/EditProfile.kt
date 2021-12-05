@@ -14,6 +14,8 @@ class EditProfile : SuperActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        applyDarkMode(binding.root)
+
         binding.goBackButton.setOnClickListener {
             onBackPressed()
         }

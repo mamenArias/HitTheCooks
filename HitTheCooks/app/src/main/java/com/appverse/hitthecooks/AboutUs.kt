@@ -25,6 +25,8 @@ class AboutUs : SuperActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        applyDarkMode(binding.root)
+
         //Crea el ArrayList de alumnos
         val students : ArrayList<Student> = arrayListOf<Student>()
         students.add(Student("Miguel Angel Arcos", "icono"))

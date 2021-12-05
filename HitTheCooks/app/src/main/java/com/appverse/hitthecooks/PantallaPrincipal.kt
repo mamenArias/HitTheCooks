@@ -22,6 +22,8 @@ class PantallaPrincipal : SuperActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        applyDarkMode(binding.root)
+
         /**
          * Función que permite navegar a la pantalla de configuración
          */

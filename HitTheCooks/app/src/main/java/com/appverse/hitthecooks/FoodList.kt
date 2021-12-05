@@ -15,6 +15,8 @@ class FoodList : SuperActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        applyDarkMode(binding.root)
+
         binding.buttonBack.setOnClickListener {
             onBackPressed()
         }
