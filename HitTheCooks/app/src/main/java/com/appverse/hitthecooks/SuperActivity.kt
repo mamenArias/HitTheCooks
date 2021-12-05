@@ -4,9 +4,12 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import java.lang.Exception
 
 abstract class SuperActivity : AppCompatActivity() {
 
@@ -25,9 +28,28 @@ abstract class SuperActivity : AppCompatActivity() {
         }
         if(darkMode){
             rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
+            //applyWhiteTexts(rootView)
+            if(rootView.context is ConfigurationActivity){
+                val text : TextView = findViewById(R.id.labelConfiguration)
+                text.setTextColor(ContextCompat.getColor(this, R.color.whiteEgg))
+            }
         }
     }
+    
+    private fun applyWhiteTexts (view: ViewGroup) : Unit {
+        for (i in 0 until view.childCount) {
+            val child: View = view.getChildAt(i)
+            if (child is ViewGroup) {
+                applyWhiteTexts(child)
+            } else {
+                try {
+                    (child as TextView).setTextColor(ContextCompat.getColor(this, R.color.white))
+                } catch (e: Exception) {
 
+                }
+            }
+        }
+    }
 
 
 }
