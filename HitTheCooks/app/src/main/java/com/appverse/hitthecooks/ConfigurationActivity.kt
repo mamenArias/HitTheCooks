@@ -1,29 +1,30 @@
 package com.appverse.hitthecooks
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import com.appverse.hitthecooks.databinding.ActivityConfigurationBinding
-import com.appverse.hitthecooks.databinding.ActivityMainBinding
 
+/**
+ * Actividad que contiene la pantalla de preferencias
+ * @author
+ * @since
+ */
 class ConfigurationActivity : SuperActivity() {
 
+    /** Objeto que permite enlazar las vistas del layout **/
     private val binding by lazy { ActivityConfigurationBinding.inflate(layoutInflater) }
+    /** Botón de navegación a la pantalla de perfil de usuario" **/
     private val buttonProfile: Button by lazy { binding.buttonProfile }
 
     /** Editor de preferencias **/
     lateinit var preferencesEditor: SharedPreferences.Editor
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        //Aplica el modo oscuro en el caso de que el valor sea true
         applyDarkMode(binding.root)
 
         /** Botón para cambiar de pantalla **/
@@ -34,7 +35,7 @@ class ConfigurationActivity : SuperActivity() {
         //Inicializa el editor de preferencias con el gestor preferences
         preferencesEditor = preferences.edit()
 
-        //Establece el valor de la preferencia "modo oscuro", si no hay ninguno, usara el valor por defecto
+        //Establece el valor de la preferencia "modo oscuro", si no hay ninguno, usará el valor por defecto
         val darkMode : Boolean = preferences.getBoolean("darkMode", false)
 
         if(darkMode){
@@ -42,6 +43,7 @@ class ConfigurationActivity : SuperActivity() {
             binding.switchNight.isChecked = true
         }
 
+        //Modifica el valor del modo oscuro mediante el switch
         binding.switchNight.setOnClickListener {
             if (binding.switchNight.isChecked){
                 preferencesEditor.putBoolean("darkMode", true)
@@ -54,6 +56,9 @@ class ConfigurationActivity : SuperActivity() {
 
     }
 
+    /**
+     * Función que aplica los cambios al archivo de configuración y refresca la actividad
+     */
     fun applyChanges() : Unit {
         preferencesEditor.commit()
         finish();
