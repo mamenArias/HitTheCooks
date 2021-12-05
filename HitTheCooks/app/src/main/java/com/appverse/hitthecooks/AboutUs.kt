@@ -13,7 +13,7 @@ import recyclers.AboutUsAdapter
  * @author
  * @since
  */
-class AboutUs : AppCompatActivity() {
+class AboutUs : SuperActivity() {
 
     /** Constante que permite enlazar directamente con las vistas del layout **/
     private val binding by lazy { ActivityAboutUsBinding.inflate(layoutInflater) }

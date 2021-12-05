@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat
 import com.appverse.hitthecooks.databinding.ActivityConfigurationBinding
 import com.appverse.hitthecooks.databinding.ActivityMainBinding
 
-class ConfigurationActivity : AppCompatActivity() {
+class ConfigurationActivity : SuperActivity() {
 
     private val binding by lazy { ActivityConfigurationBinding.inflate(layoutInflater) }
     private val buttonProfile: Button by lazy { binding.buttonProfile }

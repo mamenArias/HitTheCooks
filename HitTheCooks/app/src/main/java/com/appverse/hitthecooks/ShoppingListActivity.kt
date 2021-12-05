@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.appverse.hitthecooks.model.ShoppingList
 import com.appverse.hitthecooks.databinding.ActivityShoppingListBinding
 
-class ShoppingListActivity : AppCompatActivity() {
+class ShoppingListActivity : SuperActivity() {
 
     private var  shoppingList = mutableListOf(
         ShoppingList("Lista de Casa de Pepe", listOf("Pepe","Manuel")),

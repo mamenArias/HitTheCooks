@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.appverse.hitthecooks.databinding.ActivityEditProfileBinding
 import com.appverse.hitthecooks.databinding.ActivityMainBinding
 
-class EditProfile : AppCompatActivity() {
+class EditProfile : SuperActivity() {
 
     private val binding by lazy { ActivityEditProfileBinding.inflate(layoutInflater) }
 

@@ -10,7 +10,7 @@ import com.appverse.hitthecooks.databinding.ActivityPrincipalBinding
  * @author
  * @since
  */
-class PantallaPrincipal : AppCompatActivity() {
+class PantallaPrincipal : SuperActivity() {
 
     /** Constante que permite enlazar directamente con las vistas del layout **/
     private val binding by lazy { ActivityPrincipalBinding.inflate(layoutInflater) }
@@ -41,6 +41,13 @@ class PantallaPrincipal : AppCompatActivity() {
          */
         binding.myListsButton.setOnClickListener {
             startActivity(Intent(this, ShoppingListActivity::class.java))
+        }
+
+        /**
+         * Función que permite navegar a la pantalla de "Crear una Lista"
+         */
+        binding.createAListButton.setOnClickListener {
+            startActivity(Intent(this, FoodList::class.java))
         }
 
         /**

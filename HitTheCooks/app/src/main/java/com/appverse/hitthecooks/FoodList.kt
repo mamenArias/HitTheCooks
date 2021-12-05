@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.Button
 import com.appverse.hitthecooks.databinding.ActivityFoodListBinding
 
-class FoodList : AppCompatActivity() {
+class FoodList : SuperActivity() {
 
     private val binding by lazy { ActivityFoodListBinding.inflate(layoutInflater) }
 
