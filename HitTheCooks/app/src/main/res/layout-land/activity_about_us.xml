@@ -15,7 +15,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:onClick="navigateToMain"
-        android:background="@color/background"
+        android:background="@color/noColor"
         android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

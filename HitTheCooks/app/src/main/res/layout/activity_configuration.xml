@@ -73,7 +73,6 @@
             android:id="@+id/labelTheme"
             android:layout_width="379dp"
             android:layout_height="42dp"
-            android:drawableLeft="@drawable/icononoche"
             android:gravity="center"
             android:text="@string/theme"
             android:textColor="@color/whiteEgg"
@@ -82,7 +81,8 @@
             app:layout_constraintBottom_toTopOf="@+id/buttonProfile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:drawableLeftCompat="@drawable/icononoche" />
 
         <Button
             android:id="@+id/buttonLogOut"

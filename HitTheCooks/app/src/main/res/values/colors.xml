@@ -17,4 +17,5 @@
     <color name="hintColor">#FFCDD2</color>
     <color name="linkColor">#FAA36D</color>
     <color name="noColor">#00FFFFFF</color>
+    <color name="darkBlue">#00001a</color>
 </resources>
