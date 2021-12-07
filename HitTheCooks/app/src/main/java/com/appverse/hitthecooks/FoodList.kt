@@ -13,7 +13,9 @@ class FoodList : SuperActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+        //setContentView(binding.root)
+        drawerLayout.addView(binding.root, 1)
+        navigationView.setCheckedItem(R.id.nav_new_list)
 
         applyDarkMode(binding.root)
 

@@ -23,7 +23,10 @@ class ConfigurationActivity : SuperActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+        //setContentView(binding.root)
+        drawerLayout.addView(binding.root, 1)
+        navigationView.setCheckedItem(R.id.nav_configuration)
+
         //Aplica el modo oscuro en el caso de que el valor sea true
         applyDarkMode(binding.root)
 

@@ -23,7 +23,10 @@ class AboutUs : SuperActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+        //setContentView(binding.root)
+        //Infla la vista en el layout de la actividad superior para compartir la barra de navegación
+        drawerLayout.addView(binding.root, 1)
+        navigationView.setCheckedItem(R.id.nav_about_us)
 
         applyDarkMode(binding.root)
 
@@ -40,12 +43,13 @@ class AboutUs : SuperActivity() {
         binding.recyclerStudents.adapter = adapter
         binding.recyclerStudents.layoutManager = LinearLayoutManager(this)
 
+        /**
+         * Función que permite navegar a la pantalla principal
+         */
+        binding.backButton?.setOnClickListener {
+            startActivity(Intent(this, PantallaPrincipal::class.java))
+        }
+
     }
 
-    /**
-     * Función que permite navegar a la pantalla principal
-     */
-    fun navigateToMain(view: android.view.View) {
-        startActivity(Intent(this, PantallaPrincipal::class.java))
-    }
 }
