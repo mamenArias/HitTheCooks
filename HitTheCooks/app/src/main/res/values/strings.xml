@@ -42,4 +42,5 @@
     <string name="theme">Tema claro / oscuro</string>
     <string name="logOut">Cerrar sesión</string>
     <string name="more">Más</string>
+    <string name="principal">Principal</string>
 </resources>
