@@ -32,12 +32,10 @@ class SwipeToDelete(private var adapter: ShoppingListAdapter, private val contex
 
      override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         var pos = viewHolder.absoluteAdapterPosition
-
         var builder = AlertDialog.Builder(context)
 
         builder.setMessage(R.string.deletionConfirmation)
         builder.setPositiveButton(R.string.yes,DialogInterface.OnClickListener { dialogInterface, i ->
-
             adapter.deleteItem(pos)
             dialogInterface.cancel()
         })

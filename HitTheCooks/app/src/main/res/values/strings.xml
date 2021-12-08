@@ -46,4 +46,8 @@
     <string name="next">Siguiente</string>
     <string name="imageListNotSelected">Tienes que seleccionar una imagen</string>
     <string name="nameListIsEmpty">El nombre de la lista no puede estar vacío</string>
+    <string name="share">Comparte tu lista con otras personas</string>
+    <string name="copy">Copiar</string>
+    <string name="createList">Crear Lista</string>
+    <string name="copiedToClipboard">Copiado en el portapapeles</string>
 </resources>

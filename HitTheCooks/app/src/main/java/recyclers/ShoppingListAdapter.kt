@@ -2,6 +2,7 @@ package recyclers
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,8 +54,10 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
         return if (position == shoppingList.size) R.layout.item_creation_list else R.layout.item_shopping_list
     }
 
+    /**
+     * Elimina una lista si solo queda un un usuario en ella, sino solo se sale el usuario de ella sin eliminarla
+     */
     fun deleteItem(position: Int){
-        //Eliminar lista si es el último usuario que se sale
         var list : ShoppingList? = null
         val db = Firebase.firestore
         //  TODO("CAMBIAR EL EMAIL HARDCODEADO CUANDO ESTÉ EL LOGIN HECHO")
@@ -73,10 +76,12 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
                 val emailToDelete = hashMapOf<String,Any>("users" to FieldValue.arrayRemove("sergio@gmail.com"))
                 db.collection(FirestoreCollections.LISTS).document(shoppingList[position].id).update(emailToDelete)
             }
+
         }
         Snackbar.make(view,"Has borrado la lista de ${shoppingList[position].name}",Snackbar.LENGTH_SHORT).show()
         shoppingList.removeAt(position)
         notifyItemRemoved(position)
+
     }
 
 }

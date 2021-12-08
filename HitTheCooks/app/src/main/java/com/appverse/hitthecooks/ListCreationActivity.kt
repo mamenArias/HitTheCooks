@@ -50,10 +50,13 @@ class ListCreationActivity : AppCompatActivity(),RecyclerTransferData {
                             ref.id,                 //email hardcodeado para prueba
                             arrayListOf(user?.email?:""))
                         )
+
+                }.addOnSuccessListener {
+                    val bundle = Bundle()
+                    bundle.putString("listId",ref.id)
+                    startActivity(Intent(this, InvitationActivity::class.java).putExtras(bundle))
                 }
 
-
-                startActivity(Intent(this, InvitationActivity::class.java))
                 //Ir a la pantalla de invitación de usuarios que genera un enlace de Dynamics Links
             }else{
                 if(imageId == null){
@@ -66,8 +69,8 @@ class ListCreationActivity : AppCompatActivity(),RecyclerTransferData {
         }
     }
 
-    override fun passData(value: Int) {
-      imageId=  value
+    override fun passData(value: Int ) {
+        imageId=  value
     }
 
 
