@@ -1,11 +1,14 @@
 package com.appverse.hitthecooks
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import com.appverse.hitthecooks.databinding.ActivityFoodListBinding
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 
 class FoodList : SuperActivity() {
 
@@ -20,7 +23,7 @@ class FoodList : SuperActivity() {
         applyDarkMode(binding.root)
 
         binding.buttonBack.setOnClickListener {
-            onBackPressed()
+           startActivity(Intent(this,ShoppingListActivity::class.java))
         }
 
         binding.buttonUser.setOnClickListener {
@@ -32,6 +35,11 @@ class FoodList : SuperActivity() {
             val intent = Intent(this, ConfigurationActivity::class.java)
             startActivity(intent)
         }
+
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this,ShoppingListActivity::class.java))
     }
 
 

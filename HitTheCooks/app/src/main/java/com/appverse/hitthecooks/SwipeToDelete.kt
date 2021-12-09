@@ -3,12 +3,15 @@ package com.appverse.hitthecooks
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
-import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.appverse.hitthecooks.utils.FirestoreCollections
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import recyclers.ShoppingListAdapter
 
- class SwipeToDelete(private var adapter: ShoppingListAdapter,private val context: Context) : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+class SwipeToDelete(private var adapter: ShoppingListAdapter, private val context: Context) : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
     override fun onMove(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,
@@ -29,12 +32,10 @@ import androidx.recyclerview.widget.RecyclerView
 
      override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         var pos = viewHolder.absoluteAdapterPosition
-
         var builder = AlertDialog.Builder(context)
-
+        builder.setTitle(R.string.listDeletionQuestion)
         builder.setMessage(R.string.deletionConfirmation)
         builder.setPositiveButton(R.string.yes,DialogInterface.OnClickListener { dialogInterface, i ->
-
             adapter.deleteItem(pos)
             dialogInterface.cancel()
         })
