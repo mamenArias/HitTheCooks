@@ -19,6 +19,7 @@ class ShoppingListActivity : SuperActivity() {
         ShoppingList("Lista con Pedro", listOf("Fran","Alex")),
 
         )
+
     private val binding by lazy { ActivityShoppingListBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
