@@ -74,6 +74,7 @@ class PantallaPrincipal : SuperActivity() {
         }
 
         db.collection(FirestoreCollections.USERS).document(Firebase.auth.currentUser!!.email.toString()).get().addOnSuccessListener {
+
             binding.usernameText.text = it.get("email").toString().substringBefore('@')
             Glide.with(this).load(it.get("profileImage")).circleCrop().into(binding.userButton as ImageView)
         }
