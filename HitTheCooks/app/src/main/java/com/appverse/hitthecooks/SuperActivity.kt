@@ -51,23 +51,33 @@ abstract class SuperActivity : AppCompatActivity(), NavigationView.OnNavigationI
         when(item.itemId){
             R.id.nav_main -> {
                 val intent : Intent = Intent(applicationContext, PantallaPrincipal::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
+                finish()
             }
             R.id.nav_lists -> {
                 val intent : Intent = Intent(applicationContext, ShoppingListActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
+                finish()
             }
             R.id.nav_configuration-> {
                 val intent : Intent = Intent(applicationContext, ConfigurationActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
+                finish()
             }
             R.id.nav_profile-> {
                 val intent : Intent = Intent(applicationContext, EditProfile::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
+                finish()
             }
             R.id.nav_about_us-> {
                 val intent : Intent = Intent(applicationContext, AboutUs::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
+                finish()
             }
 
         }

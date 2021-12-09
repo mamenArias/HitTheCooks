@@ -30,7 +30,7 @@ class InvitationActivity : SuperActivity() {
         //setContentView(binding.root)
         drawerLayout.addView(binding.root, 1)
         applyDarkMode(binding.root)
-        
+
         val listId : String = intent.extras?.getString("listId") as String
         //Creación del link para invitación.En él, se inserta el id de la lista
         val builder =  FirebaseDynamicLinks.getInstance()

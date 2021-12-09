@@ -22,23 +22,33 @@ class FoodList : SuperActivity() {
         applyDarkMode(binding.root)
 
         binding.buttonBack.setOnClickListener {
-           startActivity(Intent(this,ShoppingListActivity::class.java))
+            val intent:Intent = Intent(this,ShoppingListActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            finish()
         }
 
         binding.buttonUser.setOnClickListener {
             val intent = Intent(this, EditProfile::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
+            finish()
         }
 
         binding.buttonConfiguration.setOnClickListener {
             val intent = Intent(this, ConfigurationActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
+            finish()
         }
 
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this,ShoppingListActivity::class.java))
+        val intent:Intent = Intent(this,ShoppingListActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
+        finish()
     }
 
 
