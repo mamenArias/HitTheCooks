@@ -1,31 +1,27 @@
 package com.appverse.hitthecooks
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.appverse.hitthecooks.model.ShoppingList
 import com.appverse.hitthecooks.databinding.ActivityShoppingListBinding
 import com.appverse.hitthecooks.model.User
 import com.appverse.hitthecooks.utils.FirestoreCollections
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-import recyclers.ShoppingListAdapter
+import com.appverse.hitthecooks.recyclers.ShoppingListAdapter
+import com.google.firebase.auth.FirebaseAuth
 
 class ShoppingListActivity : SuperActivity() {
-
+    private lateinit var auth: FirebaseAuth
     private lateinit var shoppingList : ArrayList<ShoppingList>
     private val db : FirebaseFirestore by lazy { Firebase.firestore }
     private val binding by lazy { ActivityShoppingListBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(binding.root)
+        auth = FirebaseAuth.getInstance()
         drawerLayout.addView(binding.root, 1)
         navigationView.setCheckedItem(R.id.nav_lists)
 
@@ -47,8 +43,7 @@ class ShoppingListActivity : SuperActivity() {
         alertDialog.window?.setLayout(400,400)
 
         shoppingList = arrayListOf()
-        //  db.collection(FirestoreCollections.USERS).document("sergio@gmail.com").set(User("sergio@gmail.com"))
-        db.collection(FirestoreCollections.USERS).document("sergio@gmail.com").get().addOnCompleteListener {
+        db.collection(FirestoreCollections.USERS).document(auth.currentUser?.email.toString()).get().addOnCompleteListener {
             if(it.isSuccessful){
                 user = it.result.toObject(User::class.java)!!
             }

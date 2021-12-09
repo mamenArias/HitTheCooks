@@ -1,12 +1,11 @@
 package com.appverse.hitthecooks
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import classes.Student
 import com.appverse.hitthecooks.databinding.ActivityAboutUsBinding
-import recyclers.AboutUsAdapter
+import com.appverse.hitthecooks.recyclers.AboutUsAdapter
 
 /**
  * Clase que contiene el reclicler con los miembros del grupo

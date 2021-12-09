@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var storageRef : StorageReference
     val dbStorage = FirebaseStorage.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
-
         setTheme(R.style.SplashScreen)
         Thread.sleep(2000)
         super.onCreate(savedInstanceState)
@@ -46,15 +45,7 @@ class MainActivity : AppCompatActivity() {
         var text:TextView = binding.googleButton.getChildAt(0) as TextView
         text.setText("Iniciar sesión con Google")
 
-        FirebaseDynamicLinks.getInstance().getDynamicLink(intent).addOnSuccessListener {
-            var deepLink : Uri? = null;
-            if (it !=null){
-                deepLink = it.link as Uri
-                val listId = deepLink.getQueryParameter("list")
-                Toast.makeText(this, "$listId", Toast.LENGTH_SHORT).show()
-               startActivity(Intent(this,FoodList::class.java))
-            }
-        }
+
         val gso = GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.webid))
@@ -162,7 +153,7 @@ class MainActivity : AppCompatActivity() {
 
     fun updateUI(account: FirebaseUser?) {
         if (account != null) {
-
+            receivedInvitationLink()
             startActivity(Intent(this, PantallaPrincipal::class.java))
         } else {
 
@@ -180,6 +171,18 @@ class MainActivity : AppCompatActivity() {
                 auth.signInWithCredential(credential).addOnCompleteListener {
                     updateUI(auth.currentUser)
                 }
+            }
+        }
+    }
+    private fun receivedInvitationLink(){
+        FirebaseDynamicLinks.getInstance().getDynamicLink(intent).addOnSuccessListener {
+            var deepLink : Uri? = null;
+            if (it !=null){
+                deepLink = it.link as Uri
+                val listId = deepLink.getQueryParameter("list")
+
+                Toast.makeText(this, "$listId", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this,FoodList::class.java))
             }
         }
     }
