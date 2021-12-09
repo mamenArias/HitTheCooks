@@ -7,8 +7,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
 import com.appverse.hitthecooks.databinding.ActivityFoodListBinding
+import com.appverse.hitthecooks.model.Item
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
+import recyclers.FoodListAdapter
 
 class FoodList : SuperActivity() {
 
@@ -41,6 +44,11 @@ class FoodList : SuperActivity() {
             startActivity(intent)
             finish()
         }
+
+        val arrayItems:ArrayList<Item> = arrayListOf()
+        val adapter:FoodListAdapter= FoodListAdapter(this, arrayItems)
+        binding.foodListRecycler.adapter = adapter
+        binding.foodListRecycler.layoutManager = GridLayoutManager(this, 3)
 
     }
 
