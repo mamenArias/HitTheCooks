@@ -27,7 +27,6 @@ class InvitationActivity : SuperActivity() {
     private val binding by lazy { ActivityInvitationBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(binding.root)
         drawerLayout.addView(binding.root, 1)
         applyDarkMode(binding.root)
 

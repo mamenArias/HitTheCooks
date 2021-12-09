@@ -1,4 +1,4 @@
-package recyclers
+package com.appverse.hitthecooks.recyclers
 
 import android.app.Activity
 import android.view.ViewGroup
