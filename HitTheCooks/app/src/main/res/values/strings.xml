@@ -65,4 +65,5 @@
     <string name="cancelar">Cancelar</string>
     <string name="cierreSesionPregunta">¿Estás segur@ de que deseas cerrar sesión?</string>
     <string name="campoVacio">Por favor, no dejes ningún campo vacío</string>
+    <string name="passCorto">El password debe tener 8 caraceteres como mínimo</string>
 </resources>
