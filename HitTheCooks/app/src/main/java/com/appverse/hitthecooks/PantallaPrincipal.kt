@@ -84,8 +84,6 @@ class PantallaPrincipal : SuperActivity() {
             Glide.with(this).load(it.get("profileImage")).circleCrop().into(binding.userButton as ImageView)
         }
 
-
-
     }
     private fun receivedInvitationLink(){
         FirebaseDynamicLinks.getInstance().getDynamicLink(intent).addOnSuccessListener {
@@ -100,6 +98,4 @@ class PantallaPrincipal : SuperActivity() {
             }
         }
     }
-
-
 }

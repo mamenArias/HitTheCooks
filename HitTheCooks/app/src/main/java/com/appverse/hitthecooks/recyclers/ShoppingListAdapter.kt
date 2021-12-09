@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.appverse.hitthecooks.FoodList
 import com.appverse.hitthecooks.ListCreationActivity
@@ -13,6 +14,7 @@ import com.appverse.hitthecooks.R
 import com.appverse.hitthecooks.model.ShoppingList
 import com.appverse.hitthecooks.utils.FirestoreCollections
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -66,23 +68,20 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
     fun deleteItem(position: Int){
         var list : ShoppingList? = null
         val db = Firebase.firestore
-        //  TODO("CAMBIAR EL EMAIL HARDCODEADO CUANDO ESTÉ EL LOGIN HECHO")
         val update = hashMapOf<String,Any>(
             "listsIds" to FieldValue.arrayRemove(shoppingList[position].id)
         )
-        db.collection(FirestoreCollections.USERS).document("sergio@gmail.com").update(update).addOnCompleteListener {}
+        db.collection(FirestoreCollections.USERS).document(Firebase.auth.currentUser?.email.toString()).update(update).addOnCompleteListener {}
         db.collection(FirestoreCollections.LISTS).document(shoppingList[position].id).get().addOnCompleteListener {
             if (it.isSuccessful){
                  list = it.result.toObject(ShoppingList::class.java)!!
             }
         }.addOnSuccessListener {
-            if(list!!.users.size <=1){
+            if(list!!.users.size ==1){
                 db.collection(FirestoreCollections.LISTS).document(list!!.id).delete().addOnCompleteListener {  }
             }else{
-                val emailToDelete = hashMapOf<String,Any>("users" to FieldValue.arrayRemove("sergio@gmail.com"))
-                db.collection(FirestoreCollections.LISTS).document(shoppingList[position].id).update(emailToDelete)
+                db.collection(FirestoreCollections.LISTS).document(shoppingList[position].id).update("users",FieldValue.arrayRemove(Firebase.auth.currentUser?.email.toString())).addOnCompleteListener {  }
             }
-
         }
         Snackbar.make(view,context.resources.getString(R.string.listDeleted)+" ${shoppingList[position].name}",Snackbar.LENGTH_SHORT).show()
         shoppingList.removeAt(position)
