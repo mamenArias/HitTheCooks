@@ -11,19 +11,20 @@ import com.appverse.hitthecooks.model.ShoppingList
 import com.appverse.hitthecooks.model.User
 import com.appverse.hitthecooks.utils.CommonItemDecoration
 import com.appverse.hitthecooks.utils.FirestoreCollections
-import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import recyclers.ListCreationAdapter
+import com.appverse.hitthecooks.recyclers.ListCreationAdapter
+import com.google.firebase.auth.FirebaseAuth
 
 class ListCreationActivity : SuperActivity(),RecyclerTransferData {
     private var imageId : Int? = null
+    private lateinit var auth :FirebaseAuth
     private val binding by lazy { ActivityListCreationBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(binding.root)
         drawerLayout.addView(binding.root, 1)
         applyDarkMode(binding.root)
+        auth = FirebaseAuth.getInstance()
 
         val db = Firebase.firestore
 
@@ -36,10 +37,9 @@ class ListCreationActivity : SuperActivity(),RecyclerTransferData {
 
         binding.nextButton.setOnClickListener {
             if(binding.nameListTextView.text.isNotEmpty() && imageId != null) {
-                //    TODO(" //Obtener usuario al registrarse una vez esté hecho el login y registro")
                 val ref = db.collection(FirestoreCollections.LISTS).document()
                 var user : User ?=null
-                db.collection(FirestoreCollections.USERS).document("sergio@gmail.com").get().addOnCompleteListener {
+                db.collection(FirestoreCollections.USERS).document(auth.currentUser?.email.toString()).get().addOnCompleteListener {
                     if(it.isSuccessful){
                         user = it.result.toObject(User::class.java)!!
                     }
@@ -50,10 +50,9 @@ class ListCreationActivity : SuperActivity(),RecyclerTransferData {
                         ShoppingList(
                             binding.nameListTextView.text.toString(),
                             imageId!!,
-                            ref.id,                 //email hardcodeado para prueba
+                            ref.id,
                             arrayListOf(user?.email?:""))
                         )
-
                 }.addOnSuccessListener {
                     val bundle = Bundle()
                     bundle.putString("listId",ref.id)

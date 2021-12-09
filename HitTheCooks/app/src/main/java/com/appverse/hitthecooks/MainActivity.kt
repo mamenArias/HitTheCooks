@@ -9,6 +9,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.appverse.hitthecooks.databinding.ActivityMainBinding
+import com.appverse.hitthecooks.model.User
+import com.appverse.hitthecooks.utils.FirestoreCollections
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -21,7 +23,10 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,8 +34,10 @@ class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+    private val db=FirebaseFirestore.getInstance()
+    private lateinit var storageRef : StorageReference
+    val dbStorage = FirebaseStorage.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
-
         setTheme(R.style.SplashScreen)
         Thread.sleep(2000)
         super.onCreate(savedInstanceState)
@@ -38,15 +45,7 @@ class MainActivity : AppCompatActivity() {
         var text:TextView = binding.googleButton.getChildAt(0) as TextView
         text.setText("Iniciar sesión con Google")
 
-        FirebaseDynamicLinks.getInstance().getDynamicLink(intent).addOnSuccessListener {
-            var deepLink : Uri? = null;
-            if (it !=null){
-                deepLink = it.link as Uri
-                val listId = deepLink.getQueryParameter("list")
-                Toast.makeText(this, "$listId", Toast.LENGTH_SHORT).show()
-               startActivity(Intent(this,FoodList::class.java))
-            }
-        }
+
         val gso = GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.webid))
@@ -64,7 +63,6 @@ class MainActivity : AppCompatActivity() {
            val auth = FirebaseAuth.getInstance()
            //pasamos por argumentos el usuario y contraseña
            val tarea = auth.createUserWithEmailAndPassword(binding.nameGap.text.toString(),binding.passwordGap.text.toString())
-
            tarea.addOnCompleteListener(this,object: OnCompleteListener<AuthResult> {
                override fun onComplete(p0: Task<AuthResult>) {
                    if (tarea.isSuccessful) {
@@ -73,6 +71,14 @@ class MainActivity : AppCompatActivity() {
                            R.string.registroCompletado,
                            Toast.LENGTH_LONG
                        ).show()
+
+                       storageRef = dbStorage.reference.child("imagenesPerfil").child("default.png")
+                       storageRef.downloadUrl.addOnSuccessListener {url->
+                           var user = User(binding.nameGap.text.toString(),url.toString())
+                           db.collection( FirestoreCollections.USERS).document(user.email).set(
+                               user
+                           )
+                       }
                        startActivity(Intent(this@MainActivity,PantallaPrincipal::class.java))
 
                    } else {
@@ -136,6 +142,11 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
 
+                        var userAInsertar = User(binding.nameGap.text.toString())
+                        db.collection( FirestoreCollections.USERS).document(userAInsertar.email).set(
+                            userAInsertar
+                        )
+
                     val user = auth.currentUser
                     updateUI(user)
                 } else {
@@ -147,7 +158,7 @@ class MainActivity : AppCompatActivity() {
 
     fun updateUI(account: FirebaseUser?) {
         if (account != null) {
-
+            receivedInvitationLink()
             startActivity(Intent(this, PantallaPrincipal::class.java))
         } else {
 
@@ -165,6 +176,18 @@ class MainActivity : AppCompatActivity() {
                 auth.signInWithCredential(credential).addOnCompleteListener {
                     updateUI(auth.currentUser)
                 }
+            }
+        }
+    }
+    private fun receivedInvitationLink(){
+        FirebaseDynamicLinks.getInstance().getDynamicLink(intent).addOnSuccessListener {
+            var deepLink : Uri? = null;
+            if (it !=null){
+                deepLink = it.link as Uri
+                val listId = deepLink.getQueryParameter("list")
+
+                Toast.makeText(this, "$listId", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this,FoodList::class.java))
             }
         }
     }

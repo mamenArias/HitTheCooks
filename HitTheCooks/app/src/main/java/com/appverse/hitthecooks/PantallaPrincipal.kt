@@ -3,7 +3,13 @@ package com.appverse.hitthecooks
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import com.appverse.hitthecooks.databinding.ActivityPrincipalBinding
+import com.appverse.hitthecooks.utils.FirestoreCollections
+import com.bumptech.glide.Glide
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 
 /**
  * Actividad de la pantalla principal desde la que navegar al resto de pantallas
@@ -14,6 +20,7 @@ class PantallaPrincipal : SuperActivity() {
 
     /** Constante que permite enlazar directamente con las vistas del layout **/
     private val binding by lazy { ActivityPrincipalBinding.inflate(layoutInflater) }
+    private val db= FirebaseFirestore.getInstance()
 
     /**
      * Inicializa la actividad
@@ -65,6 +72,13 @@ class PantallaPrincipal : SuperActivity() {
             startActivity(intent)
             finish()
         }
+
+        db.collection(FirestoreCollections.USERS).document(Firebase.auth.currentUser!!.email.toString()).get().addOnSuccessListener {
+            binding.usernameText.text = it.get("email").toString().substringBefore('@')
+            Glide.with(this).load(it.get("profileImage")).circleCrop().into(binding.userButton as ImageView)
+        }
+
+
 
     }
 
