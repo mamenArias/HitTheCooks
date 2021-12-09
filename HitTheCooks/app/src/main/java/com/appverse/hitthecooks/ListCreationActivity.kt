@@ -25,7 +25,6 @@ class ListCreationActivity : SuperActivity(),RecyclerTransferData {
         drawerLayout.addView(binding.root, 1)
         applyDarkMode(binding.root)
         auth = FirebaseAuth.getInstance()
-
         val db = Firebase.firestore
 
         val backgroundsList = arrayListOf<Int>(R.drawable.background_list_1,
