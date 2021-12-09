@@ -13,6 +13,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -56,10 +59,38 @@ class MainActivity : AppCompatActivity() {
 
 
 
-       binding.signInButton.setOnClickListener {
-            val intent= Intent(this, PantallaPrincipal::class.java)
-            startActivity(intent)
+       binding.registerButton.setOnClickListener {
 
+           val auth = FirebaseAuth.getInstance()
+           //pasamos por argumentos el usuario y contraseña
+           val tarea = auth.createUserWithEmailAndPassword(binding.nameGap.text.toString(),binding.passwordGap.text.toString())
+
+           tarea.addOnCompleteListener(this,object: OnCompleteListener<AuthResult> {
+               override fun onComplete(p0: Task<AuthResult>) {
+                   if (tarea.isSuccessful) {
+                       Toast.makeText(
+                           this@MainActivity,
+                           R.string.registroCompletado,
+                           Toast.LENGTH_LONG
+                       ).show()
+                       startActivity(Intent(this@MainActivity,PantallaPrincipal::class.java))
+
+                   } else {
+                       Toast.makeText(
+                           this@MainActivity,
+                           R.string.registroFallido,
+                           Toast.LENGTH_LONG
+                       ).show()
+                   }
+               }
+
+
+           })
+
+        }
+
+        binding.signInButton.setOnClickListener {
+            
 
         }
 

@@ -20,7 +20,7 @@ import recyclers.ShoppingListAdapter
 
 class ShoppingListActivity : SuperActivity() {
 
-    private lateinit var shoppingList : Arraylist<ShoppingList>
+    private lateinit var shoppingList : ArrayList<ShoppingList>
     private val db : FirebaseFirestore by lazy { Firebase.firestore }
     private val binding by lazy { ActivityShoppingListBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
