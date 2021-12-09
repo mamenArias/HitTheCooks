@@ -151,6 +151,11 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
 
+                        var userAInsertar = User(binding.nameGap.text.toString())
+                        db.collection( FirestoreCollections.USERS).document(userAInsertar.email).set(
+                            userAInsertar
+                        )
+
                     val user = auth.currentUser
                     updateUI(user)
                 } else {
