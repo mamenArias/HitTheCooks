@@ -60,4 +60,8 @@
     <string name="registroCompletado">Registro completado</string>
     <string name="registroFallido">Registro fallido</string>
     <string name="loginIncorrecto">Login Incorrecto</string>
+    <string name="cerrarSesion">Cerrando Sesión</string>
+    <string name="confirmar">Confirmar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="cierreSesionPregunta">¿Estás segur@ de que deseas cerrar sesión?</string>
 </resources>

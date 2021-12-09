@@ -23,11 +23,14 @@ import com.google.firebase.dynamiclinks.ktx.dynamicLinks
 import com.google.firebase.dynamiclinks.ktx.shortLinkAsync
 import com.google.firebase.ktx.Firebase
 
-class InvitationActivity : AppCompatActivity() {
+class InvitationActivity : SuperActivity() {
     private val binding by lazy { ActivityInvitationBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+        //setContentView(binding.root)
+        drawerLayout.addView(binding.root, 1)
+        applyDarkMode(binding.root)
+
         val listId : String = intent.extras?.getString("listId") as String
         //Creación del link para invitación.En él, se inserta el id de la lista
         val builder =  FirebaseDynamicLinks.getInstance()

@@ -94,30 +94,15 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/darkGrey"
-                android:padding="20dp"
+                android:padding="30dp"
                 android:text="@string/myLists"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/createAListButton"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/createAListButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/darkGrey"
-                android:padding="20dp"
-                android:text="@string/createAList"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/aboutUsButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/myListsButton" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/aboutUsButton"
@@ -125,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/darkGrey"
                 android:drawableStart="@drawable/icono_sobre_nosotros"
-                android:padding="20dp"
+                android:padding="30dp"
                 android:text="@string/aboutUs"
                 android:textSize="15sp"
                 android:textStyle="bold"
@@ -133,7 +118,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/createAListButton" />
+                app:layout_constraintTop_toBottomOf="@+id/myListsButton" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 

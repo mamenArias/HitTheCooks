@@ -16,11 +16,6 @@
             android:title="@string/myLists"
             android:icon="@drawable/lists_icon"/>
 
-        <item
-            android:id="@+id/nav_new_list"
-            android:title="@string/createAList"
-            android:icon="@drawable/new_list_icon"/>
-
     </group>
 
     <group android:id="@+id/conf_group"

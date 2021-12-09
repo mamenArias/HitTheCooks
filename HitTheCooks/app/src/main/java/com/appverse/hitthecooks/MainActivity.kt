@@ -97,11 +97,6 @@ class MainActivity : AppCompatActivity() {
             tarea.addOnCompleteListener(this,object: OnCompleteListener<AuthResult> {
                 override fun onComplete(p0: Task<AuthResult>) {
                     if (tarea.isSuccessful) {
-                        Toast.makeText(
-                            this@MainActivity,
-                            "YEP",
-                            Toast.LENGTH_LONG
-                        ).show()
                         startActivity(Intent(this@MainActivity,PantallaPrincipal::class.java))
 
                     } else {

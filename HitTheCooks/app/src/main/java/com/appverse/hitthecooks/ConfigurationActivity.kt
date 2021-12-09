@@ -1,9 +1,11 @@
 package com.appverse.hitthecooks
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import com.appverse.hitthecooks.databinding.ActivityConfigurationBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -36,13 +38,34 @@ class ConfigurationActivity : SuperActivity() {
 
         /** Botón para cambiar de pantalla **/
         buttonProfile.setOnClickListener {
-            startActivity(Intent(this@ConfigurationActivity, EditProfile::class.java))
+            val intent:Intent = Intent(this@ConfigurationActivity, EditProfile::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            finish()
         }
 
         binding.buttonLogOut.setOnClickListener {
-            auth = Firebase.auth
-            Firebase.auth.signOut()
-            startActivity(Intent(this,MainActivity::class.java))
+
+
+            val dialog = AlertDialog.Builder(this)
+            .setTitle(R.string.cerrarSesion)
+            .setMessage(R.string.cierreSesionPregunta)
+                .setNegativeButton(R.string.cancelar) { view, _ ->
+                    view.dismiss()
+                }
+                .setPositiveButton(R.string.confirmar) { view, _ ->
+
+                    Toast.makeText(this,R.string.cerrarSesion,Toast.LENGTH_LONG).show()
+                    auth = Firebase.auth
+                    Firebase.auth.signOut()
+                    startActivity(Intent(this,MainActivity::class.java))
+                    view.dismiss()
+
+                }
+                .setCancelable(false)
+                .create()
+            dialog.show()
+
         }
 
         //Inicializa el editor de preferencias con el gestor preferences
