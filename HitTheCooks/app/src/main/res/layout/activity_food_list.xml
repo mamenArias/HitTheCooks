@@ -54,14 +54,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/background"
-            app:layout_constraintBottom_toBottomOf="@+id/buttonConfiguration"
-            app:layout_constraintEnd_toStartOf="@+id/buttonConfiguration"
-            app:layout_constraintTop_toTopOf="@+id/buttonConfiguration"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonAdd"
+            app:layout_constraintEnd_toStartOf="@+id/buttonAdd"
+            app:layout_constraintTop_toTopOf="@+id/buttonAdd"
             app:srcCompat="@drawable/user"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
-            android:id="@+id/buttonConfiguration"
+            android:id="@+id/buttonAdd"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
@@ -70,7 +70,7 @@
             android:scaleType="centerInside"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/conf_icon"
+            app:srcCompat="@drawable/add_icon"
             app:tint="@color/orangeEgg"
             tools:ignore="SpeakableTextPresentCheck" />
 
