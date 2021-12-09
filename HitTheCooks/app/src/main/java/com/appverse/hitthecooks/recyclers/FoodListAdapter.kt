@@ -1,10 +1,12 @@
-package recyclers
+package com.appverse.hitthecooks.recyclers
 
 import android.app.Activity
+import android.content.Context
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.appverse.hitthecooks.R
 import com.appverse.hitthecooks.model.Item
+import com.bumptech.glide.Glide
 
 /**
  * Adapter para el RecylerView de los alimentos a agregar a la lista de la compra.
@@ -23,7 +25,12 @@ class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):Recycler
      * Función que asigna valor a los elementos del ViewHolder, que se van a mostrar en el Recycler.
      */
     override fun onBindViewHolder(holder: FoodListHolder, position: Int) {
-
+        //Imagen del alimento
+        //holder.imageFood.setImageResource(activity.resources.getIdentifier(list[position].imageUrl, "drawable", activity.packageName))
+        val context: Context = holder.imageFood.context
+        Glide.with(context).load(list[position].imageUrl).into(holder.imageFood)
+        //Nombre del alimento
+        holder.textFood.text = list[position].name
     }
 
     /**

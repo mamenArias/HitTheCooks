@@ -1,17 +1,12 @@
 package com.appverse.hitthecooks
 
 import android.content.Intent
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.appverse.hitthecooks.databinding.ActivityFoodListBinding
 import com.appverse.hitthecooks.model.Item
-import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
-import recyclers.FoodListAdapter
+import com.appverse.hitthecooks.recyclers.FoodListAdapter
+import com.bumptech.glide.Glide
 
 class FoodList : SuperActivity() {
 
@@ -46,7 +41,13 @@ class FoodList : SuperActivity() {
         }
 
         val arrayItems:ArrayList<Item> = arrayListOf()
-        val adapter:FoodListAdapter= FoodListAdapter(this, arrayItems)
+        arrayItems.add(Item("Patatas", "https://firebasestorage.googleapis.com/v0/b/hit-the-cooks.appspot.com/o/iconosLista%2Ficonocongelados.png?alt=media&token=125754f0-80e7-435f-a651-2cfab382d52a"))
+        arrayItems.add(Item("Patatas", "https://firebasestorage.googleapis.com/v0/b/hit-the-cooks.appspot.com/o/iconosLista%2Ficonocongelados.png?alt=media&token=125754f0-80e7-435f-a651-2cfab382d52a"))
+        arrayItems.add(Item("Patatas", "https://firebasestorage.googleapis.com/v0/b/hit-the-cooks.appspot.com/o/iconosLista%2Ficonocongelados.png?alt=media&token=125754f0-80e7-435f-a651-2cfab382d52a"))
+        arrayItems.add(Item("Patatas", "https://firebasestorage.googleapis.com/v0/b/hit-the-cooks.appspot.com/o/iconosLista%2Ficonocongelados.png?alt=media&token=125754f0-80e7-435f-a651-2cfab382d52a"))
+        arrayItems.add(Item("Patatas", "https://firebasestorage.googleapis.com/v0/b/hit-the-cooks.appspot.com/o/iconosLista%2Ficonocongelados.png?alt=media&token=125754f0-80e7-435f-a651-2cfab382d52a"))
+
+        val adapter:FoodListAdapter = FoodListAdapter(this, arrayItems)
         binding.foodListRecycler.adapter = adapter
         binding.foodListRecycler.layoutManager = GridLayoutManager(this, 3)
 

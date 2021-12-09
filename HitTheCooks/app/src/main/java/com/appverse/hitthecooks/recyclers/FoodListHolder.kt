@@ -1,4 +1,4 @@
-package recyclers
+package com.appverse.hitthecooks.recyclers
 
 import android.view.View
 import android.widget.ImageView
