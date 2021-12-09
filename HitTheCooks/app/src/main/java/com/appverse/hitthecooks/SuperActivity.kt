@@ -1,5 +1,6 @@
 package com.appverse.hitthecooks
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -12,10 +13,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import java.lang.Exception
 
 /**
@@ -29,6 +34,8 @@ abstract class SuperActivity : AppCompatActivity(), NavigationView.OnNavigationI
     val drawerLayout : DrawerLayout by lazy { findViewById(R.id.drawer_layout) }
     /** Menú que contiene los diferentes items de navegación **/
     val navigationView : NavigationView by lazy { findViewById(R.id.navigation_view) }
+
+    private lateinit var auth: FirebaseAuth
 
     /** Gestiona las preferencias de la app **/
     lateinit var preferences : SharedPreferences
@@ -51,27 +58,53 @@ abstract class SuperActivity : AppCompatActivity(), NavigationView.OnNavigationI
         when(item.itemId){
             R.id.nav_main -> {
                 val intent : Intent = Intent(applicationContext, PantallaPrincipal::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
+                finish()
             }
             R.id.nav_lists -> {
                 val intent : Intent = Intent(applicationContext, ShoppingListActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
-            }
-            R.id.nav_new_list-> {
-                val intent : Intent = Intent(applicationContext, FoodList::class.java)
-                startActivity(intent)
+                finish()
             }
             R.id.nav_configuration-> {
                 val intent : Intent = Intent(applicationContext, ConfigurationActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
+                finish()
             }
             R.id.nav_profile-> {
                 val intent : Intent = Intent(applicationContext, EditProfile::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
+                finish()
             }
             R.id.nav_about_us-> {
                 val intent : Intent = Intent(applicationContext, AboutUs::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
+                finish()
+            }
+            R.id.nav_logout -> {
+                val dialog = AlertDialog.Builder(this)
+                    .setTitle(R.string.cerrarSesion)
+                    .setMessage(R.string.cierreSesionPregunta)
+                    .setNegativeButton(R.string.cancelar) { view, _ ->
+                        view.dismiss()
+                    }
+                    .setPositiveButton(R.string.confirmar) { view, _ ->
+
+                        Toast.makeText(this,R.string.cerrarSesion, Toast.LENGTH_LONG).show()
+                        auth = Firebase.auth
+                        Firebase.auth.signOut()
+                        startActivity(Intent(this,MainActivity::class.java))
+                        view.dismiss()
+
+                    }
+                    .setCancelable(false)
+                    .create()
+                dialog.show()
             }
 
         }

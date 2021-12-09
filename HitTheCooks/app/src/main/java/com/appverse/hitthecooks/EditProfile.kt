@@ -24,7 +24,10 @@ class EditProfile : SuperActivity() {
         binding.profileIcon.setImageResource(R.id.profileIcon)
 
         binding.goBackButton.setOnClickListener {
-            onBackPressed()
+            val intent: Intent = Intent(this, PantallaPrincipal::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            finish()
         }
     }
 

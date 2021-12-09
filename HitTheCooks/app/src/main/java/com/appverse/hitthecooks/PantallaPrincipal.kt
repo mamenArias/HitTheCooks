@@ -37,28 +37,40 @@ class PantallaPrincipal : SuperActivity() {
          * Función que permite navegar a la pantalla de configuración
          */
         binding.configButton.setOnClickListener {
-            startActivity(Intent(this, ConfigurationActivity::class.java))
+            val intent:Intent = Intent(this, ConfigurationActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            finish()
         }
 
         /**
          * Función que permite navegar a la pantalla de editar perfil
          */
         binding.userButton.setOnClickListener {
-            startActivity(Intent(this, EditProfile::class.java))
+            val intent:Intent = Intent(this, EditProfile::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            finish()
         }
 
         /**
          * Función que permite navegar a la pantalla de "Mis Listas"
          */
         binding.myListsButton.setOnClickListener {
-            startActivity(Intent(this, ShoppingListActivity::class.java))
+            val intent:Intent = Intent(this, ShoppingListActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            finish()
         }
 
         /**
          * Función que permite navegar a la pantalla de "Sobre Nosotros"
          */
         binding.aboutUsButton.setOnClickListener {
-            startActivity(Intent(this, AboutUs::class.java))
+            val intent:Intent = Intent(this, AboutUs::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            finish()
         }
 
         db.collection(FirestoreCollections.USERS).document(Firebase.auth.currentUser!!.email.toString()).get().addOnSuccessListener {
