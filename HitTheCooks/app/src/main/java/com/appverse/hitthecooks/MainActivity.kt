@@ -158,7 +158,6 @@ class MainActivity : AppCompatActivity() {
 
     fun updateUI(account: FirebaseUser?) {
         if (account != null) {
-            receivedInvitationLink()
             startActivity(Intent(this, PantallaPrincipal::class.java))
         } else {
 
@@ -176,18 +175,6 @@ class MainActivity : AppCompatActivity() {
                 auth.signInWithCredential(credential).addOnCompleteListener {
                     updateUI(auth.currentUser)
                 }
-            }
-        }
-    }
-    private fun receivedInvitationLink(){
-        FirebaseDynamicLinks.getInstance().getDynamicLink(intent).addOnSuccessListener {
-            var deepLink : Uri? = null;
-            if (it !=null){
-                deepLink = it.link as Uri
-                val listId = deepLink.getQueryParameter("list")
-
-                Toast.makeText(this, "$listId", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this,FoodList::class.java))
             }
         }
     }
