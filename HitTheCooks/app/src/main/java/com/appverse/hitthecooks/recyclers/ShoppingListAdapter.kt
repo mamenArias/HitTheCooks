@@ -54,7 +54,7 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
           holder.imageBackground.setImageResource(shoppingList[position].imageId)
           holder.textViewShoppingListName.text = shoppingList[position].name
           holder.cardViewList.setOnClickListener {
-              //Aquí se debería pasar a la lista con la id correspondiente
+              //TODO("IR A LA LISTA CON LA ID CORRESPONDIENTE")
               context.startActivity(Intent(context,FoodList::class.java))
           }
           holder.shareButton.setOnClickListener {
@@ -67,7 +67,6 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
               db.collection(FirestoreCollections.USERS).document(i.toString()).get().addOnCompleteListener {
                   if(it.isSuccessful){
                       user = it.result.toObject(User::class.java)
-                      Toast.makeText(context, "${user}", Toast.LENGTH_SHORT).show()
                   }
                   if(user?.profileImage?.isNotEmpty()!!) {
                       Glide.with(context).load(user?.profileImage).into(holder.imageViewUser)
