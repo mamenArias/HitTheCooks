@@ -48,13 +48,6 @@ class PantallaPrincipal : SuperActivity() {
         }
 
         /**
-         * Función que permite navegar a la pantalla de "Crear una Lista"
-         */
-        binding.createAListButton.setOnClickListener {
-            startActivity(Intent(this, FoodList::class.java))
-        }
-
-        /**
          * Función que permite navegar a la pantalla de "Sobre Nosotros"
          */
         binding.aboutUsButton.setOnClickListener {
