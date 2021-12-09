@@ -38,7 +38,10 @@ class ConfigurationActivity : SuperActivity() {
 
         /** Botón para cambiar de pantalla **/
         buttonProfile.setOnClickListener {
-            startActivity(Intent(this@ConfigurationActivity, EditProfile::class.java))
+            val intent:Intent = Intent(this@ConfigurationActivity, EditProfile::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            finish()
         }
 
         binding.buttonLogOut.setOnClickListener {

@@ -16,12 +16,15 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import recyclers.ListCreationAdapter
 
-class ListCreationActivity : AppCompatActivity(),RecyclerTransferData {
+class ListCreationActivity : SuperActivity(),RecyclerTransferData {
     private var imageId : Int? = null
     private val binding by lazy { ActivityListCreationBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+        //setContentView(binding.root)
+        drawerLayout.addView(binding.root, 1)
+        applyDarkMode(binding.root)
+
         val db = Firebase.firestore
 
         val backgroundsList = arrayListOf<Int>(R.drawable.background_list_1,
