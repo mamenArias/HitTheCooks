@@ -28,12 +28,8 @@ class ShoppingListActivity : SuperActivity() {
         //setContentView(binding.root)
         drawerLayout.addView(binding.root, 1)
         navigationView.setCheckedItem(R.id.nav_lists)
-   
 
-   
         fetchData(true)
-      
-
         applyDarkMode(binding.root)
 
 
