@@ -44,7 +44,7 @@
             app:layout_constraintBottom_toTopOf="@+id/appVerseIcon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editUserName"
+            app:layout_constraintTop_toBottomOf="@+id/userName"
             tools:ignore="TextContrastCheck" />
 
         <ImageView
@@ -93,25 +93,10 @@
             android:text="@string/userName"
             android:textColor="@color/whiteEgg"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/editProfileText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profileIcon"
             tools:ignore="TextContrastCheck" />
-
-        <ImageButton
-            android:id="@+id/editUserName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/noColor"
-            android:contentDescription="@string/editImage"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:scaleX="0.8"
-            android:scaleY="0.8"
-            app:layout_constraintBottom_toBottomOf="@+id/userName"
-            app:layout_constraintEnd_toEndOf="@+id/editProfileText"
-            app:layout_constraintTop_toTopOf="@+id/userName"
-            app:srcCompat="@android:drawable/ic_menu_edit"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck,DuplicateSpeakableTextCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
