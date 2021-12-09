@@ -10,21 +10,27 @@
     <TextView
         android:id="@+id/invitationUrl"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="27dp"
         android:layout_marginStart="32dp"
         android:background="@drawable/rounded_textview"
         android:clickable="true"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingStart="5dp"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/createListButton"
         app:layout_constraintEnd_toStartOf="@+id/copyToClipboardButton"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/whatsappImageView" />
 
     <Button
         android:id="@+id/copyToClipboardButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="32dp"
+        android:backgroundTint="@color/orangeEgg"
         android:text="@string/copy"
         app:layout_constraintBottom_toBottomOf="@+id/invitationUrl"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,14 +39,13 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:src="@drawable/grocery_shopping"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/shareTextView"
@@ -48,33 +53,47 @@
         android:layout_height="wrap_content"
         android:text="@string/share"
         android:textColor="@color/white"
-        android:layout_marginRight="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/shareImageView"
-        app:layout_constraintEnd_toStartOf="@+id/shareImageView"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/shareImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+       />
 
     <ImageView
         android:id="@+id/shareImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/invitationUrl"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_share"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/shareTextView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-       android:src="@drawable/ic_share" />
+        app:layout_constraintStart_toEndOf="@+id/whatsappImageView"
+        app:layout_constraintTop_toBottomOf="@+id/shareTextView" />
 
     <Button
         android:id="@+id/createListButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
+        android:backgroundTint="@color/orangeEgg"
         android:text="@string/createList"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/whatsappImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/whatsapp_logo"
+        app:layout_constraintEnd_toStartOf="@+id/shareImageView"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/invitationUrl" />
+        app:layout_constraintTop_toBottomOf="@+id/shareTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

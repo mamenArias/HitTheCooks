@@ -18,12 +18,8 @@ class FoodList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-
-
-
-
         binding.buttonBack.setOnClickListener {
-            onBackPressed()
+           startActivity(Intent(this,ShoppingListActivity::class.java))
         }
 
         binding.buttonUser.setOnClickListener {
@@ -35,6 +31,11 @@ class FoodList : AppCompatActivity() {
             val intent = Intent(this, ConfigurationActivity::class.java)
             startActivity(intent)
         }
+
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this,ShoppingListActivity::class.java))
     }
 
 

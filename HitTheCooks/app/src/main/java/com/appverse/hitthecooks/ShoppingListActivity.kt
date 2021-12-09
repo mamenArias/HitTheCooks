@@ -27,6 +27,10 @@ class ShoppingListActivity : AppCompatActivity() {
         setContentView(binding.root)
         fetchData(true)
     }
+
+    /***
+     *
+     */
     private fun fetchData(alert : Boolean){
         var user :User = User()
         val builderAlertDialog = AlertDialog.Builder(this)

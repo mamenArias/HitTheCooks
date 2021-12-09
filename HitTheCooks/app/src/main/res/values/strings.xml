@@ -3,7 +3,7 @@
     <string name="userImageDescription">Imagen de avatar del usuario</string>
     <string name="shoppingListTitle">Título de la lista</string>
     <string name="addList">Crear lista</string>
-    <string name="deletionConfirmation">¿Estás seguro que deseas borrar la lista?</string>
+    <string name="deletionConfirmation">Esta acción no se puede revertir,y se eliminará la lista seleccionada</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
     <string name="usernameHere">Username Here</string>
@@ -50,4 +50,9 @@
     <string name="copy">Copiar</string>
     <string name="createList">Crear Lista</string>
     <string name="copiedToClipboard">Copiado en el portapapeles</string>
+    <string name="invitationMessage">¡Te invito a nuestra lista de la compra!</string>
+    <string name="startCreatingFirstList">¡Empieza creando tu primera lista!</string>
+    <string name="listDeleted">Has borrado la lista: </string>
+    <string name="listDeletionQuestion">¿Quieres borrar la lista seleccionada?</string>
+    <string name="whatsappNotInstalled">Whatsapp no está instalado</string>
 </resources>

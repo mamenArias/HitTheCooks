@@ -21,7 +21,8 @@ import com.google.firebase.ktx.Firebase
 
 class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, private val view: View, private val context: Context): RecyclerView.Adapter<ShoppingListHolder>(){
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingListHolder {
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingListHolder {
        var layoutInflater : View?
            if(viewType == R.layout.item_shopping_list){
            layoutInflater= LayoutInflater.from(parent.context).inflate(R.layout.item_shopping_list,parent,false)
@@ -32,11 +33,16 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
     }
 
     override fun onBindViewHolder(holder: ShoppingListHolder, position: Int) {
+
       if(position==shoppingList.size){
+          if(shoppingList.isEmpty()){
+              holder.containerEmptyList.visibility =View.VISIBLE
+          }
           holder.itemView.findViewById<TextView>(R.id.createListText).setOnClickListener {
               context.startActivity(Intent(context,ListCreationActivity::class.java))
           }
       }else{
+
           holder.imageBackground.setImageResource(shoppingList[position].imageId)
           holder.textViewShoppingListName.text = shoppingList[position].name
           holder.cardViewList.setOnClickListener {
@@ -53,6 +59,8 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
     override fun getItemViewType(position: Int): Int {
         return if (position == shoppingList.size) R.layout.item_creation_list else R.layout.item_shopping_list
     }
+
+
 
     /**
      * Elimina una lista si solo queda un un usuario en ella, sino solo se sale el usuario de ella sin eliminarla
@@ -78,11 +86,11 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
             }
 
         }
-        Snackbar.make(view,"Has borrado la lista de ${shoppingList[position].name}",Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(view,context.resources.getString(R.string.listDeleted)+" ${shoppingList[position].name}",Snackbar.LENGTH_SHORT).show()
         shoppingList.removeAt(position)
         notifyItemRemoved(position)
-
     }
+
 
 }
 
