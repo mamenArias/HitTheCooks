@@ -35,16 +35,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="120dp"
             android:layout_marginRight="25dp"
             android:backgroundTint="@color/orangeEgg"
             android:fontFamily="sans-serif-black"
             android:text="@string/update"
             android:textAllCaps="false"
             android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/appVerseIcon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password"
+            app:layout_constraintTop_toBottomOf="@+id/editUserName"
             tools:ignore="TextContrastCheck" />
 
         <ImageView
@@ -112,35 +112,6 @@
             app:layout_constraintTop_toTopOf="@+id/userName"
             app:srcCompat="@android:drawable/ic_menu_edit"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck,DuplicateSpeakableTextCheck" />
-
-        <TextView
-            android:id="@+id/password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/userPass"
-            android:textColor="@color/whiteEgg"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/editProfileText"
-            app:layout_constraintTop_toBottomOf="@+id/userName"
-            tools:ignore="TextContrastCheck" />
-
-        <ImageButton
-            android:id="@+id/editPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/noColor"
-            android:contentDescription="@string/editImage"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:scaleX="0.8"
-            android:scaleY="0.8"
-            app:layout_constraintBottom_toBottomOf="@+id/password"
-            app:layout_constraintEnd_toEndOf="@+id/editProfileText"
-            app:layout_constraintTop_toTopOf="@+id/password"
-            app:srcCompat="@android:drawable/ic_menu_edit"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
