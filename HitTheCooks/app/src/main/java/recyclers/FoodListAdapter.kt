@@ -23,7 +23,7 @@ class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):Recycler
      * Función que asigna valor a los elementos del ViewHolder, que se van a mostrar en el Recycler.
      */
     override fun onBindViewHolder(holder: FoodListHolder, position: Int) {
-        TODO("Not yet implemented")
+
     }
 
     /**
