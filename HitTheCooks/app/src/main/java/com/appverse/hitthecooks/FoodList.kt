@@ -18,7 +18,6 @@ class FoodList : SuperActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(binding.root)
         drawerLayout.addView(binding.root, 1)
-        navigationView.setCheckedItem(R.id.nav_new_list)
 
         applyDarkMode(binding.root)
 

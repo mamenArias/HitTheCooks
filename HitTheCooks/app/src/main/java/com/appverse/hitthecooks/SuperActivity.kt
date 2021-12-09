@@ -57,10 +57,6 @@ abstract class SuperActivity : AppCompatActivity(), NavigationView.OnNavigationI
                 val intent : Intent = Intent(applicationContext, ShoppingListActivity::class.java)
                 startActivity(intent)
             }
-            R.id.nav_new_list-> {
-                val intent : Intent = Intent(applicationContext, FoodList::class.java)
-                startActivity(intent)
-            }
             R.id.nav_configuration-> {
                 val intent : Intent = Intent(applicationContext, ConfigurationActivity::class.java)
                 startActivity(intent)
