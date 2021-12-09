@@ -138,7 +138,7 @@ abstract class SuperActivity : AppCompatActivity(), NavigationView.OnNavigationI
             } else if(rootView.context is PantallaPrincipal){
                 //Cambia el logo de la app si es la actividad principal
                 val logo : ImageView = findViewById(R.id.appLogo)
-                logo.setImageResource(R.drawable.logo_hit_the_cook_blanco)
+                logo.setImageResource(R.drawable.logo_oscuro)
             }
         }
     }
