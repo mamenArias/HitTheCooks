@@ -58,7 +58,10 @@ class ConfigurationActivity : SuperActivity() {
                     val alertDialog = builder.show()
                     alertDialog.window?.setLayout(400,400)
                     Firebase.auth.signOut()
-                    startActivity(Intent(this,MainActivity::class.java))
+                    val intent:Intent = Intent(this,MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    startActivity(intent)
+                    finish()
                     view.dismiss()
                 }
                 .setCancelable(false)
