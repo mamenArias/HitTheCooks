@@ -184,8 +184,8 @@ class MainActivity : AppCompatActivity() {
             val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
             val account = task.getResult(ApiException::class.java)
             val acct = GoogleSignIn.getLastSignedInAccount(this)
-            var userToInsert = User(acct.email,acct.photoUrl.toString())
-            db.collection( FirestoreCollections.USERS).document(acct.email).set(
+            var userToInsert = User(acct!!.email as String,acct.photoUrl!!.toString() as String)
+            db.collection( FirestoreCollections.USERS).document(acct.email as String).set(
 
                 userToInsert
             )
