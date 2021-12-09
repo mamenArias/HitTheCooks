@@ -68,12 +68,25 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
                   if(it.isSuccessful){
                       user = it.result.toObject(User::class.java)
                   }
-                  if(user?.profileImage?.isNotEmpty()!!) {
-                      Glide.with(context).load(user?.profileImage).into(holder.imageViewUser)
-                  }else{
-                      storageRef = dbStorage.reference.child("imagenesPerfil").child("default.png")
-                      storageRef.downloadUrl.addOnSuccessListener {url->
-                          Glide.with(context).load(url.toString()).into(holder.imageViewUser)
+                  if(shoppingList[position].users.size == 1) {
+                      if(user?.profileImage?.isNotEmpty()!!) {
+                          Glide.with(context).load(user?.profileImage).into(holder.imageViewUser)
+                      }else{
+                          storageRef =
+                              dbStorage.reference.child("imagenesPerfil").child("default.png")
+                          storageRef.downloadUrl.addOnSuccessListener { url ->
+                              Glide.with(context).load(url.toString()).into(holder.imageViewUser)
+                          }
+                      }
+                  }else {
+                      if (user?.profileImage?.isNotEmpty()!!) {
+                          Glide.with(context).load(user?.profileImage).into(holder.imageViewUser)
+                      } else {
+                          storageRef =
+                              dbStorage.reference.child("imagenesPerfil").child("default.png")
+                          storageRef.downloadUrl.addOnSuccessListener { url ->
+                              Glide.with(context).load(url.toString()).into(holder.imageViewUser)
+                          }
                       }
                   }
               }
