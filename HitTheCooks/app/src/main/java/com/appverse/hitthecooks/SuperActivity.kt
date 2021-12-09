@@ -98,7 +98,10 @@ abstract class SuperActivity : AppCompatActivity(), NavigationView.OnNavigationI
                         Toast.makeText(this,R.string.cerrarSesion, Toast.LENGTH_LONG).show()
                         auth = Firebase.auth
                         Firebase.auth.signOut()
-                        startActivity(Intent(this,MainActivity::class.java))
+                        val intent:Intent = Intent(this,MainActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        startActivity(intent)
+                        finish()
                         view.dismiss()
 
                     }
