@@ -111,7 +111,9 @@ class MainActivity : AppCompatActivity() {
             if(binding.nameGap.text.isEmpty()|| binding.passwordGap.text.isEmpty()){
                 Toast.makeText(this, R.string.campoVacio, Toast.LENGTH_LONG).show()
 
-            }else {
+            }else if(binding.passwordGap.text.toString().length<8) {
+                Toast.makeText(this, R.string.passCorto, Toast.LENGTH_SHORT).show()
+            }else{
                 val auth = FirebaseAuth.getInstance()
                 //pasamos por argumentos el usuario y contraseña
                 val tarea = auth.signInWithEmailAndPassword(
