@@ -58,10 +58,6 @@ class MainActivity : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this,gso)
 
 
-
-
-
-
        binding.registerButton.setOnClickListener {
 
            val auth = FirebaseAuth.getInstance()

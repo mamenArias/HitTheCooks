@@ -10,7 +10,10 @@ import com.appverse.hitthecooks.R
 
 class ShoppingListHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     val cardViewList : CardView by lazy { itemView.findViewById(R.id.shoppingList) }
+
     val imageBackground : ImageView by lazy { itemView.findViewById(R.id.backgroundImageShoppingList) }
     val textViewShoppingListName : TextView by lazy { itemView.findViewById(R.id.shoppingListName) }
     val containerEmptyList : LinearLayout by lazy { itemView.findViewById(R.id.containerEmptyList) }
+    val shareButton : CardView by lazy { itemView.findViewById(R.id.shareCardView) }
+    val imageViewUser : ImageView by lazy {itemView.findViewById(R.id.userImage)}
 }
