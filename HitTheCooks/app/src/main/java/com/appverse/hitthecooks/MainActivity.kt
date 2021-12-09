@@ -9,6 +9,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.appverse.hitthecooks.databinding.ActivityMainBinding
+import com.appverse.hitthecooks.model.User
+import com.appverse.hitthecooks.utils.FirestoreCollections
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -21,7 +23,10 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,6 +34,9 @@ class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+    private val db=FirebaseFirestore.getInstance()
+    private lateinit var storageRef : StorageReference
+    val dbStorage = FirebaseStorage.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
 
         setTheme(R.style.SplashScreen)
@@ -64,7 +72,6 @@ class MainActivity : AppCompatActivity() {
            val auth = FirebaseAuth.getInstance()
            //pasamos por argumentos el usuario y contraseña
            val tarea = auth.createUserWithEmailAndPassword(binding.nameGap.text.toString(),binding.passwordGap.text.toString())
-
            tarea.addOnCompleteListener(this,object: OnCompleteListener<AuthResult> {
                override fun onComplete(p0: Task<AuthResult>) {
                    if (tarea.isSuccessful) {
@@ -73,6 +80,14 @@ class MainActivity : AppCompatActivity() {
                            R.string.registroCompletado,
                            Toast.LENGTH_LONG
                        ).show()
+
+                       storageRef = dbStorage.reference.child("imagenesPerfil").child("default.png")
+                       storageRef.downloadUrl.addOnSuccessListener {url->
+                           var user = User(binding.nameGap.text.toString(),url.toString())
+                           db.collection( FirestoreCollections.USERS).document(user.email).set(
+                               user
+                           )
+                       }
                        startActivity(Intent(this@MainActivity,PantallaPrincipal::class.java))
 
                    } else {
