@@ -1,14 +1,19 @@
 package com.appverse.hitthecooks
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.Toast
 import com.appverse.hitthecooks.databinding.ActivityPrincipalBinding
 import com.appverse.hitthecooks.utils.FirestoreCollections
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 
 /**
@@ -32,7 +37,7 @@ class PantallaPrincipal : SuperActivity() {
         navigationView.setCheckedItem(R.id.nav_main)
 
         applyDarkMode(binding.root)
-
+        receivedInvitationLink()
         /**
          * Función que permite navegar a la pantalla de configuración
          */
@@ -79,8 +84,18 @@ class PantallaPrincipal : SuperActivity() {
             Glide.with(this).load(it.get("profileImage")).circleCrop().into(binding.userButton as ImageView)
         }
 
-
-
     }
-
+    private fun receivedInvitationLink(){
+        FirebaseDynamicLinks.getInstance().getDynamicLink(intent).addOnSuccessListener {
+            var deepLink : Uri? = null;
+            if (it !=null){
+                deepLink = it.link as Uri
+                val listId = deepLink.getQueryParameter("list")
+                db.collection(FirestoreCollections.USERS).document(Firebase.auth.currentUser?.email.toString()).update("listIds",FieldValue.arrayUnion(listId)).addOnCompleteListener {  }
+                db.collection(FirestoreCollections.LISTS).document(listId.toString()).update("users",FieldValue.arrayUnion(Firebase.auth.currentUser?.email.toString())).addOnCompleteListener {  }
+                Toast.makeText(this, "$listId", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this,FoodList::class.java))
+            }
+        }
+    }
 }

@@ -64,5 +64,5 @@
     <string name="confirmar">Confirmar</string>
     <string name="cancelar">Cancelar</string>
     <string name="cierreSesionPregunta">¿Estás segur@ de que deseas cerrar sesión?</string>
-    <string name="defaultPhoto">https://firebasestorage.googleapis.com/v0/b/hit-the-cooks.appspot.com/o/imagenesPerfil%2Fdefault.png?alt=media&amp;token=0e9ac66a-dca5-47c9-8059-ff4028e3cdb0</string>
+    <string name="campoVacio">Por favor, no dejes ningún campo vacío</string>
 </resources>

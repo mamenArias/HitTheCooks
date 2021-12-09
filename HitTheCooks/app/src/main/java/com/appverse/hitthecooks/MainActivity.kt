@@ -63,63 +63,79 @@ class MainActivity : AppCompatActivity() {
 
 
        binding.registerButton.setOnClickListener {
+            if(binding.nameGap.text.isEmpty()|| binding.passwordGap.text.isEmpty()){
+                Toast.makeText(this, R.string.campoVacio, Toast.LENGTH_LONG).show()
 
-           val auth = FirebaseAuth.getInstance()
-           //pasamos por argumentos el usuario y contraseña
-           val tarea = auth.createUserWithEmailAndPassword(binding.nameGap.text.toString(),binding.passwordGap.text.toString())
-           tarea.addOnCompleteListener(this,object: OnCompleteListener<AuthResult> {
-               override fun onComplete(p0: Task<AuthResult>) {
-                   if (tarea.isSuccessful) {
-                       Toast.makeText(
-                           this@MainActivity,
-                           R.string.registroCompletado,
-                           Toast.LENGTH_LONG
-                       ).show()
+            }else {
+                val auth = FirebaseAuth.getInstance()
+                //pasamos por argumentos el usuario y contraseña
+                val tarea = auth.createUserWithEmailAndPassword(
+                    binding.nameGap.text.toString(),
+                    binding.passwordGap.text.toString()
+                )
+                tarea.addOnCompleteListener(this, object : OnCompleteListener<AuthResult> {
+                    override fun onComplete(p0: Task<AuthResult>) {
+                        if (tarea.isSuccessful) {
+                            Toast.makeText(
+                                this@MainActivity,
+                                R.string.registroCompletado,
+                                Toast.LENGTH_LONG
+                            ).show()
 
-                       storageRef = dbStorage.reference.child("imagenesPerfil").child("default.png")
-                       storageRef.downloadUrl.addOnSuccessListener {url->
-                           var user = User(binding.nameGap.text.toString(),url.toString())
-                           db.collection( FirestoreCollections.USERS).document(user.email).set(
-                               user
-                           )
-                       }
-                       startActivity(Intent(this@MainActivity,PantallaPrincipal::class.java))
+                            storageRef =
+                                dbStorage.reference.child("imagenesPerfil").child("default.png")
+                            storageRef.downloadUrl.addOnSuccessListener { url ->
+                                var user = User(binding.nameGap.text.toString(), url.toString())
+                                db.collection(FirestoreCollections.USERS).document(user.email).set(
+                                    user
+                                )
+                            }
+                            startActivity(Intent(this@MainActivity, PantallaPrincipal::class.java))
 
-                   } else {
-                       Toast.makeText(
-                           this@MainActivity,
-                           R.string.registroFallido,
-                           Toast.LENGTH_LONG
-                       ).show()
-                   }
-               }
+                        } else {
+                            Toast.makeText(
+                                this@MainActivity,
+                                R.string.registroFallido,
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
 
 
-           })
+                })
+            }
 
         }
 
         binding.signInButton.setOnClickListener {
-            val auth = FirebaseAuth.getInstance()
-            //pasamos por argumentos el usuario y contraseña
-            val tarea = auth.signInWithEmailAndPassword(binding.nameGap.text.toString(),binding.passwordGap.text.toString())
+            if(binding.nameGap.text.isEmpty()|| binding.passwordGap.text.isEmpty()){
+                Toast.makeText(this, R.string.campoVacio, Toast.LENGTH_LONG).show()
 
-            tarea.addOnCompleteListener(this,object: OnCompleteListener<AuthResult> {
-                override fun onComplete(p0: Task<AuthResult>) {
-                    if (tarea.isSuccessful) {
-                        startActivity(Intent(this@MainActivity,PantallaPrincipal::class.java))
+            }else {
+                val auth = FirebaseAuth.getInstance()
+                //pasamos por argumentos el usuario y contraseña
+                val tarea = auth.signInWithEmailAndPassword(
+                    binding.nameGap.text.toString(),
+                    binding.passwordGap.text.toString()
+                )
 
-                    } else {
-                        Toast.makeText(
-                            this@MainActivity,
-                            R.string.loginIncorrecto,
-                            Toast.LENGTH_LONG
-                        ).show()
+                tarea.addOnCompleteListener(this, object : OnCompleteListener<AuthResult> {
+                    override fun onComplete(p0: Task<AuthResult>) {
+                        if (tarea.isSuccessful) {
+                            startActivity(Intent(this@MainActivity, PantallaPrincipal::class.java))
+
+                        } else {
+                            Toast.makeText(
+                                this@MainActivity,
+                                R.string.loginIncorrecto,
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
                     }
-                }
 
 
-            })
+                })
+            }
 
         }
 
@@ -158,7 +174,6 @@ class MainActivity : AppCompatActivity() {
 
     fun updateUI(account: FirebaseUser?) {
         if (account != null) {
-            receivedInvitationLink()
             startActivity(Intent(this, PantallaPrincipal::class.java))
         } else {
 
@@ -181,18 +196,6 @@ class MainActivity : AppCompatActivity() {
                 auth.signInWithCredential(credential).addOnCompleteListener {
                     updateUI(auth.currentUser)
                 }
-            }
-        }
-    }
-    private fun receivedInvitationLink(){
-        FirebaseDynamicLinks.getInstance().getDynamicLink(intent).addOnSuccessListener {
-            var deepLink : Uri? = null;
-            if (it !=null){
-                deepLink = it.link as Uri
-                val listId = deepLink.getQueryParameter("list")
-
-                Toast.makeText(this, "$listId", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this,FoodList::class.java))
             }
         }
     }

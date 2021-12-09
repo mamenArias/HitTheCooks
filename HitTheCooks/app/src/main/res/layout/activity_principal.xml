@@ -44,7 +44,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
-        android:text="@string/usernameHere"
         android:textColor="@color/whiteEgg"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/userButton"
