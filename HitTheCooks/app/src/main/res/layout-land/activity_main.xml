@@ -37,13 +37,64 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/logoDescription"
-            app:layout_constraintBottom_toTopOf="@+id/nameGap"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rightPizza"
-            app:layout_constraintVertical_chainStyle="spread"
+            app:layout_constraintTop_toBottomOf="@+id/leftPizza"
             app:srcCompat="@drawable/logo" />
+
+        <EditText
+            android:id="@+id/passwordGap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_edit_text"
+            android:ems="15"
+            android:hint="@string/userPass"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:textColorHint="@color/hintColor"
+            app:layout_constraintBottom_toTopOf="@+id/signInButton"
+            app:layout_constraintEnd_toEndOf="@+id/nameGap"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/nameGap"
+            app:layout_constraintTop_toBottomOf="@+id/nameGap" />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/googleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/registerButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/signInButton"
+            app:layout_constraintTop_toBottomOf="@+id/signInButton" />
+
+        <Button
+            android:id="@+id/signInButton"
+            android:layout_width="208dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/yellowEgg"
+            android:text="@string/signIn"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+
+            app:layout_constraintBottom_toTopOf="@+id/googleButton"
+            app:layout_constraintStart_toStartOf="@+id/passwordGap"
+            app:layout_constraintTop_toBottomOf="@+id/passwordGap" />
+
+        <ImageView
+            android:id="@+id/appVerseIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:contentDescription="@string/appVerseLogoDescription"
+            app:layout_constraintEnd_toEndOf="@+id/logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo"
+            app:srcCompat="@drawable/logoappverse"
+            tools:ignore="ImageContrastCheck" />
 
         <EditText
             android:id="@+id/nameGap"
@@ -61,66 +112,8 @@
             app:layout_constraintBottom_toTopOf="@+id/passwordGap"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logo" />
-
-        <EditText
-            android:id="@+id/passwordGap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_edit_text"
-            android:ems="15"
-            android:hint="@string/userPass"
-            android:importantForAutofill="no"
-            android:inputType="textPassword"
-            android:minHeight="48dp"
-            android:padding="10dp"
-            android:textColorHint="@color/hintColor"
-            app:layout_constraintBottom_toTopOf="@+id/signInButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameGap" />
-
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/googleButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            app:layout_constraintBottom_toTopOf="@+id/appVerseIcon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signInButton" />
-
-        <Button
-            android:id="@+id/signInButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/yellowEgg"
-            android:text="@string/signIn"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-
-            app:layout_constraintBottom_toTopOf="@+id/googleButton"
-            app:layout_constraintEnd_toStartOf="@+id/registerButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/passwordGap"
-            app:layout_constraintTop_toBottomOf="@+id/passwordGap" />
-
-        <ImageView
-            android:id="@+id/appVerseIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/appVerseLogoDescription"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/googleButton"
-            app:srcCompat="@drawable/logoappverse"
-            tools:ignore="ImageContrastCheck" />
+            app:layout_constraintStart_toEndOf="@+id/logo"
+            app:layout_constraintTop_toBottomOf="@+id/rightPizza" />
 
         <Button
             android:id="@+id/registerButton"
@@ -132,6 +125,7 @@
             android:textAllCaps="false"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="@+id/passwordGap"
+            app:layout_constraintStart_toEndOf="@+id/signInButton"
             app:layout_constraintTop_toTopOf="@+id/signInButton"
             tools:ignore="TextContrastCheck" />
 
