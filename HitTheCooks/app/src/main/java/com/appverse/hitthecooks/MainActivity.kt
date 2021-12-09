@@ -90,7 +90,31 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.signInButton.setOnClickListener {
-            
+            val auth = FirebaseAuth.getInstance()
+            //pasamos por argumentos el usuario y contraseña
+            val tarea = auth.signInWithEmailAndPassword(binding.nameGap.text.toString(),binding.passwordGap.text.toString())
+
+            tarea.addOnCompleteListener(this,object: OnCompleteListener<AuthResult> {
+                override fun onComplete(p0: Task<AuthResult>) {
+                    if (tarea.isSuccessful) {
+                        Toast.makeText(
+                            this@MainActivity,
+                            "YEP",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        startActivity(Intent(this@MainActivity,PantallaPrincipal::class.java))
+
+                    } else {
+                        Toast.makeText(
+                            this@MainActivity,
+                            R.string.loginIncorrecto,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+
+
+            })
 
         }
 
