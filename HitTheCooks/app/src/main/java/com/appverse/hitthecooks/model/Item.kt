@@ -1,4 +1,5 @@
 package com.appverse.hitthecooks.model
 
-class Item(val name :String,val imageUrl:String) {
+data class Item(var name :String="",var imageUrl:String="", var items: ArrayList<Item> = arrayListOf()) {
+
 }
