@@ -57,4 +57,7 @@
     <string name="listDeleted">Has borrado la lista: </string>
     <string name="listDeletionQuestion">¿Quieres borrar la lista seleccionada?</string>
     <string name="whatsappNotInstalled">Whatsapp no está instalado</string>
+    <string name="registroCompletado">Registro completado</string>
+    <string name="registroFallido">Registro fallido</string>
+    <string name="loginIncorrecto">Login Incorrecto</string>
 </resources>

@@ -5,6 +5,9 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import com.appverse.hitthecooks.databinding.ActivityConfigurationBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 /**
  * Actividad que contiene la pantalla de preferencias
@@ -15,6 +18,7 @@ class ConfigurationActivity : SuperActivity() {
 
     /** Objeto que permite enlazar las vistas del layout **/
     private val binding by lazy { ActivityConfigurationBinding.inflate(layoutInflater) }
+    private lateinit var auth: FirebaseAuth
     /** Botón de navegación a la pantalla de perfil de usuario" **/
     private val buttonProfile: Button by lazy { binding.buttonProfile }
 
@@ -33,6 +37,12 @@ class ConfigurationActivity : SuperActivity() {
         /** Botón para cambiar de pantalla **/
         buttonProfile.setOnClickListener {
             startActivity(Intent(this@ConfigurationActivity, EditProfile::class.java))
+        }
+
+        binding.buttonLogOut.setOnClickListener {
+            auth = Firebase.auth
+            Firebase.auth.signOut()
+            startActivity(Intent(this,MainActivity::class.java))
         }
 
         //Inicializa el editor de preferencias con el gestor preferences
@@ -67,5 +77,7 @@ class ConfigurationActivity : SuperActivity() {
         finish();
         startActivity(intent);
     }
+
+
 
 }
