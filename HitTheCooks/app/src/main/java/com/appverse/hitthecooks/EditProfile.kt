@@ -1,6 +1,5 @@
 package com.appverse.hitthecooks
 
-import android.annotation.SuppressLint
 import android.app.usage.ExternalStorageStats
 import android.content.Intent
 import android.net.Uri
@@ -31,7 +30,6 @@ class EditProfile : SuperActivity() {
     private lateinit var storageReference: StorageReference
     private lateinit var image: Uri
 
-    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(binding.root)
