@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -150,6 +151,10 @@ abstract class SuperActivity : AppCompatActivity(), NavigationView.OnNavigationI
                 //Cambia el logo de la app si es la actividad principal
                 val logo : ImageView = findViewById(R.id.appLogo)
                 logo.setImageResource(R.drawable.logo_oscuro)
+            }else if(rootView.context is FoodList){
+                //Cambia el fondo del desplegable de busqueda si es la actividad de editar lista
+                val searchView : FrameLayout = findViewById(R.id.bottomSheet)
+                searchView.setBackgroundResource(R.drawable.rounded_bottomsheet_dark)
             }
         }
     }
