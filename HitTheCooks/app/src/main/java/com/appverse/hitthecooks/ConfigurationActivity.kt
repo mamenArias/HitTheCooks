@@ -13,11 +13,11 @@ import com.google.firebase.ktx.Firebase
 
 /**
  * Actividad que contiene la pantalla de preferencias
- * @author Miguel Angel Arcos
+ * @author Miguel Àngel Arcos
  * @author Mamen Arias
  * @author Manuel Carrillo
- * @author Christian Gracia
- * @author Sergio Lopez
+ * @author Christian García
+ * @author Sergio López
  * @since 1.4
  */
 class ConfigurationActivity : SuperActivity() {
@@ -33,7 +33,7 @@ class ConfigurationActivity : SuperActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(binding.root)
+        //Infla la vista en el layout de la actividad superior
         drawerLayout.addView(binding.root, 1)
         navigationView.setCheckedItem(R.id.nav_configuration)
 
@@ -64,7 +64,6 @@ class ConfigurationActivity : SuperActivity() {
                     alertDialog.window?.setLayout(400,400)
                     Firebase.auth.signOut()
                     val intent:Intent = Intent(this,MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
                     finish()
                     view.dismiss()

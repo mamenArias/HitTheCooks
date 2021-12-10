@@ -18,8 +18,12 @@ import com.google.firebase.ktx.Firebase
 
 /**
  * Actividad de la pantalla principal desde la que navegar al resto de pantallas
- * @author
- * @since
+ * @author Miguel Àngel Arcos
+ * @author Mamen Arias
+ * @author Manuel Carrillo
+ * @author Christian Gracía
+ * @author Sergio López
+ * @since 1.4
  */
 class PantallaPrincipal : SuperActivity() {
 
@@ -32,10 +36,9 @@ class PantallaPrincipal : SuperActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(binding.root)
         drawerLayout.addView(binding.root, 1)
         navigationView.setCheckedItem(R.id.nav_main)
-
+        //Aplica el modo oscuro si está activado
         applyDarkMode(binding.root)
         receivedInvitationLink()
         /**
@@ -78,8 +81,8 @@ class PantallaPrincipal : SuperActivity() {
             finish()
         }
 
+        //Muestra el nombre del usuario y la foto de perfil en la parte superior de la pantalla
         db.collection(FirestoreCollections.USERS).document(Firebase.auth.currentUser!!.email.toString()).get().addOnSuccessListener {
-
             binding.usernameText.text = it.get("email").toString().substringBefore('@')
             Glide.with(this).load(it.get("profileImage")).circleCrop().into(binding.userButton as ImageView)
         }

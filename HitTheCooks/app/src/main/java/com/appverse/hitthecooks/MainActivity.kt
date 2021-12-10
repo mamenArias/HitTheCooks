@@ -114,10 +114,8 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
 
-
                 })
             }
-
         }
         /**
          * Función que comprueba si el campo email y contraseña no están vacíos. Si no lo están realiza el login de un usuario
@@ -154,7 +152,6 @@ class MainActivity : AppCompatActivity() {
 
                 })
             }
-
         }
         /**
          * Función que realiza el logIn con una cuenta de Gmail
@@ -162,11 +159,6 @@ class MainActivity : AppCompatActivity() {
         binding.googleButton.setOnClickListener {
             responseLauncher.launch(googleSignInClient.signInIntent)
         }
-
-
-
-
-
 
     }
 
@@ -184,8 +176,6 @@ class MainActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-
-
                     val user = auth.currentUser
                     updateUI(user)
                 } else {
@@ -218,7 +208,6 @@ class MainActivity : AppCompatActivity() {
             val acct = GoogleSignIn.getLastSignedInAccount(this)
             var userToInsert = User(acct!!.email as String,acct.photoUrl!!.toString() as String)
             db.collection( FirestoreCollections.USERS).document(acct.email as String).set(
-
                 userToInsert
             )
             if(account!=null) {
@@ -228,6 +217,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    /***
+     * No permite ir hacia atrás
+     */
+    override fun onBackPressed() {
     }
 
 }

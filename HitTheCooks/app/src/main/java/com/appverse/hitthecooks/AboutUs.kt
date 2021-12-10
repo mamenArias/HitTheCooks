@@ -9,11 +9,11 @@ import com.appverse.hitthecooks.recyclers.AboutUsAdapter
 
 /**
  * Clase que contiene el reclicler con los miembros del grupo
- * @author Miguel Angel Arcos
+ * @author Miguel Àngel Arcos
  * @author Mamen Arias
  * @author Manuel Carrillo
- * @author Christian Gracia
- * @author Sergio Lopez
+ * @author Christian García
+ * @author Sergio López
  * @since 1.4
  */
 class AboutUs : SuperActivity() {
@@ -26,11 +26,10 @@ class AboutUs : SuperActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(binding.root)
         //Infla la vista en el layout de la actividad superior para compartir la barra de navegación
         drawerLayout.addView(binding.root, 1)
         navigationView.setCheckedItem(R.id.nav_about_us)
-
+        //Aplica el modo oscuro en el caso de que esté activado
         applyDarkMode(binding.root)
 
         //Crea el ArrayList de alumnos

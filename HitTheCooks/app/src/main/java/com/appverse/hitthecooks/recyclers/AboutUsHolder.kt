@@ -8,8 +8,12 @@ import com.appverse.hitthecooks.R
 
 /**
  * ViewHolder personalizado para el RecyclerView de About Us, contiene los elementos personalizables del layout del Recycler
- * @author
- * @since
+ * @author Miguel Àngel Arcos
+ * @author Mamen Arias
+ * @author Manuel Carrillo
+ * @author Christian García
+ * @author Sergio López
+ * @since 1.1
  */
 class AboutUsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

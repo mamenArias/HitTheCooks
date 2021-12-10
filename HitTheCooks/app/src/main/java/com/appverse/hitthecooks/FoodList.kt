@@ -29,11 +29,11 @@ import com.appverse.hitthecooks.recyclers.SearchAdapter
 
 /**
  * Clase que contiene todos los alimentos que podemos añadir a la lista de la compra.
- * @author Miguel Angel Arcos
+ * @author Miguel Àngel Arcos
  * @author Mamen Arias
  * @author Manuel Carrillo
- * @author Christian Gracia
- * @author Sergio Lopez
+ * @author Christian García
+ * @author Sergio López
  * @since 1.4
  */
 class FoodList : SuperActivity() {
@@ -49,11 +49,15 @@ class FoodList : SuperActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //Infla la vista en el layout de la actividad superior
         drawerLayout.addView(binding.root, 1)
 
-        //Aplica el modo oscuro si esta activado
+        //Aplica el modo oscuro si está activado
         applyDarkMode(binding.root)
         items = arrayListOf()
+
+        //Recoge el id de la lista por bundle
         val listId = intent.extras?.getString("listId")
 
 

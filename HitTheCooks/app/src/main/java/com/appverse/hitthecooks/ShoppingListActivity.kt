@@ -17,22 +17,42 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
+/**
+ * Actividad que contiene la pantalla con las listas creadas o compartidas por el usuario
+ * @author Miguel Àngel Arcos
+ * @author Mamen Arias
+ * @author Manuel Carrillo
+ * @author Christian García
+ * @author Sergio López
+ * @since 1.4
+ */
 class ShoppingListActivity : SuperActivity() {
+
+    /** Objeto que recupera la instancia al storage de Firebase **/
     private val dbStorage = FirebaseStorage.getInstance()
     private lateinit var storageRef : StorageReference
+    /** Objeto que que contiene el autentificador de Firebase **/
     private lateinit var auth: FirebaseAuth
+    /** ArrayList que contiene la coleccion de listas de la compra **/
     private lateinit var shoppingList : ArrayList<ShoppingList>
+    /** Objeto que contiene la instancia a la base de datos Firestore **/
     private val db : FirebaseFirestore by lazy { Firebase.firestore }
+    /** Obejto que permite enlazar las vistas del layout **/
     private val binding by lazy { ActivityShoppingListBinding.inflate(layoutInflater) }
+
+    /**
+     * Inicializa la actividad
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Inicializa el autentificador de Firebase
         auth = FirebaseAuth.getInstance()
+        //Infla la vista en el layout de la actividad superior
         drawerLayout.addView(binding.root, 1)
         navigationView.setCheckedItem(R.id.nav_lists)
-
         fetchData(true)
+        //Aplica el modo oscuro en el caso de que esté activado
         applyDarkMode(binding.root)
-
 
     }
 

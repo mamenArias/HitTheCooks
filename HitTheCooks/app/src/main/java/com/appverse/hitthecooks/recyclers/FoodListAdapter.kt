@@ -18,6 +18,12 @@ import com.google.firebase.storage.StorageReference
 
 /**
  * Adapter para el RecylerView de los alimentos a agregar a la lista de la compra.
+ * @author Miguel Àngel Arcos
+ * @author Mamen Arias
+ * @author Manuel Carrillo
+ * @author Christian García
+ * @author Sergio López
+ * @since 1.1
  * @param activity Actividad donde se implementa el Recycler.
  * @param list ArrayList con los alimentos que se pueden agregar a la lista de la compra.
  */
