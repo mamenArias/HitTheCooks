@@ -45,8 +45,6 @@ class ConfigurationActivity : SuperActivity() {
         }
 
         binding.buttonLogOut.setOnClickListener {
-
-
             val dialog = AlertDialog.Builder(this)
             .setTitle(R.string.cerrarSesion)
             .setMessage(R.string.cierreSesionPregunta)
@@ -54,13 +52,17 @@ class ConfigurationActivity : SuperActivity() {
                     view.dismiss()
                 }
                 .setPositiveButton(R.string.confirmar) { view, _ ->
-
-                    Toast.makeText(this,R.string.cerrarSesion,Toast.LENGTH_LONG).show()
-                    auth = Firebase.auth
+                    val builder =  AlertDialog.Builder(this)
+                    builder.setView(R.layout.logginout_progressbar)
+                    builder.create()
+                    val alertDialog = builder.show()
+                    alertDialog.window?.setLayout(400,400)
                     Firebase.auth.signOut()
-                    startActivity(Intent(this,MainActivity::class.java))
+                    val intent:Intent = Intent(this,MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    startActivity(intent)
+                    finish()
                     view.dismiss()
-
                 }
                 .setCancelable(false)
                 .create()

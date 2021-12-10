@@ -15,11 +15,19 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
+/**
+ * Clase que contiene todos los alimentos que podemos añadir a la lista de la compra.
+ */
 class FoodList : SuperActivity() {
 
+    /**Constante que nos permite enlazar cada elemento de la vista directamente.*/
     private val binding by lazy { ActivityFoodListBinding.inflate(layoutInflater) }
+    /**Constante para enlazar con Firebase.*/
     private val db= FirebaseFirestore.getInstance()
 
+    /**
+     * Función que inicializa las vistas.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(binding.root)
@@ -27,6 +35,9 @@ class FoodList : SuperActivity() {
 
         applyDarkMode(binding.root)
 
+        /**
+         * Función para volver a la pantalla anterior.
+         */
         binding.buttonBack.setOnClickListener {
             val intent:Intent = Intent(this,ShoppingListActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -34,6 +45,9 @@ class FoodList : SuperActivity() {
             finish()
         }
 
+        /**
+         * Función para acceder al perfil de usuario.
+         */
         binding.buttonUser.setOnClickListener {
             val intent = Intent(this, EditProfile::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -41,6 +55,9 @@ class FoodList : SuperActivity() {
             finish()
         }
 
+        /**
+         * Función para ir a la pantalla de las listas de la compra.
+         */
         binding.buttonAdd.setOnClickListener {
             val intent = Intent(this, InvitationActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -52,21 +69,11 @@ class FoodList : SuperActivity() {
             Glide.with(this).load(it.get("profileImage")).circleCrop().into(binding.buttonUser as ImageView)
         }
 
-        /*val storage:FirebaseStorage = FirebaseStorage.getInstance()
-        val gsReference = storage.getReferenceFromUrl("gs://hit-the-cooks.appspot.com/iconosLista/iconoA.png")
-        gsReference.child("iconosLista/iconoA.png").downloadUrl.addOnSuccessListener {
+        val arrayAlimentos:ArrayList<String> = arrayListOf("aceite", "agua", "azucar", "cerdo", "cereales", "chocolate", "congelados",
+            "dulces", "fruta", "huevos", "leche", "legumbres", "pan", "pasta", "patatas", "pescado", "pollo", "queso", "sal", "snacks",
+            "ternera", "verduras", "yogur")
 
-        }.addOnFailureListener {
-
-        }*/
-        val arrayItems:ArrayList<Item> = arrayListOf()
-        arrayItems.add(Item("Patatas", "https://firebasestorage.googleapis.com/v0/b/hit-the-cooks.appspot.com/o/iconosLista%2Ficonocongelados.png?alt=media&token=125754f0-80e7-435f-a651-2cfab382d52a"))
-        arrayItems.add(Item("Patatas", "https://firebasestorage.googleapis.com/v0/b/hit-the-cooks.appspot.com/o/iconosLista%2Ficonocongelados.png?alt=media&token=125754f0-80e7-435f-a651-2cfab382d52a"))
-        arrayItems.add(Item("Patatas", "https://firebasestorage.googleapis.com/v0/b/hit-the-cooks.appspot.com/o/iconosLista%2Ficonocongelados.png?alt=media&token=125754f0-80e7-435f-a651-2cfab382d52a"))
-        arrayItems.add(Item("Patatas", "https://firebasestorage.googleapis.com/v0/b/hit-the-cooks.appspot.com/o/iconosLista%2Ficonocongelados.png?alt=media&token=125754f0-80e7-435f-a651-2cfab382d52a"))
-        arrayItems.add(Item("Patatas", "https://firebasestorage.googleapis.com/v0/b/hit-the-cooks.appspot.com/o/iconosLista%2Ficonocongelados.png?alt=media&token=125754f0-80e7-435f-a651-2cfab382d52a"))
-
-        val adapter:FoodListAdapter = FoodListAdapter(this, arrayItems)
+        val adapter:FoodListAdapter = FoodListAdapter(this, arrayAlimentos)
         binding.foodListRecycler.adapter = adapter
         binding.foodListRecycler.layoutManager = GridLayoutManager(this, 3)
 

@@ -79,7 +79,7 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
                           }
                       }
                   }else {
-                      if (user?.profileImage?.isNotEmpty()!!) {
+                      if (user?.profileImage?.isNotEmpty() == true) {
                           Glide.with(context).load(user?.profileImage).into(holder.imageViewUser)
                       } else {
                           storageRef =
@@ -110,10 +110,7 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
     fun deleteItem(position: Int){
         var list : ShoppingList? = null
 
-        val update = hashMapOf<String,Any>(
-            "listsIds" to FieldValue.arrayRemove(shoppingList[position].id)
-        )
-        db.collection(FirestoreCollections.USERS).document(Firebase.auth.currentUser?.email.toString()).update(update).addOnCompleteListener {}
+        db.collection(FirestoreCollections.USERS).document(Firebase.auth.currentUser?.email.toString()).update("listIds",FieldValue.arrayRemove(shoppingList[position].id)).addOnCompleteListener {}
         db.collection(FirestoreCollections.LISTS).document(shoppingList[position].id).get().addOnCompleteListener {
             if (it.isSuccessful){
                  list = it.result.toObject(ShoppingList::class.java)!!
@@ -122,7 +119,8 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
             if(list!!.users.size ==1){
                 db.collection(FirestoreCollections.LISTS).document(list!!.id).delete().addOnCompleteListener {  }
             }else{
-                db.collection(FirestoreCollections.LISTS).document(shoppingList[position].id).update("users",FieldValue.arrayRemove(Firebase.auth.currentUser?.email.toString())).addOnCompleteListener {  }
+                Toast.makeText(context, "${Firebase.auth.currentUser?.email.toString()}", Toast.LENGTH_SHORT).show()
+                db.collection(FirestoreCollections.LISTS).document(list!!.id).update("users",FieldValue.arrayRemove(Firebase.auth.currentUser?.email.toString())).addOnCompleteListener {  }
             }
         }
         Snackbar.make(view,context.resources.getString(R.string.listDeleted)+" ${shoppingList[position].name}",Snackbar.LENGTH_SHORT).show()
