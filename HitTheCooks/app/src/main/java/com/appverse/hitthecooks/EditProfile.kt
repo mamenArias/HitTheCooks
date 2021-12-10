@@ -23,11 +23,11 @@ import java.lang.ref.PhantomReference
 
 /**
  * Activity que contiene la pantalla de editar perfil
- * @author Miguel Angel Arcos
+ * @author Miguel Àngel Arcos
  * @author Mamen Arias
  * @author Manuel Carrillo
- * @author Christian Gracia
- * @author Sergio Lopez
+ * @author Christian Gracía
+ * @author Sergio López
  * @since 1.4
  */
 class EditProfile : SuperActivity() {
@@ -50,7 +50,7 @@ class EditProfile : SuperActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(binding.root)
+        //Infla la vista en el layout de la actividad superior
         drawerLayout.addView(binding.root, 1)
         navigationView.setCheckedItem(R.id.nav_profile)
         //Aplica el modo oscuro si está activado

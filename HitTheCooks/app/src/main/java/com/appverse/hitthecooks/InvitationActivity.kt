@@ -25,11 +25,11 @@ import com.google.firebase.ktx.Firebase
 
 /**
  * Actividad que contiene la pantalla de "invitación"
- * @author Miguel Angel Arcos
+ * @author Miguel Àngel Arcos
  * @author Mamen Arias
  * @author Manuel Carrillo
- * @author Christian Gracia
- * @author Sergio Lopez
+ * @author Christian Gracía
+ * @author Sergio López
  * @since 1.4
  */
 class InvitationActivity : SuperActivity() {
@@ -41,10 +41,12 @@ class InvitationActivity : SuperActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Infla la vista en el layout de la actividad superior
         drawerLayout.addView(binding.root, 1)
         //Aplica el modo oscuro en caso de que esté activado
         applyDarkMode(binding.root)
 
+        //Recupera el id de la lista del intent de la actividad
         val listId : String = intent.extras?.getString("listId") as String
 
         //Creación del link para invitación.En él, se inserta el id de la lista

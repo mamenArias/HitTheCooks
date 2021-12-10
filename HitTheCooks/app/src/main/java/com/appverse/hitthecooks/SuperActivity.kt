@@ -27,6 +27,12 @@ import java.lang.Exception
  * Actividad abstracta superior de la que heredan el resto de actividades excepto el login.
  * Contiene el menú desplegable que comparten el resto de actividades, el archivo de preferencias
  * y las funciones del modo oscuro
+ * @author Miguel Àngel Arcos
+ * @author Mamen Arias
+ * @author Manuel Carrillo
+ * @author Christian Gracía
+ * @author Sergio López
+ * @since 1.4
  */
 abstract class SuperActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -94,7 +100,6 @@ abstract class SuperActivity : AppCompatActivity(), NavigationView.OnNavigationI
                         view.dismiss()
                     }
                     .setPositiveButton(R.string.confirmar) { view, _ ->
-
                         val builder =  AlertDialog.Builder(this)
                         builder.setView(R.layout.logginout_progressbar)
                         builder.create()
@@ -106,7 +111,6 @@ abstract class SuperActivity : AppCompatActivity(), NavigationView.OnNavigationI
                         startActivity(intent)
                         finish()
                         view.dismiss()
-
                     }
                     .setCancelable(false)
                     .create()
