@@ -105,7 +105,7 @@ class EditProfile : SuperActivity() {
      */
     private fun updateImage(uploadedImageUrl: String) {
         val hashmap: HashMap<String, Any> = HashMap()
-        hashmap["name"] = "$name"
+        hashmap["email"] = binding.userName
         if (image != null){
             hashmap["profileImage"] = uploadedImageUrl
         }
