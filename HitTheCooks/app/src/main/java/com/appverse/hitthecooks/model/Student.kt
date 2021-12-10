@@ -1,4 +1,4 @@
-package classes
+package com.appverse.hitthecooks.model
 
 /**
  * Clase que modela los objetos de tipo Alumno, en los que se representa la información de cada

@@ -36,11 +36,13 @@ class FoodList : SuperActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(binding.root)
         drawerLayout.addView(binding.root, 1)
 
         //Aplica el modo oscuro si esta activado
         applyDarkMode(binding.root)
+
+        val listId = intent.extras?.getString("listId")
+
 
         /**
          * Función para volver a la pantalla anterior.
@@ -66,9 +68,11 @@ class FoodList : SuperActivity() {
          * Función para ir a la pantalla de las listas de la compra.
          */
         binding.buttonAdd.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("listId",listId)
             val intent = Intent(this, InvitationActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(intent)
+            startActivity(intent.putExtras(bundle))
             finish()
         }
 

@@ -3,7 +3,7 @@ package com.appverse.hitthecooks
 import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import classes.Student
+import com.appverse.hitthecooks.model.Student
 import com.appverse.hitthecooks.databinding.ActivityAboutUsBinding
 import com.appverse.hitthecooks.recyclers.AboutUsAdapter
 

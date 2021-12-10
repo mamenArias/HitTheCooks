@@ -3,7 +3,7 @@ package com.appverse.hitthecooks.recyclers
 import android.app.Activity
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import classes.Student
+import com.appverse.hitthecooks.model.Student
 import com.appverse.hitthecooks.R
 
 /**

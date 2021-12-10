@@ -92,7 +92,9 @@ class InvitationActivity : SuperActivity() {
          * Permite navegar a la actividad de la lista de productos
          */
         binding.createListButton.setOnClickListener {
-            startActivity(Intent(this,FoodList::class.java))
+            val bundle = Bundle()
+            bundle.putString("listId",listId)
+            startActivity(Intent(this,FoodList::class.java).putExtras(bundle))
         }
 
         /**
