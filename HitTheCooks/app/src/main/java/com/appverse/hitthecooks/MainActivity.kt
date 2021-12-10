@@ -30,17 +30,31 @@ import com.google.firebase.storage.StorageReference
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 
 
-
-
-
+/**
+ *
+ * Actividad que contiene el login y registro de usuarios en la App
+ *
+ * @author Miguel Ángel Arcos, Mamen Arias, Manuel Carrillo, Christian García, Sergio López
+ * @version 1.0
+ * @since   1.0
+ */
 class MainActivity : AppCompatActivity() {
-
+    /** Constante que permite enlazar directamente con las vistas del layout **/
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    /** Variable que sirve para instanciar la clase FirebaseAuth**/
     private lateinit var auth: FirebaseAuth
+    /** Variable que sirve para instanciar la clase GoogleSignInClient**/
     private lateinit var googleSignInClient: GoogleSignInClient
+    /** Constante que instancia un objeto de la clase FirebaseFirestore**/
     private val db=FirebaseFirestore.getInstance()
+    /** Variable que sirve para instanciar la clase StorageReference**/
     private lateinit var storageRef : StorageReference
+    /** Constante que instancia un objeto de la clase FirebaseStorage**/
     val dbStorage = FirebaseStorage.getInstance()
+
+    /**
+     * Inicializa la actividad
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.SplashScreen)
         Thread.sleep(2000)
@@ -57,7 +71,10 @@ class MainActivity : AppCompatActivity() {
             .build()
         googleSignInClient = GoogleSignIn.getClient(this,gso)
 
-
+        /**
+         * Función que comprueba si el campo email y contraseña no están vacíos. Si no lo están registra un usuario
+         * en la base de datos con dicho email y contraseña
+         */
        binding.registerButton.setOnClickListener {
             if(binding.nameGap.text.isEmpty()|| binding.passwordGap.text.isEmpty()){
                 Toast.makeText(this, R.string.campoVacio, Toast.LENGTH_LONG).show()
@@ -102,7 +119,10 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-
+        /**
+         * Función que comprueba si el campo email y contraseña no están vacíos. Si no lo están realiza el login de un usuario
+         * ya guardado en la base de datos con dicho email y contraseña
+         */
         binding.signInButton.setOnClickListener {
             if(binding.nameGap.text.isEmpty()|| binding.passwordGap.text.isEmpty()){
                 Toast.makeText(this, R.string.campoVacio, Toast.LENGTH_LONG).show()
@@ -136,7 +156,9 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-
+        /**
+         * Función que realiza el logIn con una cuenta de Gmail
+         */
         binding.googleButton.setOnClickListener {
             responseLauncher.launch(googleSignInClient.signInIntent)
         }
@@ -148,6 +170,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Función que hace visible la actividad y se comprueba el estado del usuario actual
+     */
     override fun onStart() {
         super.onStart()
         auth = Firebase.auth
@@ -170,6 +195,11 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
+    /**
+     * Función que comprueba que el usuario actual no sea nulo para avanzar a la siguiente Pantalla
+     *
+     * @param account usuario de Firebase
+     */
     fun updateUI(account: FirebaseUser?) {
         if (account != null) {
             startActivity(Intent(this, PantallaPrincipal::class.java))
@@ -178,7 +208,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+    /**
+     * Constante que a partir de los datos de la cuenta de Google guarda el usuario en base de datos
+     */
     private val responseLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         if(it.resultCode== Activity.RESULT_OK){
             val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
