@@ -4,6 +4,6 @@ data class User(var email:String ="",var profileImage :String ="",var listsIds :
 
 
     override fun toString(): String {
-        return "User(email='$email', listsIds=$listsIds)"
+        return "User(email='$email', profileImage='$profileImage', listsIds=$listsIds)"
     }
 }

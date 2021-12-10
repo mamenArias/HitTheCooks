@@ -14,8 +14,12 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.appverse.hitthecooks.recyclers.ShoppingListAdapter
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class ShoppingListActivity : SuperActivity() {
+    private val dbStorage = FirebaseStorage.getInstance()
+    private lateinit var storageRef : StorageReference
     private lateinit var auth: FirebaseAuth
     private lateinit var shoppingList : ArrayList<ShoppingList>
     private val db : FirebaseFirestore by lazy { Firebase.firestore }
@@ -61,7 +65,7 @@ class ShoppingListActivity : SuperActivity() {
                 }.addOnSuccessListener {
                     alertDialog.cancel()
                     binding.recyclerView.layoutManager = LinearLayoutManager(this)
-                    val adapter = ShoppingListAdapter(shoppingList, binding.recyclerView,ShoppingListActivity@this)
+                    val adapter = ShoppingListAdapter(shoppingList, binding.recyclerView,ShoppingListActivity@this,this)
                     binding.recyclerView.adapter = adapter
                     var itemTouchHelper = ItemTouchHelper(SwipeToDelete(adapter,this))
                     itemTouchHelper.attachToRecyclerView(binding.recyclerView)
