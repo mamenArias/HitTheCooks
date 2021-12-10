@@ -15,11 +15,19 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
+/**
+ * Clase que contiene todos los alimentos que podemos añadir a la lista de la compra.
+ */
 class FoodList : SuperActivity() {
 
+    /**Constante que nos permite enlazar cada elemento de la vista directamente.*/
     private val binding by lazy { ActivityFoodListBinding.inflate(layoutInflater) }
+    /**Constante para enlazar con Firebase.*/
     private val db= FirebaseFirestore.getInstance()
 
+    /**
+     * Función que inicializa las vistas.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(binding.root)
@@ -27,6 +35,9 @@ class FoodList : SuperActivity() {
 
         applyDarkMode(binding.root)
 
+        /**
+         * Función para volver a la pantalla anterior.
+         */
         binding.buttonBack.setOnClickListener {
             val intent:Intent = Intent(this,ShoppingListActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -34,6 +45,9 @@ class FoodList : SuperActivity() {
             finish()
         }
 
+        /**
+         * Función para acceder al perfil de usuario.
+         */
         binding.buttonUser.setOnClickListener {
             val intent = Intent(this, EditProfile::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -41,6 +55,9 @@ class FoodList : SuperActivity() {
             finish()
         }
 
+        /**
+         * Función para ir a la pantalla de las listas de la compra.
+         */
         binding.buttonAdd.setOnClickListener {
             val intent = Intent(this, InvitationActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
