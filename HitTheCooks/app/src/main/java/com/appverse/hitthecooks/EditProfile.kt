@@ -80,7 +80,6 @@ class EditProfile : SuperActivity() {
 
         binding.registerButton.setOnClickListener{
             uploadProfilePic()
-            updateImage("")
         }
 
         binding.goBackButton.setOnClickListener {
@@ -123,9 +122,9 @@ class EditProfile : SuperActivity() {
      * Función para subir la foto a Firebase
      */
     private fun uploadProfilePic(){
-        image = Uri.parse("imagenesPerfil/"+auth.uid)
-        storageReference = FirebaseStorage.getInstance().getReference("Users/"+auth.currentUser?.uid)
-        storageReference.putFile(image).addOnSuccessListener { taskSnapshot ->
+        val path = "imagenesPerfil/"+auth.uid
+        storageReference = FirebaseStorage.getInstance().getReference(path)
+        storageReference.putFile(Uri.parse(path) ).addOnSuccessListener { taskSnapshot ->
             val uriTask: Task<Uri> = taskSnapshot.storage.downloadUrl
             while (!uriTask.isSuccessful);
             val imageURL = "${uriTask.result}"
