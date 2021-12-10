@@ -52,21 +52,11 @@ class FoodList : SuperActivity() {
             Glide.with(this).load(it.get("profileImage")).circleCrop().into(binding.buttonUser as ImageView)
         }
 
-        /*val storage:FirebaseStorage = FirebaseStorage.getInstance()
-        val gsReference = storage.getReferenceFromUrl("gs://hit-the-cooks.appspot.com/iconosLista/iconoA.png")
-        gsReference.child("iconosLista/iconoA.png").downloadUrl.addOnSuccessListener {
+        val arrayAlimentos:ArrayList<String> = arrayListOf("aceite", "agua", "azucar", "cerdo", "cereales", "chocolate", "congelados",
+            "dulces", "fruta", "huevos", "leche", "legumbres", "pan", "pasta", "patatas", "pescado", "pollo", "queso", "sal", "snacks",
+            "ternera", "verduras", "yogur")
 
-        }.addOnFailureListener {
-
-        }*/
-        val arrayItems:ArrayList<Item> = arrayListOf()
-        arrayItems.add(Item("Patatas", "https://firebasestorage.googleapis.com/v0/b/hit-the-cooks.appspot.com/o/iconosLista%2Ficonocongelados.png?alt=media&token=125754f0-80e7-435f-a651-2cfab382d52a"))
-        arrayItems.add(Item("Patatas", "https://firebasestorage.googleapis.com/v0/b/hit-the-cooks.appspot.com/o/iconosLista%2Ficonocongelados.png?alt=media&token=125754f0-80e7-435f-a651-2cfab382d52a"))
-        arrayItems.add(Item("Patatas", "https://firebasestorage.googleapis.com/v0/b/hit-the-cooks.appspot.com/o/iconosLista%2Ficonocongelados.png?alt=media&token=125754f0-80e7-435f-a651-2cfab382d52a"))
-        arrayItems.add(Item("Patatas", "https://firebasestorage.googleapis.com/v0/b/hit-the-cooks.appspot.com/o/iconosLista%2Ficonocongelados.png?alt=media&token=125754f0-80e7-435f-a651-2cfab382d52a"))
-        arrayItems.add(Item("Patatas", "https://firebasestorage.googleapis.com/v0/b/hit-the-cooks.appspot.com/o/iconosLista%2Ficonocongelados.png?alt=media&token=125754f0-80e7-435f-a651-2cfab382d52a"))
-
-        val adapter:FoodListAdapter = FoodListAdapter(this, arrayItems)
+        val adapter:FoodListAdapter = FoodListAdapter(this, arrayAlimentos)
         binding.foodListRecycler.adapter = adapter
         binding.foodListRecycler.layoutManager = GridLayoutManager(this, 3)
 

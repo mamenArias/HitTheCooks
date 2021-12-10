@@ -3,12 +3,16 @@ package com.appverse.hitthecooks.recyclers
 import android.app.Activity
 import android.content.Context
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.appverse.hitthecooks.R
 import com.appverse.hitthecooks.model.Item
+import com.appverse.hitthecooks.utils.FirestoreCollections
 import com.bumptech.glide.Glide
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
@@ -17,7 +21,9 @@ import com.google.firebase.storage.StorageReference
  * @param activity Actividad donde se implementa el Recycler.
  * @param list ArrayList con los alimentos que se pueden agregar a la lista de la compra.
  */
-class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):RecyclerView.Adapter<FoodListHolder>(){
+class FoodListAdapter (val activity:Activity, val list:ArrayList<String>):RecyclerView.Adapter<FoodListHolder>(){
+
+    private val db= FirebaseFirestore.getInstance()
     /**
      * Función que infla el layout.
      */
@@ -29,12 +35,11 @@ class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):Recycler
      * Función que asigna valor a los elementos del ViewHolder, que se van a mostrar en el Recycler.
      */
     override fun onBindViewHolder(holder: FoodListHolder, position: Int) {
-        //Imagen del alimento
-        //holder.imageFood.setImageResource(activity.resources.getIdentifier(list[position].imageUrl, "drawable", activity.packageName))
         val context: Context = holder.imageFood.context
-        Glide.with(context).load(list[position].imageUrl).into(holder.imageFood)
-        //Nombre del alimento
-        holder.textFood.text = list[position].name
+        db.collection(FirestoreCollections.ITEMS).document(list[position]).get().addOnSuccessListener {
+            Glide.with(context).load(it.get("picUrl")).circleCrop().into(holder.imageFood)
+            holder.textFood.text = it.get("Name").toString()
+        }
     }
 
     /**
