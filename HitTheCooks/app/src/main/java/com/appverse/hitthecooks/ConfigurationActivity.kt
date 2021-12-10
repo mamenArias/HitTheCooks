@@ -16,7 +16,7 @@ import com.google.firebase.ktx.Firebase
  * @author Miguel Àngel Arcos
  * @author Mamen Arias
  * @author Manuel Carrillo
- * @author Christian Gracía
+ * @author Christian García
  * @author Sergio López
  * @since 1.4
  */
@@ -64,7 +64,6 @@ class ConfigurationActivity : SuperActivity() {
                     alertDialog.window?.setLayout(400,400)
                     Firebase.auth.signOut()
                     val intent:Intent = Intent(this,MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
                     finish()
                     view.dismiss()

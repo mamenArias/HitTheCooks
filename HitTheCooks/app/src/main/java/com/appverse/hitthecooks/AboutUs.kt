@@ -12,7 +12,7 @@ import com.appverse.hitthecooks.recyclers.AboutUsAdapter
  * @author Miguel Àngel Arcos
  * @author Mamen Arias
  * @author Manuel Carrillo
- * @author Christian Gracía
+ * @author Christian García
  * @author Sergio López
  * @since 1.4
  */
@@ -29,7 +29,7 @@ class AboutUs : SuperActivity() {
         //Infla la vista en el layout de la actividad superior para compartir la barra de navegación
         drawerLayout.addView(binding.root, 1)
         navigationView.setCheckedItem(R.id.nav_about_us)
-
+        //Aplica el modo oscuro en el caso de que esté activado
         applyDarkMode(binding.root)
 
         //Crea el ArrayList de alumnos

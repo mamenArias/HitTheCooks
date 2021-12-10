@@ -28,7 +28,7 @@ import com.google.firebase.ktx.Firebase
  * @author Miguel Àngel Arcos
  * @author Mamen Arias
  * @author Manuel Carrillo
- * @author Christian Gracía
+ * @author Christian García
  * @author Sergio López
  * @since 1.4
  */

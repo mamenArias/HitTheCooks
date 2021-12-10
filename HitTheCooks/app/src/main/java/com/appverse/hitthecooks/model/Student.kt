@@ -6,7 +6,7 @@ package com.appverse.hitthecooks.model
  * @author Miguel Àngel Arcos
  * @author Mamen Arias
  * @author Manuel Carrillo
- * @author Christian Gracía
+ * @author Christian García
  * @author Sergio López
  * @since 1.1
  * @param name Nombre del alumno

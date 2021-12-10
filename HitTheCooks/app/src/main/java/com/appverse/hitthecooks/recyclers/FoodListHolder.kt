@@ -8,6 +8,12 @@ import com.appverse.hitthecooks.R
 
 /**
  * ViewHolder para el RecyclerView de los elementos a añadir a la lista de la compra.
+ * @author Miguel Àngel Arcos
+ * @author Mamen Arias
+ * @author Manuel Carrillo
+ * @author Christian García
+ * @author Sergio López
+ * @since 1.1
  */
 class FoodListHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 

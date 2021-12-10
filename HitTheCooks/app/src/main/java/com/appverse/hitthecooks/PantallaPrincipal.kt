@@ -38,7 +38,7 @@ class PantallaPrincipal : SuperActivity() {
         super.onCreate(savedInstanceState)
         drawerLayout.addView(binding.root, 1)
         navigationView.setCheckedItem(R.id.nav_main)
-        //Aplica el modo oscuri si está activado
+        //Aplica el modo oscuro si está activado
         applyDarkMode(binding.root)
         receivedInvitationLink()
         /**

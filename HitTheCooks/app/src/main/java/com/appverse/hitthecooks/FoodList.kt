@@ -20,7 +20,7 @@ import com.google.firebase.storage.StorageReference
  * @author Miguel Àngel Arcos
  * @author Mamen Arias
  * @author Manuel Carrillo
- * @author Christian Gracía
+ * @author Christian García
  * @author Sergio López
  * @since 1.4
  */
@@ -40,7 +40,7 @@ class FoodList : SuperActivity() {
         //Infla la vista en el layout de la actividad superior
         drawerLayout.addView(binding.root, 1)
 
-        //Aplica el modo oscuro si esta activado
+        //Aplica el modo oscuro si está activado
         applyDarkMode(binding.root)
 
         //Recoge el id de la lista por bundle

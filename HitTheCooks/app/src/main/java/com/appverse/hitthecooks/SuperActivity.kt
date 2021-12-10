@@ -30,7 +30,7 @@ import java.lang.Exception
  * @author Miguel Àngel Arcos
  * @author Mamen Arias
  * @author Manuel Carrillo
- * @author Christian Gracía
+ * @author Christian García
  * @author Sergio López
  * @since 1.4
  */
@@ -58,6 +58,7 @@ abstract class SuperActivity : AppCompatActivity(), NavigationView.OnNavigationI
 
     /**
      * Función que asigna un intent de navegación dependiendo del elemento del menú seleccionado
+     * @param item Item del menú seleccionado
      * @return Boolean, true si se ha realizado correctamente
      */
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -107,7 +108,6 @@ abstract class SuperActivity : AppCompatActivity(), NavigationView.OnNavigationI
                         alertDialog.window?.setLayout(400,400)
                         Firebase.auth.signOut()
                         val intent:Intent = Intent(this,MainActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                         startActivity(intent)
                         finish()
                         view.dismiss()
@@ -127,6 +127,7 @@ abstract class SuperActivity : AppCompatActivity(), NavigationView.OnNavigationI
     /**
      * Función que aplica el modo oscuro en el caso de que el valor del mismo en el archivo de preferencias
      * sea verdadero. Cambia el color de fondo de la vista raiz del layout y pone los textos en color blanco
+     * @param rootView ViewGropup raiz al que aplicar el modo oscuro
      */
     fun applyDarkMode(rootView : ViewGroup) : Unit {
         //Inicializa el archivo de preferencias

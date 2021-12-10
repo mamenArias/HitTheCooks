@@ -219,4 +219,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /***
+     * No permite ir hacia atrás
+     */
+    override fun onBackPressed() {
+    }
+
 }

@@ -11,7 +11,7 @@ import com.appverse.hitthecooks.R
  * @author Miguel Àngel Arcos
  * @author Mamen Arias
  * @author Manuel Carrillo
- * @author Christian Gracía
+ * @author Christian García
  * @author Sergio López
  * @since 1.1
  * @param activity Actividad donde se implementa el RecyclerView
