@@ -9,8 +9,12 @@ import com.appverse.hitthecooks.recyclers.AboutUsAdapter
 
 /**
  * Clase que contiene el reclicler con los miembros del grupo
- * @author
- * @since
+ * @author Miguel Angel Arcos
+ * @author Mamen Arias
+ * @author Manuel Carrillo
+ * @author Christian Gracia
+ * @author Sergio Lopez
+ * @since 1.4
  */
 class AboutUs : SuperActivity() {
 

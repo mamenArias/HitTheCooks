@@ -21,25 +21,43 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.lang.ref.PhantomReference
 
+/**
+ * Activity que contiene la pantalla de editar perfil
+ * @author Miguel Angel Arcos
+ * @author Mamen Arias
+ * @author Manuel Carrillo
+ * @author Christian Gracia
+ * @author Sergio Lopez
+ * @since 1.4
+ */
 class EditProfile : SuperActivity() {
 
+    /** Objeto que permite enlazar con las vistas del layout **/
     private val binding by lazy { ActivityEditProfileBinding.inflate(layoutInflater) }
+    /** Objeto que permite obstener la instancia a la base de datos **/
     private val db= FirebaseFirestore.getInstance()
+    /** Objeto que permite obstener el autentificador de Firebase **/
     private lateinit var auth : FirebaseAuth
+    /** Objeto que permite obstener la referencia de la base de datos **/
     private lateinit var databaseReference: DatabaseReference
+    /** Objeto que permite obstener la referencia del storage de Firebase **/
     private lateinit var storageReference: StorageReference
+    /** Ruta de la imagen **/
     private lateinit var image: Uri
 
+    /**
+     * Inicializa la actividad, infla el layout y carga el usuario logado
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(binding.root)
         drawerLayout.addView(binding.root, 1)
         navigationView.setCheckedItem(R.id.nav_profile)
-
+        //Aplica el modo oscuro si está activado
         applyDarkMode(binding.root)
-
+        //Obtiene los datos del usuario actualmente logado
         db.collection(FirestoreCollections.USERS).document(Firebase.auth.currentUser!!.email.toString()).get().addOnSuccessListener {
-
+            //Recupera el nombre y la imagen del usuario
             binding.userName.text = it.get("email").toString()
             Glide.with(this).load(it.get("profileImage")).circleCrop().into(binding.profileIcon as ImageView)
         }
@@ -47,7 +65,9 @@ class EditProfile : SuperActivity() {
         val uid = auth.currentUser?.uid
         databaseReference = FirebaseDatabase.getInstance().getReference("Users")*/
 
-
+        /**
+         * Función que permite navegar a la actividad principal
+         */
         binding.goBackButton.setOnClickListener {
             val intent: Intent = Intent(this, PantallaPrincipal::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -56,6 +76,9 @@ class EditProfile : SuperActivity() {
         }
     }
 
+    /**
+     * Función que recupera la imagen del usuario de Firebase
+     */
     private fun uploadProfilePic(){
         image = Uri.parse("gs://hit-the-cooks.appspot.com/imagenesPerfil/default.png")
         storageReference = FirebaseStorage.getInstance().getReference("Users/"+auth.currentUser?.uid)

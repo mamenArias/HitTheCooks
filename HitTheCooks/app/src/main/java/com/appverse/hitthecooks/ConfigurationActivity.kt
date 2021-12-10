@@ -13,8 +13,12 @@ import com.google.firebase.ktx.Firebase
 
 /**
  * Actividad que contiene la pantalla de preferencias
- * @author
- * @since
+ * @author Miguel Angel Arcos
+ * @author Mamen Arias
+ * @author Manuel Carrillo
+ * @author Christian Gracia
+ * @author Sergio Lopez
+ * @since 1.4
  */
 class ConfigurationActivity : SuperActivity() {
 
@@ -44,6 +48,7 @@ class ConfigurationActivity : SuperActivity() {
             finish()
         }
 
+        //Hace el logout de la aplicación
         binding.buttonLogOut.setOnClickListener {
             val dialog = AlertDialog.Builder(this)
             .setTitle(R.string.cerrarSesion)
