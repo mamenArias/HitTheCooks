@@ -61,11 +61,12 @@
 
         <TextView
             android:id="@+id/editProfileText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="128dp"
             android:fontFamily="sans-serif-black"
             android:text="@string/editProfileText"
+            android:textAlignment="center"
             android:textColor="@color/whiteEgg"
             android:textSize="40sp"
             android:textStyle="italic"
