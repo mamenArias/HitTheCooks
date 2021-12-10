@@ -17,6 +17,12 @@ import com.google.firebase.storage.StorageReference
 
 /**
  * Clase que contiene todos los alimentos que podemos añadir a la lista de la compra.
+ * @author Miguel Angel Arcos
+ * @author Mamen Arias
+ * @author Manuel Carrillo
+ * @author Christian Gracia
+ * @author Sergio Lopez
+ * @since 1.4
  */
 class FoodList : SuperActivity() {
 
@@ -33,6 +39,7 @@ class FoodList : SuperActivity() {
         //setContentView(binding.root)
         drawerLayout.addView(binding.root, 1)
 
+        //Aplica el modo oscuro si esta activado
         applyDarkMode(binding.root)
 
         /**
@@ -65,6 +72,7 @@ class FoodList : SuperActivity() {
             finish()
         }
 
+        //Recupera los datos del usuario logado (eMail e imagen)
         db.collection(FirestoreCollections.USERS).document(Firebase.auth.currentUser!!.email.toString()).get().addOnSuccessListener {
             Glide.with(this).load(it.get("profileImage")).circleCrop().into(binding.buttonUser as ImageView)
         }
@@ -79,6 +87,10 @@ class FoodList : SuperActivity() {
 
     }
 
+    /**
+     * Sobreescribe la función del boton volver del telefono,
+     * navegando hacia la actividad de las listas de compra
+     */
     override fun onBackPressed() {
         val intent:Intent = Intent(this,ShoppingListActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
