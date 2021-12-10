@@ -107,6 +107,9 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
         Snackbar.make(view,activity.applicationContext.resources.getString(R.string.listDeleted)+" ${shoppingList[position].name}",Snackbar.LENGTH_SHORT).show()
         shoppingList.removeAt(position)
         notifyItemRemoved(position)
+        if(shoppingList.isEmpty()) {
+            notifyDataSetChanged()
+        }
     }
 
 

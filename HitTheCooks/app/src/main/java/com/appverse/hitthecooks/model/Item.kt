@@ -1,5 +1,7 @@
 package com.appverse.hitthecooks.model
 
-data class Item(var name :String="",var imageUrl:String="", var items: ArrayList<Item> = arrayListOf()) {
-
+data class Item(var name :String="",var picUrl:String="") {
+    override fun toString(): String {
+        return "Item(name='$name', imageUrl='$picUrl')"
+    }
 }

@@ -21,7 +21,7 @@ import com.google.firebase.storage.StorageReference
  * @param activity Actividad donde se implementa el Recycler.
  * @param list ArrayList con los alimentos que se pueden agregar a la lista de la compra.
  */
-class FoodListAdapter (val activity:Activity, val list:ArrayList<String>):RecyclerView.Adapter<FoodListHolder>(){
+class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):RecyclerView.Adapter<FoodListHolder>(){
 
     private val db= FirebaseFirestore.getInstance()
     /**
@@ -36,10 +36,7 @@ class FoodListAdapter (val activity:Activity, val list:ArrayList<String>):Recycl
      */
     override fun onBindViewHolder(holder: FoodListHolder, position: Int) {
         val context: Context = holder.imageFood.context
-        db.collection(FirestoreCollections.ITEMS).document(list[position]).get().addOnSuccessListener {
-            Glide.with(context).load(it.get("picUrl")).circleCrop().into(holder.imageFood)
-            holder.textFood.text = it.get("Name").toString()
-        }
+
     }
 
     /**
