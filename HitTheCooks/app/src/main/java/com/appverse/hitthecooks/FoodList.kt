@@ -16,6 +16,8 @@ import com.google.firebase.ktx.Firebase
 
 import android.view.MotionEvent
 import android.widget.SearchView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.appverse.hitthecooks.recyclers.SearchAdapter
 
@@ -112,7 +114,9 @@ class FoodList : SuperActivity() {
             finish()
         }
 
-        //Recupera los datos del usuario logado (eMail e imagen)
+        /**
+         * Recupera los datos del usuario logado (eMail e imagen)
+         */
         db.collection(FirestoreCollections.USERS).document(Firebase.auth.currentUser!!.email.toString()).get().addOnSuccessListener {
             Glide.with(this).load(it.get("profileImage")).circleCrop().into(binding.buttonUser as ImageView)
         }
