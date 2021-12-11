@@ -1,228 +1,104 @@
 package com.appverse.hitthecooks
 
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
+import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import com.appverse.hitthecooks.databinding.ActivityMainBinding
-import com.appverse.hitthecooks.model.User
+import com.appverse.hitthecooks.databinding.ActivityPrincipalBinding
 import com.appverse.hitthecooks.utils.FirestoreCollections
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-
 
 /**
- *
- * Actividad que contiene el login y registro de usuarios en la App
- *
- * @author Miguel Ángel Arcos, Mamen Arias, Manuel Carrillo, Christian García, Sergio López
- * @version 1.0
- * @since   1.0
+ * Actividad de la pantalla principal desde la que navegar al resto de pantallas
+ * @author Miguel Àngel Arcos
+ * @author Mamen Arias
+ * @author Manuel Carrillo
+ * @author Christian Gracía
+ * @author Sergio López
+ * @since 1.4
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : SuperActivity() {
+
     /** Constante que permite enlazar directamente con las vistas del layout **/
-    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    /** Variable que sirve para instanciar la clase FirebaseAuth**/
-    private lateinit var auth: FirebaseAuth
-    /** Variable que sirve para instanciar la clase GoogleSignInClient**/
-    private lateinit var googleSignInClient: GoogleSignInClient
-    /** Constante que instancia un objeto de la clase FirebaseFirestore**/
-    private val db=FirebaseFirestore.getInstance()
-    /** Variable que sirve para instanciar la clase StorageReference**/
-    private lateinit var storageRef : StorageReference
-    /** Constante que instancia un objeto de la clase FirebaseStorage**/
-    val dbStorage = FirebaseStorage.getInstance()
+    private val binding by lazy { ActivityPrincipalBinding.inflate(layoutInflater) }
+    private val db= FirebaseFirestore.getInstance()
 
     /**
      * Inicializa la actividad
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.SplashScreen)
-        Thread.sleep(2000)
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
-        var text:TextView = binding.googleButton.getChildAt(0) as TextView
-        text.setText("Iniciar sesión con Google")
-
-
-        val gso = GoogleSignInOptions
-            .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.webid))
-            .requestEmail()
-            .build()
-        googleSignInClient = GoogleSignIn.getClient(this,gso)
+        drawerLayout.addView(binding.root, 1)
+        navigationView.setCheckedItem(R.id.nav_main)
+        //Aplica el modo oscuro si está activado
+        applyDarkMode(binding.root)
+        receivedInvitationLink()
+        /**
+         * Función que permite navegar a la pantalla de configuración
+         */
+        binding.configButton.setOnClickListener {
+            val intent:Intent = Intent(this, ConfigurationActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            finish()
+        }
 
         /**
-         * Función que comprueba si el campo email y contraseña no están vacíos. Si no lo están registra un usuario
-         * en la base de datos con dicho email y contraseña
+         * Función que permite navegar a la pantalla de editar perfil
          */
-       binding.registerButton.setOnClickListener {
-            if(binding.nameGap.text.isEmpty()|| binding.passwordGap.text.isEmpty()){
-                Toast.makeText(this, R.string.campoVacio, Toast.LENGTH_LONG).show()
-
-            }else {
-                val auth = FirebaseAuth.getInstance()
-                //pasamos por argumentos el usuario y contraseña
-                val tarea = auth.createUserWithEmailAndPassword(
-                    binding.nameGap.text.toString(),
-                    binding.passwordGap.text.toString()
-                )
-                tarea.addOnCompleteListener(this, object : OnCompleteListener<AuthResult> {
-                    override fun onComplete(p0: Task<AuthResult>) {
-                        if (tarea.isSuccessful) {
-                            Toast.makeText(
-                                this@MainActivity,
-                                R.string.registroCompletado,
-                                Toast.LENGTH_LONG
-                            ).show()
-
-                            storageRef =
-                                dbStorage.reference.child("imagenesPerfil").child("default.png")
-                            storageRef.downloadUrl.addOnSuccessListener { url ->
-                                var user = User(binding.nameGap.text.toString(), url.toString())
-                                db.collection(FirestoreCollections.USERS).document(user.email).set(
-                                    user
-                                )
-                            }
-                            startActivity(Intent(this@MainActivity, PantallaPrincipal::class.java))
-
-                        } else {
-                            Toast.makeText(
-                                this@MainActivity,
-                                R.string.registroFallido,
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                    }
-
-                })
-            }
+        binding.userButton.setOnClickListener {
+            val intent:Intent = Intent(this, EditProfile::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            finish()
         }
+
         /**
-         * Función que comprueba si el campo email y contraseña no están vacíos. Si no lo están realiza el login de un usuario
-         * ya guardado en la base de datos con dicho email y contraseña
+         * Función que permite navegar a la pantalla de "Mis Listas"
          */
-        binding.signInButton.setOnClickListener {
-            if(binding.nameGap.text.isEmpty()|| binding.passwordGap.text.isEmpty()){
-                Toast.makeText(this, R.string.campoVacio, Toast.LENGTH_LONG).show()
-
-            }else if(binding.passwordGap.text.toString().length<8) {
-                Toast.makeText(this, R.string.passCorto, Toast.LENGTH_SHORT).show()
-            }else{
-                val auth = FirebaseAuth.getInstance()
-                //pasamos por argumentos el usuario y contraseña
-                val tarea = auth.signInWithEmailAndPassword(
-                    binding.nameGap.text.toString(),
-                    binding.passwordGap.text.toString()
-                )
-
-                tarea.addOnCompleteListener(this, object : OnCompleteListener<AuthResult> {
-                    override fun onComplete(p0: Task<AuthResult>) {
-                        if (tarea.isSuccessful) {
-                            startActivity(Intent(this@MainActivity, PantallaPrincipal::class.java))
-
-                        } else {
-                            Toast.makeText(
-                                this@MainActivity,
-                                R.string.loginIncorrecto,
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                    }
-
-
-                })
-            }
+        binding.myListsButton.setOnClickListener {
+            val intent:Intent = Intent(this, ShoppingListActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            finish()
         }
+
         /**
-         * Función que realiza el logIn con una cuenta de Gmail
+         * Función que permite navegar a la pantalla de "Sobre Nosotros"
          */
-        binding.googleButton.setOnClickListener {
-            responseLauncher.launch(googleSignInClient.signInIntent)
+        binding.aboutUsButton.setOnClickListener {
+            val intent:Intent = Intent(this, AboutUs::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            finish()
+        }
+
+        //Muestra el nombre del usuario y la foto de perfil en la parte superior de la pantalla
+        db.collection(FirestoreCollections.USERS).document(Firebase.auth.currentUser!!.email.toString()).get().addOnSuccessListener {
+            binding.usernameText.text = it.get("email").toString().substringBefore('@')
+            Glide.with(this).load(it.get("profileImage")).circleCrop().into(binding.userButton as ImageView)
         }
 
     }
-
-    /**
-     * Función que hace visible la actividad y se comprueba el estado del usuario actual
-     */
-    override fun onStart() {
-        super.onStart()
-        auth = Firebase.auth
-        var currentUser = auth.getCurrentUser()
-        updateUI(currentUser);
-
-        val credential = GoogleAuthProvider.getCredential(R.string.webid.toString(), null)
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    val user = auth.currentUser
-                    updateUI(user)
-                } else {
-                    // If sign in fails, display a message to the user. )
-                    updateUI(null)
-                }
-            }
-    }
-
-    /**
-     * Función que comprueba que el usuario actual no sea nulo para avanzar a la siguiente Pantalla
-     *
-     * @param account usuario de Firebase
-     */
-    fun updateUI(account: FirebaseUser?) {
-        if (account != null) {
-            startActivity(Intent(this, PantallaPrincipal::class.java))
-        } else {
-
-        }
-    }
-
-    /**
-     * Constante que a partir de los datos de la cuenta de Google guarda el usuario en base de datos
-     */
-    private val responseLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-        if(it.resultCode== Activity.RESULT_OK){
-            val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
-            val account = task.getResult(ApiException::class.java)
-            val acct = GoogleSignIn.getLastSignedInAccount(this)
-            var userToInsert = User(acct!!.email as String,acct.photoUrl!!.toString() as String)
-            db.collection( FirestoreCollections.USERS).document(acct.email as String).set(
-                userToInsert
-            )
-            if(account!=null) {
-                val credential = GoogleAuthProvider.getCredential(account.idToken,null)
-                auth.signInWithCredential(credential).addOnCompleteListener {
-                    updateUI(auth.currentUser)
-                }
+    private fun receivedInvitationLink(){
+        FirebaseDynamicLinks.getInstance().getDynamicLink(intent).addOnSuccessListener {
+            var deepLink : Uri? = null;
+            if (it !=null){
+                deepLink = it.link as Uri
+                val listId = deepLink.getQueryParameter("list")
+                db.collection(FirestoreCollections.USERS).document(Firebase.auth.currentUser?.email.toString()).update("listIds",FieldValue.arrayUnion(listId)).addOnCompleteListener {  }
+                db.collection(FirestoreCollections.LISTS).document(listId.toString()).update("users",FieldValue.arrayUnion(Firebase.auth.currentUser?.email.toString())).addOnCompleteListener {  }
+                Toast.makeText(this, "$listId", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this,FoodList::class.java))
             }
         }
     }
-
-    /***
-     * No permite ir hacia atrás
-     */
-    override fun onBackPressed() {
-    }
-
 }

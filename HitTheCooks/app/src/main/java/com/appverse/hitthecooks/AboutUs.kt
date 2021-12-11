@@ -49,7 +49,7 @@ class AboutUs : SuperActivity() {
          * Función que permite navegar a la pantalla principal
          */
         binding.backButton?.setOnClickListener {
-            val intent:Intent = Intent(this, PantallaPrincipal::class.java)
+            val intent:Intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
             finish()

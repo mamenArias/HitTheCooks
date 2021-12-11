@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.usage.ExternalStorageStats
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.ImageView
@@ -13,7 +12,6 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import com.appverse.hitthecooks.databinding.ActivityEditProfileBinding
-import com.appverse.hitthecooks.databinding.ActivityMainBinding
 import com.appverse.hitthecooks.utils.FirestoreCollections
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.Task
@@ -25,7 +23,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import java.lang.ref.PhantomReference
 
 /**
  * Activity que contiene la pantalla de editar perfil
@@ -83,7 +80,7 @@ class EditProfile : SuperActivity() {
         }
 
         binding.goBackButton.setOnClickListener {
-            val intent: Intent = Intent(this, PantallaPrincipal::class.java)
+            val intent: Intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
             finish()

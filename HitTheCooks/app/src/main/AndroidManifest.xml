@@ -26,7 +26,7 @@
             android:name=".AboutUs"
             android:exported="true" />
         <activity
-            android:name=".PantallaPrincipal"
+            android:name=".MainActivity"
             android:exported="true" />
         <activity
             android:name=".EditProfile"
@@ -39,7 +39,7 @@
             android:name=".ConfigurationActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true"
             android:theme="@style/SplashScreen">
             <intent-filter>

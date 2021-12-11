@@ -20,7 +20,6 @@
         app:layout_constraintBottom_toTopOf="@+id/nameListTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/nameListTextView"
         android:layout_width="0dp"

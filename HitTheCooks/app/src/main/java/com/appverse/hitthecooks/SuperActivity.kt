@@ -9,12 +9,10 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -22,7 +20,6 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import java.lang.Exception
 
 /**
  * Actividad abstracta superior de la que heredan el resto de actividades excepto el login.
@@ -65,7 +62,7 @@ abstract class SuperActivity : AppCompatActivity(), NavigationView.OnNavigationI
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.nav_main -> {
-                val intent : Intent = Intent(applicationContext, PantallaPrincipal::class.java)
+                val intent : Intent = Intent(applicationContext, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
                 finish()
@@ -106,9 +103,9 @@ abstract class SuperActivity : AppCompatActivity(), NavigationView.OnNavigationI
                         builder.setView(R.layout.logginout_progressbar)
                         builder.create()
                         val alertDialog = builder.show()
-                        alertDialog.window?.setLayout(400,400)
+                        alertDialog.window?.setLayout(500,450)
                         Firebase.auth.signOut()
-                        val intent:Intent = Intent(this,MainActivity::class.java)
+                        val intent:Intent = Intent(this,LoginActivity::class.java)
                         startActivity(intent)
                         finish()
                         view.dismiss()
@@ -147,7 +144,7 @@ abstract class SuperActivity : AppCompatActivity(), NavigationView.OnNavigationI
                 text.setTextColor(ContextCompat.getColor(this, R.color.whiteEgg))
                 val switchText : TextView = findViewById(R.id.labelTheme)
                 switchText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.sun_icon, 0, 0, 0)
-            } else if(rootView.context is PantallaPrincipal){
+            } else if(rootView.context is MainActivity){
                 //Cambia el logo de la app si es la actividad principal
                 val logo : ImageView = findViewById(R.id.appLogo)
                 logo.setImageResource(R.drawable.logo_oscuro)

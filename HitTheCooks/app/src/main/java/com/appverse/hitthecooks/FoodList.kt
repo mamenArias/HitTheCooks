@@ -37,7 +37,7 @@ import com.appverse.hitthecooks.recyclers.SearchAdapter
  * @since 1.4
  */
 class FoodList : SuperActivity() {
-    private lateinit var items : ArrayList<Item>
+    private lateinit var itemsSearched : ArrayList<Item>
     /**Constante que nos permite enlazar cada elemento de la vista directamente.*/
     private val binding by lazy { ActivityFoodListBinding.inflate(layoutInflater) }
     /**Constante para enlazar con Firebase.*/
@@ -50,12 +50,14 @@ class FoodList : SuperActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+
         //Infla la vista en el layout de la actividad superior
         drawerLayout.addView(binding.root, 1)
 
         //Aplica el modo oscuro si está activado
         applyDarkMode(binding.root)
-        items = arrayListOf()
+        itemsSearched = arrayListOf()
 
         //Recoge el id de la lista por bundle
         val listId = intent.extras?.getString("listId")
@@ -64,12 +66,14 @@ class FoodList : SuperActivity() {
         //Da el comportamiento al panel
         bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet)
         /**
-         * Modificador al panel escondido: el tamaño que tienes que asomar y el estado que debe estar
+         * Modificador al panel escondido: el tamaño que tiene que asomar y el estado que debe estar
          */
         BottomSheetBehavior.from(binding.bottomSheet).apply {
             peekHeight = 200
             state = BottomSheetBehavior.STATE_COLLAPSED
         }
+
+
         /***
          * Función que expande el panel escondido cuando pulsas la lupa del buscador
          */
@@ -82,7 +86,6 @@ class FoodList : SuperActivity() {
         binding.searchView.setOnQueryTextFocusChangeListener { v, hasFocus ->
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
-
 
         /**
          * Función para volver a la pantalla anterior.
@@ -136,14 +139,17 @@ class FoodList : SuperActivity() {
             LinearLayoutManager.VERTICAL,false)
 
 
-
+        /**
+         * Función para la búsqueda a través del searchView.
+         */
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 binding.searchView.clearFocus()
+                binding.searchView.isFocusable = true
                return true
             }
-
             override fun onQueryTextChange(p0: String?): Boolean {
+                binding.searchView.isFocusable = true
                 var  searchViewText : String = p0.toString()
                 if(searchViewText.isNotEmpty()) {
                     searchInFirestore(searchViewText.lowercase())
@@ -155,13 +161,33 @@ class FoodList : SuperActivity() {
 
     }
 
+    /***
+     * Función que ejecuta una query a la base de datos cada vez que es insertado un caracter en el buscador.
+     * Pasa por argumentos al Adapter la lista recibida de los items buscados en la base de datos.
+     */
     private fun searchInFirestore(searchText : String) {
       db.collection(FirestoreCollections.ITEMS).orderBy("name").startAt(searchText).endAt("$searchText\uf8ff").get().addOnCompleteListener {
           if(it.isSuccessful){
-              items = it.result.toObjects(Item::class.java) as ArrayList<Item>
-                  val adapter = SearchAdapter(this, items)
+              itemsSearched = it.result.toObjects(Item::class.java) as ArrayList<Item>
+              if(itemsSearched.isNotEmpty()) {
+                  val adapter = SearchAdapter(this, itemsSearched)
                   binding.recyclerSearch.adapter = adapter
                   adapter.notifyDataSetChanged()
+              }else{
+                 val firstChar = searchText[0]
+                  db.collection(FirestoreCollections.ITEMS).document(firstChar.toString()).get().addOnCompleteListener{
+                      if(it.isSuccessful){
+
+                          it.result.toObject(Item::class.java)
+                              ?.let { it1 ->
+                                  it1.name = searchText
+                                  itemsSearched.add(it1) }
+                          val adapter = SearchAdapter(this, itemsSearched)
+                          binding.recyclerSearch.adapter = adapter
+                          adapter.notifyDataSetChanged()
+                      }
+                  }
+              }
           }
       }
     }
@@ -172,6 +198,8 @@ class FoodList : SuperActivity() {
      */
     override fun onBackPressed() {
             if(BottomSheetBehavior.from(binding.bottomSheet).state == BottomSheetBehavior.STATE_EXPANDED) {
+                binding.searchView.clearFocus()
+                binding.searchView.setQuery("", false)
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             }else{
                 val intent:Intent = Intent(this,ShoppingListActivity::class.java)
@@ -182,30 +210,27 @@ class FoodList : SuperActivity() {
     }
 
     /**
-     * Quita el foco sobre el buscador
-     */
-    override fun onResume() {
-        super.onResume()
-        binding.searchView.setQuery("", false)
-        binding.root.requestFocus()
-    }
-
-    /**
      * Función que cierra el panel de abajo cuando pulsas fuera de él y quita el foco sobre el buscador
      */
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
-        if (event.action == MotionEvent.ACTION_DOWN) {
-            if (bottomSheetBehavior.state === BottomSheetBehavior.STATE_EXPANDED) {
-                binding.searchView.clearFocus()
-                binding.searchView.setQuery("", false)
-               bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-            }else{
-                binding.searchView.clearFocus()
-                binding.searchView.setQuery("", false)
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                if (bottomSheetBehavior.state === BottomSheetBehavior.STATE_EXPANDED) {
+                    closeSearch()
+                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                } else {
+                    closeSearch()
+                }
             }
-        }
         return super.dispatchTouchEvent(event)
+    }
+
+    /**
+     * Función que quita el foco y resetea el buscador
+     */
+    private fun closeSearch(){
+        binding.searchView.clearFocus()
+        binding.searchView.setQuery("",false)
+        binding.searchView.isFocusable = true
     }
 
 

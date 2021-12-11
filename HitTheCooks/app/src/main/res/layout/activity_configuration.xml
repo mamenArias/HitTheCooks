@@ -24,17 +24,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelEdit" />
 
-    <Switch
+
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/switchNight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:minHeight="48dp"
-        android:scaleX="1.25"
-        android:scaleY="1.25"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        app:lottie_rawRes="@raw/egg_toggle"
         app:layout_constraintBottom_toBottomOf="@+id/labelTheme"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/labelTheme" />
+        app:layout_constraintTop_toTopOf="@+id/labelTheme">
+
+    </com.airbnb.lottie.LottieAnimationView>
 
     <Button
         android:id="@+id/buttonProfile"

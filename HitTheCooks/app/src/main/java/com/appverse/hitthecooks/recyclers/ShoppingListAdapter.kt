@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -42,7 +44,7 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
     }
 
     override fun onBindViewHolder(holder: ShoppingListHolder, position: Int) {
-
+        val animation : Animation = AnimationUtils.loadAnimation(holder.itemView.context,R.anim.rotate_in)
       if(position==shoppingList.size){
           if(shoppingList.isEmpty()){
               holder.containerEmptyList.visibility =View.VISIBLE
@@ -72,6 +74,7 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
               holder.recyclerViewProfilePics.adapter = adapter
               holder.recyclerViewProfilePics.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
               }
+        holder.itemView.startAnimation(animation)
           }
 
     override fun getItemCount(): Int {
