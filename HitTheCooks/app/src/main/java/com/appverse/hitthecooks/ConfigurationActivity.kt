@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
 import com.appverse.hitthecooks.databinding.ActivityConfigurationBinding
 import com.google.firebase.auth.FirebaseAuth

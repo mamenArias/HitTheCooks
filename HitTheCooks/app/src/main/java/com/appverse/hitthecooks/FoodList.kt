@@ -7,23 +7,16 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.appverse.hitthecooks.databinding.ActivityFoodListBinding
 import com.appverse.hitthecooks.model.Item
-import com.appverse.hitthecooks.recyclers.FoodListAdapter
 import com.appverse.hitthecooks.utils.FirestoreCollections
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-import android.graphics.Rect
-import android.text.TextWatcher
 
 import android.view.MotionEvent
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.appverse.hitthecooks.model.ShoppingList
 import com.appverse.hitthecooks.recyclers.SearchAdapter
 
 

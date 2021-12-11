@@ -1,11 +1,9 @@
 package com.appverse.hitthecooks
 
 import android.app.Activity
-import android.app.usage.ExternalStorageStats
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.ActivityResult

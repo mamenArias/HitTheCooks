@@ -9,26 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.appverse.hitthecooks.*
 import com.appverse.hitthecooks.model.ShoppingList
-import com.appverse.hitthecooks.model.User
 import com.appverse.hitthecooks.utils.FirestoreCollections
-import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 
 class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, private val view: View, private val activity: Activity,private val context: Context): RecyclerView.Adapter<ShoppingListHolder>(){
     private val db = Firebase.firestore
