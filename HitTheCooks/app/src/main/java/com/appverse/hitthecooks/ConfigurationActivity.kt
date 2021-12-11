@@ -1,11 +1,13 @@
 package com.appverse.hitthecooks
 
+import android.animation.Animator
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import com.airbnb.lottie.LottieAnimationView
 import com.appverse.hitthecooks.databinding.ActivityConfigurationBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -21,7 +23,7 @@ import com.google.firebase.ktx.Firebase
  * @since 1.4
  */
 class ConfigurationActivity : SuperActivity() {
-
+    private var isCheckedDone = false
     /** Objeto que permite enlazar las vistas del layout **/
     private val binding by lazy { ActivityConfigurationBinding.inflate(layoutInflater) }
     private lateinit var auth: FirebaseAuth
@@ -61,9 +63,9 @@ class ConfigurationActivity : SuperActivity() {
                     builder.setView(R.layout.logginout_progressbar)
                     builder.create()
                     val alertDialog = builder.show()
-                    alertDialog.window?.setLayout(400,400)
+                    alertDialog.window?.setLayout(500,450)
                     Firebase.auth.signOut()
-                    val intent:Intent = Intent(this,MainActivity::class.java)
+                    val intent:Intent = Intent(this,LoginActivity::class.java)
                     startActivity(intent)
                     finish()
                     view.dismiss()
@@ -80,19 +82,70 @@ class ConfigurationActivity : SuperActivity() {
         //Establece el valor de la preferencia "modo oscuro", si no hay ninguno, usará el valor por defecto
         val darkMode : Boolean = preferences.getBoolean("darkMode", false)
 
+
+
+        val switch : LottieAnimationView = findViewById(R.id.switchNight)
+
+
         if(darkMode){
             //Si el valor es verdadero, activa el switch del modo oscuro
-            binding.switchNight.isChecked = true
+            isCheckedDone = true
+            switch.setMinAndMaxProgress(0.5f,1.0f)
+        }else{
+            switch.setMinAndMaxProgress(0.0f,0.5f)
         }
+        switch.speed = 4f
 
         //Modifica el valor del modo oscuro mediante el switch
-        binding.switchNight.setOnClickListener {
-            if (binding.switchNight.isChecked){
-                preferencesEditor.putBoolean("darkMode", true)
-                applyChanges()
+        switch.setOnClickListener {
+            if(isCheckedDone){
+                switch.setMinAndMaxProgress(0.5f,1.0f)
+                switch.playAnimation()
+                isCheckedDone = false
+                switch.addAnimatorListener(object: Animator.AnimatorListener {
+                    override fun onAnimationStart(p0: Animator?) {
+                        TODO("Not yet implemented")
+                    }
+
+                    override fun onAnimationEnd(p0: Animator?) {
+                        preferencesEditor.putBoolean("darkMode", false)
+                        applyChanges()
+                    }
+
+                    override fun onAnimationCancel(p0: Animator?) {
+                        TODO("Not yet implemented")
+                    }
+
+                    override fun onAnimationRepeat(p0: Animator?) {
+                        TODO("Not yet implemented")
+                    }
+                })
+
             }else{
-                preferencesEditor.putBoolean("darkMode", false)
-                applyChanges()
+                switch.setMinAndMaxProgress(0.0f,0.5f)
+                switch.playAnimation()
+                isCheckedDone = true
+
+                switch.addAnimatorListener(object: Animator.AnimatorListener {
+                    override fun onAnimationStart(p0: Animator?) {
+                        TODO("Not yet implemented")
+                    }
+
+                    override fun onAnimationEnd(p0: Animator?) {
+                        preferencesEditor.putBoolean("darkMode",true)
+                        applyChanges()
+                    }
+
+                    override fun onAnimationCancel(p0: Animator?) {
+                        TODO("Not yet implemented")
+                    }
+
+                    override fun onAnimationRepeat(p0: Animator?) {
+                        TODO("Not yet implemented")
+                    }
+                })
+
+
             }
         }
 

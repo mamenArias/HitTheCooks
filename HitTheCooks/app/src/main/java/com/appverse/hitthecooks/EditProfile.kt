@@ -1,14 +1,11 @@
 package com.appverse.hitthecooks
 
-import android.app.usage.ExternalStorageStats
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
 import com.appverse.hitthecooks.databinding.ActivityEditProfileBinding
-import com.appverse.hitthecooks.databinding.ActivityMainBinding
 import com.appverse.hitthecooks.utils.FirestoreCollections
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
@@ -16,10 +13,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import java.lang.ref.PhantomReference
 
 /**
  * Activity que contiene la pantalla de editar perfil
@@ -69,7 +64,7 @@ class EditProfile : SuperActivity() {
          * Función que permite navegar a la actividad principal
          */
         binding.goBackButton.setOnClickListener {
-            val intent: Intent = Intent(this, PantallaPrincipal::class.java)
+            val intent: Intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
             finish()
