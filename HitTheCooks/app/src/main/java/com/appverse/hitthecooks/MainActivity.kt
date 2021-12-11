@@ -2,7 +2,6 @@ package com.appverse.hitthecooks
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
@@ -13,7 +12,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 
 /**
@@ -29,6 +27,7 @@ class MainActivity : SuperActivity() {
 
     /** Constante que permite enlazar directamente con las vistas del layout **/
     private val binding by lazy { ActivityPrincipalBinding.inflate(layoutInflater) }
+    /** Objeto que contiene la instancia a base de datos de Firebase **/
     private val db= FirebaseFirestore.getInstance()
 
     /**
@@ -36,6 +35,7 @@ class MainActivity : SuperActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Infla la vista en el layout de la actividad superior para compartir la barra de navegación
         drawerLayout.addView(binding.root, 1)
         navigationView.setCheckedItem(R.id.nav_main)
         //Aplica el modo oscuro si está activado

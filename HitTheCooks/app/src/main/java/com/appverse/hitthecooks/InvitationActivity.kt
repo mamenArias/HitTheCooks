@@ -4,24 +4,12 @@ import android.content.ActivityNotFoundException
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.core.net.toUri
 import com.appverse.hitthecooks.databinding.ActivityInvitationBinding
-import com.appverse.hitthecooks.model.ShoppingList
-import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestBuilder
 import com.google.firebase.dynamiclinks.DynamicLink
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
-import com.google.firebase.dynamiclinks.ShortDynamicLink
-import com.google.firebase.dynamiclinks.ktx.androidParameters
-import com.google.firebase.dynamiclinks.ktx.dynamicLinks
-import com.google.firebase.dynamiclinks.ktx.shortLinkAsync
-import com.google.firebase.ktx.Firebase
 
 /**
  * Actividad que contiene la pantalla de "invitación"

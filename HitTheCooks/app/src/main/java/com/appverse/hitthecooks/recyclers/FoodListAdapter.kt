@@ -3,18 +3,10 @@ package com.appverse.hitthecooks.recyclers
 import android.app.Activity
 import android.content.Context
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.appverse.hitthecooks.R
 import com.appverse.hitthecooks.model.Item
-import com.appverse.hitthecooks.utils.FirestoreCollections
-import com.bumptech.glide.Glide
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 
 /**
  * Adapter para el RecylerView de los alimentos a agregar a la lista de la compra.

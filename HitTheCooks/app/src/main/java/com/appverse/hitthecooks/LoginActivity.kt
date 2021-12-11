@@ -58,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         var text:TextView = binding.googleButton.getChildAt(0) as TextView
-        text.setText("Iniciar sesión con Google")
+        text.text = resources.getString(R.string.googleLogin)
 
 
         val gso = GoogleSignInOptions
