@@ -40,6 +40,7 @@ class MainActivity : SuperActivity() {
         navigationView.setCheckedItem(R.id.nav_main)
         //Aplica el modo oscuro si está activado
         applyDarkMode(binding.root)
+        //Comprueba la recepción de invitaciones
         receivedInvitationLink()
         /**
          * Función que permite navegar a la pantalla de configuración
@@ -88,6 +89,10 @@ class MainActivity : SuperActivity() {
         }
 
     }
+
+    /**
+     * Función que, en caso de recibir una invitación a una lista, redirecciona a la actividad
+     */
     private fun receivedInvitationLink(){
         FirebaseDynamicLinks.getInstance().getDynamicLink(intent).addOnSuccessListener {
             var deepLink : Uri? = null;

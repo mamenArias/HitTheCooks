@@ -81,10 +81,8 @@ class ConfigurationActivity : SuperActivity() {
         //Establece el valor de la preferencia "modo oscuro", si no hay ninguno, usará el valor por defecto
         val darkMode : Boolean = preferences.getBoolean("darkMode", false)
 
-
-
+        //Switch personalizado para el modo oscuro
         val switch : LottieAnimationView = findViewById(R.id.switchNight)
-
 
         if(darkMode){
             //Si el valor es verdadero, activa el switch del modo oscuro

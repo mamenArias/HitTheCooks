@@ -56,8 +56,9 @@ class ShoppingListActivity : SuperActivity() {
 
     }
 
-    /***
-     *
+    /**
+     * Muestra la animación de carga y configura el adapter del recycler de listas
+     * cargando las registradas por el usuario en la base de datos
      */
     private fun fetchData(alert : Boolean){
         var user :User = User()
@@ -66,7 +67,7 @@ class ShoppingListActivity : SuperActivity() {
         builderAlertDialog.create()
         val alertDialog = builderAlertDialog.show()
         alertDialog.window?.setLayout(400,400)
-
+        //Recupera las listas del usuario y las carga en el recycler
         shoppingList = arrayListOf()
         db.collection(FirestoreCollections.USERS).document(auth.currentUser?.email.toString()).get().addOnCompleteListener {
             if(it.isSuccessful){
@@ -83,7 +84,9 @@ class ShoppingListActivity : SuperActivity() {
                         }
                     }
                 }.addOnSuccessListener {
+                    //Termina la animación de carga
                     alertDialog.cancel()
+                    //Configura el adapter y muestra el recycler
                     binding.recyclerView.layoutManager = LinearLayoutManager(this)
                     val adapter = ShoppingListAdapter(shoppingList, binding.recyclerView,ShoppingListActivity@this,this)
                     binding.recyclerView.adapter = adapter
