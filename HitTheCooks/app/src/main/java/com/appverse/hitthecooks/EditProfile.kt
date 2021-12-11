@@ -1,13 +1,20 @@
 package com.appverse.hitthecooks
 
+import android.app.Activity
+import android.app.usage.ExternalStorageStats
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import com.appverse.hitthecooks.databinding.ActivityEditProfileBinding
 import com.appverse.hitthecooks.utils.FirestoreCollections
 import com.bumptech.glide.Glide
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -63,6 +70,14 @@ class EditProfile : SuperActivity() {
         /**
          * Función que permite navegar a la actividad principal
          */
+        binding.profileIcon.setOnClickListener{
+            selectImage()
+        }
+
+        binding.registerButton.setOnClickListener{
+            uploadProfilePic()
+        }
+
         binding.goBackButton.setOnClickListener {
             val intent: Intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -72,16 +87,66 @@ class EditProfile : SuperActivity() {
     }
 
     /**
-     * Función que recupera la imagen del usuario de Firebase
+     * Función para coger una foto de la galería
+     */
+    private fun selectImage() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        selectImageResultLauncher.launch(intent)
+    }
+
+    /**
+     * Función para actualizar la información de la imagen de perfil en base de datos
+     */
+    private fun updateImage(uploadedImageUrl: String) {
+        val hashmap: HashMap<String, Any> = HashMap()
+        hashmap["email"] = binding.userName
+        if (image != null){
+            hashmap["profileImage"] = uploadedImageUrl
+        }
+
+        val reference = FirebaseDatabase.getInstance().getReference("Users")
+        reference.child(auth.uid!!).updateChildren(hashmap).addOnSuccessListener {
+            Toast.makeText(this, "Imagen actualizada con éxito", Toast.LENGTH_LONG).show()
+
+        }.addOnFailureListener{
+            Toast.makeText(this, "Error al actualizar la imagen", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    /**
+     * Función para subir la foto a Firebase
      */
     private fun uploadProfilePic(){
-        image = Uri.parse("gs://hit-the-cooks.appspot.com/imagenesPerfil/default.png")
-        storageReference = FirebaseStorage.getInstance().getReference("Users/"+auth.currentUser?.uid)
-        storageReference.putFile(image).addOnSuccessListener {
+        val path = "imagenesPerfil/"+auth.uid
+        storageReference = FirebaseStorage.getInstance().getReference(path)
+        storageReference.putFile(Uri.parse(path) ).addOnSuccessListener { taskSnapshot ->
+            val uriTask: Task<Uri> = taskSnapshot.storage.downloadUrl
+            while (!uriTask.isSuccessful);
+            val imageURL = "${uriTask.result}"
+
+            updateImage(imageURL)
             Toast.makeText(this@EditProfile, "Foto cambiada con éxito", Toast.LENGTH_LONG).show()
         }.addOnFailureListener{
             Toast.makeText(this@EditProfile, "Error al subir la foto", Toast.LENGTH_LONG).show()
         }
     }
+
+    /**
+     * Para usar los resultados del intent de la galería
+     */
+    private val selectImageResultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult(),
+        ActivityResultCallback<ActivityResult> { result ->
+            if(result.resultCode == Activity.RESULT_OK){
+                val data = result.data
+                image = data!!.data!!
+
+                binding.profileIcon.setImageURI(image)
+            }else{
+                Toast.makeText(this, "Cancelado", Toast.LENGTH_LONG).show()
+            }
+        }
+    )
 
 }

@@ -20,6 +20,8 @@
         <entry key="..\:/Users/manue/Desktop/DAM/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
         <entry key="..\:/Users/manue/Desktop/DAM/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/drawable/add_icon.xml" value="0.2703125" />
         <entry key="..\:/Users/manue/Desktop/DAM/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/manue/Desktop/DAM/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/drawable/rounded_bottomsheet.xml" value="0.2703125" />
+        <entry key="..\:/Users/manue/Desktop/DAM/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/drawable/rounded_bottomsheet_dark.xml" value="0.2703125" />
         <entry key="..\:/Users/manue/Desktop/DAM/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/layout-land/activity_about_us.xml" value="0.21516754850088182" />
         <entry key="..\:/Users/manue/Desktop/DAM/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/layout-land/activity_configuration.xml" value="0.264" />
         <entry key="..\:/Users/manue/Desktop/DAM/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/layout-land/activity_invitation.xml" value="0.264" />
@@ -61,11 +63,8 @@
         <entry key="..\:/Users/monei/Desktop/HitTheCooks/HitTheCooks/app/src/main/res/layout/item_creation_list.xml" value="0.2296875" />
         <entry key="..\:/Users/monei/Desktop/HitTheCooks/HitTheCooks/app/src/main/res/layout/item_shopping_list.xml" value="0.2296875" />
         <entry key="..\:/Users/monei/Desktop/HitTheCooks/HitTheCooks/app/src/main/res/layout/recycler_about_us.xml" value="0.2296875" />
-        <entry key="..\:/Users/sergi/Documents/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/drawable-v24/rounded_searchview.xml" value="0.3067510548523207" />
         <entry key="..\:/Users/sergi/Documents/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/drawable/iconos_background.xml" value="0.3106837606837607" />
         <entry key="..\:/Users/sergi/Documents/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/drawable/round_add_icon.xml" value="0.3106837606837607" />
-        <entry key="..\:/Users/sergi/Documents/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/drawable/rounded_bottomsheet.xml" value="0.3067510548523207" />
-        <entry key="..\:/Users/sergi/Documents/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/drawable/shadow.xml" value="0.19907407407407407" />
         <entry key="..\:/Users/sergi/Documents/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/drawable/splashscreen.xml" value="0.14" />
         <entry key="..\:/Users/sergi/Documents/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/layout/activity_configuration.xml" value="0.16794871794871793" />
         <entry key="..\:/Users/sergi/Documents/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/layout/activity_food_list.xml" value="0.1" />
@@ -78,7 +77,6 @@
         <entry key="..\:/Users/sergi/Documents/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/layout/item_shopping_list.xml" value="0.29743589743589743" />
         <entry key="..\:/Users/sergi/Documents/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/layout/logginout_progressbar.xml" value="0.2658514492753623" />
         <entry key="..\:/Users/sergi/Documents/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/layout/recycler_about_us.xml" value="0.29743589743589743" />
-        <entry key="..\:/Users/sergi/Documents/Repositorios/HitTheCooks/HitTheCooks/app/src/main/res/layout/recycler_food_list.xml" value="0.14536340852130325" />
       </map>
     </option>
   </component>
