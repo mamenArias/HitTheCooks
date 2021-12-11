@@ -27,6 +27,7 @@ class MainActivity : SuperActivity() {
 
     /** Constante que permite enlazar directamente con las vistas del layout **/
     private val binding by lazy { ActivityPrincipalBinding.inflate(layoutInflater) }
+    /** Objeto que contiene la instancia a base de datos de Firebase **/
     private val db= FirebaseFirestore.getInstance()
 
     /**
@@ -34,6 +35,7 @@ class MainActivity : SuperActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Infla la vista en el layout de la actividad superior para compartir la barra de navegación
         drawerLayout.addView(binding.root, 1)
         navigationView.setCheckedItem(R.id.nav_main)
         //Aplica el modo oscuro si está activado

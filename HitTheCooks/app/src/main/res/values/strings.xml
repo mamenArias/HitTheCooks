@@ -69,4 +69,5 @@
     <string name="imageFood">Imagen del alimento</string>
     <string name="campoVacio">Por favor, no dejes ningún campo vacío</string>
     <string name="passCorto">El password debe tener 8 caraceteres como mínimo</string>
+    <string name="googleLogin">Iniciar sesión con Google</string>
 </resources>
