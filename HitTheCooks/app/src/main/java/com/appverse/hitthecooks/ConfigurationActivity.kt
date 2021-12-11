@@ -128,7 +128,7 @@ class ConfigurationActivity : SuperActivity() {
 
                 switch.addAnimatorListener(object: Animator.AnimatorListener {
                     override fun onAnimationStart(p0: Animator?) {
-                        TODO("Not yet implemented")
+
                     }
 
                     override fun onAnimationEnd(p0: Animator?) {
@@ -137,11 +137,11 @@ class ConfigurationActivity : SuperActivity() {
                     }
 
                     override fun onAnimationCancel(p0: Animator?) {
-                        TODO("Not yet implemented")
+
                     }
 
                     override fun onAnimationRepeat(p0: Animator?) {
-                        TODO("Not yet implemented")
+
                     }
                 })
 

@@ -14,13 +14,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/imageFood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="19dp"
+            android:layout_marginBottom="15dp"
             android:contentDescription="@string/imageFood"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,10 +32,13 @@
             android:id="@+id/nameFood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="29dp"
+            android:padding="5dp"
             android:fontFamily="sans-serif"
             android:textColor="@color/white"
             android:textSize="17sp"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

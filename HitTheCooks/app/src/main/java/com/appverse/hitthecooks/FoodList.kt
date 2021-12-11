@@ -51,6 +51,7 @@ class FoodList : SuperActivity() {
         super.onCreate(savedInstanceState)
 
 
+
         //Infla la vista en el layout de la actividad superior
         drawerLayout.addView(binding.root, 1)
 
@@ -71,6 +72,8 @@ class FoodList : SuperActivity() {
             peekHeight = 200
             state = BottomSheetBehavior.STATE_COLLAPSED
         }
+
+
         /***
          * Función que expande el panel escondido cuando pulsas la lupa del buscador
          */
@@ -145,7 +148,6 @@ class FoodList : SuperActivity() {
                 binding.searchView.isFocusable = true
                return true
             }
-
             override fun onQueryTextChange(p0: String?): Boolean {
                 binding.searchView.isFocusable = true
                 var  searchViewText : String = p0.toString()
@@ -167,9 +169,25 @@ class FoodList : SuperActivity() {
       db.collection(FirestoreCollections.ITEMS).orderBy("name").startAt(searchText).endAt("$searchText\uf8ff").get().addOnCompleteListener {
           if(it.isSuccessful){
               itemsSearched = it.result.toObjects(Item::class.java) as ArrayList<Item>
+              if(itemsSearched.isNotEmpty()) {
                   val adapter = SearchAdapter(this, itemsSearched)
                   binding.recyclerSearch.adapter = adapter
                   adapter.notifyDataSetChanged()
+              }else{
+                 val firstChar = searchText[0]
+                  db.collection(FirestoreCollections.ITEMS).document(firstChar.toString()).get().addOnCompleteListener{
+                      if(it.isSuccessful){
+
+                          it.result.toObject(Item::class.java)
+                              ?.let { it1 ->
+                                  it1.name = searchText
+                                  itemsSearched.add(it1) }
+                          val adapter = SearchAdapter(this, itemsSearched)
+                          binding.recyclerSearch.adapter = adapter
+                          adapter.notifyDataSetChanged()
+                      }
+                  }
+              }
           }
       }
     }
