@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.GravityCompat
 import com.appverse.hitthecooks.databinding.ActivityEditProfileBinding
 import com.appverse.hitthecooks.utils.FirestoreCollections
 import com.bumptech.glide.Glide
@@ -83,6 +84,14 @@ class EditProfile : SuperActivity() {
             startActivity(intent)
             finish()
         }
+
+        /**
+         * Despliega el menú de navegación lateral
+         */
+        binding.menuButton.setOnClickListener {
+            super.drawerLayout.openDrawer(GravityCompat.START)
+        }
+
     }
 
     /**

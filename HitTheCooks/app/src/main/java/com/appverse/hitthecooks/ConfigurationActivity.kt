@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
+import androidx.core.view.GravityCompat
 import com.airbnb.lottie.LottieAnimationView
 import com.appverse.hitthecooks.databinding.ActivityConfigurationBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -144,6 +145,13 @@ class ConfigurationActivity : SuperActivity() {
 
 
             }
+        }
+
+        /**
+         * Despliega el menú de navegación lateral
+         */
+        binding.menuButton.setOnClickListener {
+            super.drawerLayout.openDrawer(GravityCompat.START)
         }
 
     }

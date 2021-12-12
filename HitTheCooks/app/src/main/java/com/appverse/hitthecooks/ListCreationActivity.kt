@@ -3,6 +3,7 @@ package com.appverse.hitthecooks
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.appverse.hitthecooks.databinding.ActivityListCreationBinding
@@ -95,6 +96,14 @@ class ListCreationActivity : SuperActivity(),RecyclerTransferData {
                 }
             }
         }
+
+        /**
+         * Despliega el menú de navegación lateral
+         */
+        binding.menuButton.setOnClickListener {
+            super.drawerLayout.openDrawer(GravityCompat.START)
+        }
+
     }
 
     /**
