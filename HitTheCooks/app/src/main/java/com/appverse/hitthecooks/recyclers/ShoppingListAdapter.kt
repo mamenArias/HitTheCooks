@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.appverse.hitthecooks.*
@@ -60,7 +61,6 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
           for (i in  shoppingList[position].users){
                     userProfileImageList.add(i)
               }
-            println(userProfileImageList)
               val adapter = UserProfileImageAdapter(context,  userProfileImageList)
               holder.recyclerViewProfilePics.adapter = adapter
               holder.recyclerViewProfilePics.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
@@ -79,7 +79,7 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
 
 
     /**
-     * Elimina una lista si solo queda un un usuario en ella, sino solo se sale el usuario de ella sin eliminarla
+     * Elimina una lista si solo queda un usuario en ella, sino solo se sale el usuario de ella sin eliminarla
      * @author
      * @since 1.0
      */
