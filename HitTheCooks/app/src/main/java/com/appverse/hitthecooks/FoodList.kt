@@ -241,6 +241,10 @@ class FoodList : SuperActivity() {
         binding.searchView.setQuery("",false)
     }
 
+    /**
+     * Función que oculta el teclado al sacar el foco de la barra de busqueda
+     * @param activity Actividad de referencia de la función
+     */
     private fun hideKeyboard(activity: Activity) {
         val imm: InputMethodManager =
             activity.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
