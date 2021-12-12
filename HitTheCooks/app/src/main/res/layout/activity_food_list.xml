@@ -46,13 +46,12 @@
 
         <ImageButton
             android:id="@+id/buttonBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/noColor"
             android:contentDescription="@string/backButtonDescription"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/menuButton"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/flechaatras"
             app:tint="@color/orangeEgg"
@@ -67,8 +66,8 @@
 
         <ImageButton
             android:id="@+id/buttonUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:backgroundTint="@color/noColor"
             android:contentDescription="@string/irAPerfilUsuario"
             app:layout_constraintBottom_toBottomOf="@+id/buttonAdd"
@@ -81,7 +80,7 @@
             android:id="@+id/buttonAdd"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="8dp"
             android:backgroundTint="@color/noColor"
             android:contentDescription="@string/irAPantallaListas"

@@ -33,10 +33,6 @@
         android:contentDescription="@string/userButtonDescription"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/configButton"
-        app:layout_constraintTop_toTopOf="parent"
-
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
