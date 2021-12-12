@@ -7,6 +7,17 @@
     android:background="@color/background"
     tools:context=".ConfigurationActivity">
 
+    <ImageView
+        android:id="@+id/menuButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/menu_icon"
+        app:tint="@color/orangeEgg" />
+
     <TextView
         android:id="@+id/labelTheme"
         android:layout_width="0dp"
@@ -92,14 +103,14 @@
         android:id="@+id/labelConfiguration"
         android:layout_width="0dp"
         android:layout_height="38dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:paddingLeft="15dp"
         android:text="@string/configuration"
         android:textColor="@color/black"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/menuButton" />
 
     <TextView
         android:id="@+id/labelEdit"

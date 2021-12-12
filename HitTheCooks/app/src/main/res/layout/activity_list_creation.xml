@@ -9,6 +9,16 @@
     android:paddingTop="15dp"
     tools:context=".ListCreationActivity">
 
+    <ImageView
+        android:id="@+id/menuButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/nextButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nextButton"
+        app:srcCompat="@drawable/menu_icon"
+        app:tint="@color/orangeEgg" />
 
     <Button
         android:id="@+id/nextButton"
