@@ -21,6 +21,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.appverse.hitthecooks.recyclers.FoodListAdapter
 import com.appverse.hitthecooks.recyclers.SearchAdapter
+import android.app.Activity
+import android.view.inputmethod.InputMethodManager
 
 
 /**
@@ -218,10 +220,12 @@ class FoodList : SuperActivity() {
      * Función que cierra el panel de abajo cuando pulsas fuera de él y quita el foco sobre el buscador
      */
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+
             if (event.action == MotionEvent.ACTION_DOWN) {
-                if (bottomSheetBehavior.state === BottomSheetBehavior.STATE_EXPANDED) {
+                if (bottomSheetBehavior.state === BottomSheetBehavior.STATE_EXPANDED && this.currentFocus !=null) {
                     closeSearch()
                     bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                    hideKeyboard(this)
                 } else {
                     closeSearch()
                 }
@@ -235,7 +239,16 @@ class FoodList : SuperActivity() {
     private fun closeSearch(){
         binding.searchView.clearFocus()
         binding.searchView.setQuery("",false)
-        binding.searchView.isFocusable = true
+    }
+
+    private fun hideKeyboard(activity: Activity) {
+        val imm: InputMethodManager =
+            activity.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        var view = activity.currentFocus
+        if (view == null) {
+            view = View(activity)
+        }
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
 

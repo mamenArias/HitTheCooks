@@ -37,7 +37,7 @@
             android:name=".FoodList"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan|adjustResize" />
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ConfigurationActivity"
             android:exported="true" />
