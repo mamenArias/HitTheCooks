@@ -22,6 +22,7 @@ import com.google.firebase.firestore.FirebaseFirestore
  */
 class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):RecyclerView.Adapter<FoodListHolder>() {
 
+    /** Objeto que contiene la instancia a base de datos de Firebase **/
     private val db= FirebaseFirestore.getInstance()
     /**
      * Función que infla el layout.

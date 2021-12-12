@@ -12,15 +12,33 @@ import com.appverse.hitthecooks.R
 import com.appverse.hitthecooks.model.Item
 import com.bumptech.glide.Glide
 
+/**
+ * Adapter personalizado para el RecyclerView de la busqueda de alimentos
+ * @author Miguel Àngel Arcos
+ * @author Mamen Arias
+ * @author Manuel Carrillo
+ * @author Christian García
+ * @author Sergio López
+ * @since 1.1
+ * @param context Contexto de la actividad donde mostrar el Recycler
+ * @param items Coleccion de productos a mostrar
+ */
 class SearchAdapter(private val context : Context, private val items : ArrayList<Item>): RecyclerView.Adapter<SearchHolder>() {
+
 
     private lateinit var itemsFoodList: ArrayList<Item>
 
+    /**
+     * Infla el layout del Recycler de busqueda de productos
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchHolder {
         val view : View = LayoutInflater.from(parent.context).inflate(R.layout.recycler_food_list,parent,false)
         return SearchHolder(view)
     }
 
+    /**
+     * Da valor a los elementos del holder, que serán mostrados en el RecyclerView
+     */
     override fun onBindViewHolder(holder: SearchHolder, position: Int) {
         val animation : Animation = AnimationUtils.loadAnimation(holder.itemView.context,R.anim.rotate_in)
         Glide.with(context).load(items[position].picUrl).into(holder.iconFood)
@@ -32,6 +50,9 @@ class SearchAdapter(private val context : Context, private val items : ArrayList
         }
     }
 
+    /**
+     * Devuelve el número de objetos del ArrayList de elementos
+     */
     override fun getItemCount(): Int {
       return items.size
     }
