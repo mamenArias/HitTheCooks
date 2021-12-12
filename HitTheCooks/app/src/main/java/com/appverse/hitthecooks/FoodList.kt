@@ -23,6 +23,7 @@ import com.appverse.hitthecooks.recyclers.FoodListAdapter
 import com.appverse.hitthecooks.recyclers.SearchAdapter
 import android.app.Activity
 import android.view.inputmethod.InputMethodManager
+import androidx.core.view.GravityCompat
 
 
 /**
@@ -159,6 +160,12 @@ class FoodList : SuperActivity() {
             }
         })
 
+        /**
+         * Despliega el menú de navegación lateral
+         */
+        binding.menuButton.setOnClickListener {
+            super.drawerLayout.openDrawer(GravityCompat.START)
+        }
 
     }
 

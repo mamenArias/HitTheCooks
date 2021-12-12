@@ -33,6 +33,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/menuButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/menu_icon"
+            app:tint="@color/orangeEgg" />
+
         <ImageButton
             android:id="@+id/buttonBack"
             android:layout_width="wrap_content"
@@ -46,6 +57,13 @@
             app:srcCompat="@drawable/flechaatras"
             app:tint="@color/orangeEgg"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
+            android:backgroundTint="@color/noColor"
+            app:layout_constraintBottom_toBottomOf="@+id/menuButton"
+            app:layout_constraintStart_toEndOf="@+id/menuButton"
+            app:layout_constraintTop_toTopOf="@+id/menuButton"
+            app:srcCompat="@drawable/flechaatras"
+            app:tint="@color/orangeEgg"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
             android:id="@+id/buttonUser"

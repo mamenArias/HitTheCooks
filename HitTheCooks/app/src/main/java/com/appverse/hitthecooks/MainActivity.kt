@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.view.GravityCompat
 import com.appverse.hitthecooks.databinding.ActivityPrincipalBinding
 import com.appverse.hitthecooks.utils.FirestoreCollections
 import com.bumptech.glide.Glide
@@ -86,6 +87,13 @@ class MainActivity : SuperActivity() {
         db.collection(FirestoreCollections.USERS).document(Firebase.auth.currentUser!!.email.toString()).get().addOnSuccessListener {
             binding.usernameText.text = it.get("email").toString().substringBefore('@')
             Glide.with(this).load(it.get("profileImage")).circleCrop().into(binding.userButton as ImageView)
+        }
+
+        /**
+         * Despliega el menú de navegación lateral
+         */
+        binding.menuButton.setOnClickListener {
+            super.drawerLayout.openDrawer(GravityCompat.START)
         }
 
     }

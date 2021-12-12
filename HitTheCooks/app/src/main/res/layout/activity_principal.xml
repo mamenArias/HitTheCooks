@@ -12,15 +12,13 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
         android:background="@color/noColor"
         android:contentDescription="@string/configButtonDescription"
         android:scaleType="centerInside"
-        app:layout_constraintEnd_toStartOf="@+id/userButton"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintBottom_toBottomOf="@+id/menuButton"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/menuButton"
+        app:layout_constraintTop_toTopOf="@+id/menuButton"
         app:srcCompat="@drawable/conf_icon"
         app:tint="@color/orangeEgg"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
@@ -37,6 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/configButton"
+        app:layout_constraintTop_toTopOf="parent"
 
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -100,5 +99,16 @@
         app:layout_constraintTop_toBottomOf="@+id/configButton"
         app:layout_constraintWidth_percent="0.85"
         app:srcCompat="@drawable/logo_hit_the_cook" />
+
+    <ImageView
+        android:id="@+id/menuButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/menu_icon"
+        app:tint="@color/orangeEgg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
