@@ -7,23 +7,32 @@
     android:background="@color/background"
     tools:context=".MainActivity">
 
-    <ImageButton
-        android:id="@+id/configButton"
-        app:tint="@color/orangeEgg"
+    <ImageView
+        android:id="@+id/menuButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:background="@color/noColor"
-        android:scaleType="centerInside"
-        app:layout_constraintEnd_toStartOf="@+id/userButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/menu_icon"
+        app:tint="@color/orangeEgg" />
+
+    <ImageButton
+        android:id="@+id/configButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:background="@color/noColor"
+        android:contentDescription="@string/configButtonDescription"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@+id/menuButton"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/menuButton"
+        app:layout_constraintTop_toTopOf="@+id/menuButton"
         app:srcCompat="@drawable/conf_icon"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-        android:contentDescription="@string/configButtonDescription" />
+        app:tint="@color/orangeEgg"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/userButton"
@@ -32,14 +41,12 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:background="@color/noColor"
+        android:contentDescription="@string/userButtonDescription"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/configButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icono"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-        android:contentDescription="@string/userButtonDescription" />
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/usernameText"
