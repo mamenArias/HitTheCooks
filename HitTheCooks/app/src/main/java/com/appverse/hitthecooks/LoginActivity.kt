@@ -31,7 +31,11 @@ import com.google.firebase.storage.StorageReference
  *
  * Actividad que contiene el login y registro de usuarios en la App
  *
- * @author Miguel Ángel Arcos, Mamen Arias, Manuel Carrillo, Christian García, Sergio López
+ * @author Miguel Àngel Arcos
+ * @author Mamen Arias
+ * @author Manuel Carrillo
+ * @author Christian García
+ * @author Sergio López
  * @version 1.0
  * @since   1.0
  */

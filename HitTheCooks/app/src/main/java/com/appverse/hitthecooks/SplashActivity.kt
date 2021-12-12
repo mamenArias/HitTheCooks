@@ -8,11 +8,23 @@ import android.os.Looper
 import com.appverse.hitthecooks.databinding.ActivityShoppingListBinding
 import com.appverse.hitthecooks.databinding.ActivitySplashBinding
 import com.bumptech.glide.Glide
-
+/**
+ * Clase que contiene el SplashScreen que aparece al abrir la aplicación
+ * @author Miguel Àngel Arcos
+ * @author Mamen Arias
+ * @author Manuel Carrillo
+ * @author Christian García
+ * @author Sergio López
+ * @since 1.1
+ */
 class SplashActivity : AppCompatActivity() {
 
+    /** Constante que permite enlazar directamente con las vistas del layout **/
     private val binding by lazy { ActivitySplashBinding.inflate(layoutInflater) }
 
+    /**
+     * Función que inicializa la actividad que cambia a otra actividad tras 2500ms
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
