@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:backgroundTint="@color/orangeEgg"
+            android:backgroundTint="@color/yellowEgg"
             android:fontFamily="sans-serif-black"
             android:text="@string/update"
             android:textAllCaps="false"

@@ -11,12 +11,12 @@
         android:id="@+id/labelTheme"
         android:layout_width="0dp"
         android:layout_height="42dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/theme"
         android:textColor="@color/whiteEgg"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:drawableLeftCompat="@drawable/icononoche"
         app:layout_constraintBottom_toTopOf="@+id/buttonProfile"
@@ -29,10 +29,11 @@
         android:id="@+id/switchNight"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        app:lottie_rawRes="@raw/egg_toggle"
+        android:layout_marginEnd="25dp"
         app:layout_constraintBottom_toBottomOf="@+id/labelTheme"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/labelTheme">
+        app:layout_constraintTop_toTopOf="@+id/labelTheme"
+        app:lottie_rawRes="@raw/egg_toggle">
 
     </com.airbnb.lottie.LottieAnimationView>
 
@@ -40,63 +41,72 @@
         android:id="@+id/buttonProfile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
         android:backgroundTint="@color/yellowEgg"
-        android:drawableLeft="@drawable/iconoperfil"
+        app:drawableLeftCompat="@drawable/iconoperfil"
         android:gravity="center"
+        android:padding="10dp"
         android:text="@string/editProfile"
         android:textColor="@color/black"
-        android:textSize="18dp"
-        android:padding="10dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonLogOut"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelTheme" />
+        app:layout_constraintTop_toBottomOf="@+id/labelTheme"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/buttonLogOut"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
         android:backgroundTint="@color/yellowEgg"
-        android:drawableLeft="@drawable/iconologout"
+        app:drawableLeftCompat="@drawable/iconologout"
         android:gravity="center"
+        android:padding="10dp"
         android:text="@string/logOut"
         android:textColor="@color/black"
-        android:textSize="18dp"
-        android:padding="10dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonMore"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonProfile"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/buttonMore"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginBottom="100dp"
         android:backgroundTint="@color/yellowEgg"
-        android:drawableLeft="@drawable/iconomas"
+        app:drawableLeftCompat="@drawable/iconomas"
         android:gravity="center"
+        android:padding="10dp"
         android:text="@string/more"
         android:textColor="@color/black"
-        android:textSize="18dp"
-        android:padding="10dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogOut" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogOut"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/labelConfiguration"
         android:layout_width="0dp"
         android:layout_height="38dp"
         android:layout_marginTop="50dp"
-        android:paddingLeft="15dp"
+        android:paddingStart="15dp"
         android:text="@string/configuration"
         android:textColor="@color/black"
-        android:textSize="30dp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -106,12 +116,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:paddingLeft="15dp"
+        android:paddingStart="15dp"
         android:text="@string/edit"
         android:textColor="@color/whiteEgg"
-        android:textSize="18dp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelConfiguration" />
+        app:layout_constraintTop_toBottomOf="@+id/labelConfiguration"
+        tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

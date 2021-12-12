@@ -37,20 +37,22 @@
             android:id="@+id/buttonBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:backgroundTint="@color/noColor"
-            app:tint="@color/orangeEgg"
+            android:contentDescription="@string/backButtonDescription"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/flechaatras"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:tint="@color/orangeEgg"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
 
         <ImageButton
             android:id="@+id/buttonUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/noColor"
+            android:contentDescription="@string/irAPerfilUsuario"
             app:layout_constraintBottom_toBottomOf="@+id/buttonAdd"
             app:layout_constraintEnd_toStartOf="@+id/buttonAdd"
             app:layout_constraintTop_toTopOf="@+id/buttonAdd"
@@ -64,12 +66,13 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:backgroundTint="@color/noColor"
+            android:contentDescription="@string/irAPantallaListas"
             android:scaleType="centerInside"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/add_icon"
             app:tint="@color/orangeEgg"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -110,6 +113,7 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
+            android:contentDescription="@string/searcViewImagen"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline_remove_24">
 

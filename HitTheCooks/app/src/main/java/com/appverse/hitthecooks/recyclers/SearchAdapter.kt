@@ -50,6 +50,7 @@ class SearchAdapter(private val context : Context, private val items : ArrayList
         holder.itemView.startAnimation(animation)
 
         holder.iconFood.setOnClickListener {
+
             /*itemsFoodList.add(Item(items[position].name, items[position].picUrl))
             val adapterFoodList = FoodListAdapter(R.layout.activity_food_list as Activity, itemsFoodList)
             holder.recyclerFood.adapter = adapterFoodList*/
@@ -59,7 +60,6 @@ class SearchAdapter(private val context : Context, private val items : ArrayList
 
             intent.putExtras(datos)
             context.startActivity(intent)*/
-            holder.re
 
         }
     }

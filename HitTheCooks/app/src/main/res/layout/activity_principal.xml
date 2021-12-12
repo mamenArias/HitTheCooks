@@ -14,6 +14,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:background="@color/noColor"
+        android:contentDescription="@string/configButtonDescription"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toStartOf="@+id/userButton"
         app:layout_constraintHorizontal_bias="0.5"
@@ -22,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/conf_icon"
         app:tint="@color/orangeEgg"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
 
     <ImageView
         android:id="@+id/userButton"
@@ -31,12 +32,13 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:background="@color/noColor"
+        android:contentDescription="@string/userButtonDescription"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/configButton"
-        app:layout_constraintTop_toTopOf="parent"
 
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView

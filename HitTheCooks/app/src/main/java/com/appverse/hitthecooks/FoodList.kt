@@ -162,7 +162,6 @@ class FoodList : SuperActivity() {
 
     }
 
-    //val info = this.intent.extras
     /***
      * Función que ejecuta una query a la base de datos cada vez que es insertado un caracter en el buscador.
      * Pasa por argumentos al Adapter la lista recibida de los items buscados en la base de datos.
