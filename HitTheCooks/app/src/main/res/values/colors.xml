@@ -19,4 +19,5 @@
     <color name="noColor">#00FFFFFF</color>
     <color name="darkBlue">#00001a</color>
     <color name="navyBlue">#00004d</color>
+    <color name="backgroundSplash">#df5067</color>
 </resources>

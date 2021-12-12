@@ -31,7 +31,11 @@ import com.google.firebase.storage.StorageReference
  *
  * Actividad que contiene el login y registro de usuarios en la App
  *
- * @author Miguel Ángel Arcos, Mamen Arias, Manuel Carrillo, Christian García, Sergio López
+ * @author Miguel Àngel Arcos
+ * @author Mamen Arias
+ * @author Manuel Carrillo
+ * @author Christian García
+ * @author Sergio López
  * @version 1.0
  * @since   1.0
  */
@@ -76,7 +80,9 @@ class LoginActivity : AppCompatActivity() {
             if(binding.nameGap.text.isEmpty()|| binding.passwordGap.text.isEmpty()){
                 Toast.makeText(this, R.string.campoVacio, Toast.LENGTH_LONG).show()
 
-            }else {
+            }else if (binding.nameGap.text.toString().endsWith("gmail.com")){
+                Toast.makeText(this, "Si quiere registrarse con una cuenta de Gmail pulse en el botón inferior para ello", Toast.LENGTH_SHORT).show()
+            } else {
                 val auth = FirebaseAuth.getInstance()
                 //pasamos por argumentos el usuario y contraseña
                 val tarea = auth.createUserWithEmailAndPassword(

@@ -4,11 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.appverse.hitthecooks.databinding.ActivityListCreationBinding
 import com.appverse.hitthecooks.interfaces.RecyclerTransferData
 import com.appverse.hitthecooks.model.ShoppingList
 import com.appverse.hitthecooks.model.User
-import com.appverse.hitthecooks.utils.CommonItemDecoration
 import com.appverse.hitthecooks.utils.FirestoreCollections
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -46,13 +46,14 @@ class ListCreationActivity : SuperActivity(),RecyclerTransferData {
         val db = Firebase.firestore
 
         //Lista de imagenes a seleccionar por el usuario como fondo
-        val backgroundsList = arrayListOf<Int>(R.drawable.background_list_1,
-         R.drawable.background_list_2,R.drawable.background_list_3,R.drawable.background_list_4)
+        val backgroundsList = arrayListOf<Int>(R.drawable.background_list_2,
+         R.drawable.background_list_4,R.drawable.background_list_1,R.drawable.background_list_3,
+            R.drawable.background_list_5,R.drawable.background_list_6,R.drawable.background_list_7,R.drawable.background_list_8)
 
         //Configura el recycler
-        binding.recyclerViewBackgroundLists.addItemDecoration(CommonItemDecoration(10,10))
         binding.recyclerViewBackgroundLists.adapter = ListCreationAdapter(this,backgroundsList)
-        binding.recyclerViewBackgroundLists.layoutManager = GridLayoutManager(this,2)
+        binding.recyclerViewBackgroundLists.layoutManager = GridLayoutManager(this,2,
+            LinearLayoutManager.VERTICAL,false)
 
         /**
          * Comprueba que el usuario ha seleccionado un nombre y una imagen para la lista,

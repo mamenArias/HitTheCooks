@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#df5067"
+    android:background="@color/backgroundSplash"
     android:layout_height="match_parent">
 
     <pl.droidsonroids.gif.GifImageView
