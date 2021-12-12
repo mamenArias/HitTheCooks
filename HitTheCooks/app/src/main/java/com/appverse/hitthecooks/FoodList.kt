@@ -19,6 +19,7 @@ import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.appverse.hitthecooks.recyclers.FoodListAdapter
 import com.appverse.hitthecooks.recyclers.SearchAdapter
 
 
@@ -33,6 +34,7 @@ import com.appverse.hitthecooks.recyclers.SearchAdapter
  */
 class FoodList : SuperActivity() {
     private lateinit var itemsSearched : ArrayList<Item>
+    private lateinit var itemsFoodList : ArrayList<Item>
     /**Constante que nos permite enlazar cada elemento de la vista directamente.*/
     private val binding by lazy { ActivityFoodListBinding.inflate(layoutInflater) }
     /**Constante para enlazar con Firebase.*/
@@ -124,9 +126,9 @@ class FoodList : SuperActivity() {
        // db.collection(FirestoreCollections.ITEMS).document(list[position].name).get().addOnSuccessListener {
        // }
 
-        val arrayAlimentos:ArrayList<String> = arrayListOf("aceite", "agua", "azucar", "cerdo", "cereales", "chocolate", "congelados",
+        /*val arrayAlimentos:ArrayList<String> = arrayListOf("aceite", "agua", "azucar", "cerdo", "cereales", "chocolate", "congelados",
             "dulces", "fruta", "huevos", "leche", "legumbres", "pan", "pasta", "patatas", "pescado", "pollo", "queso", "sal", "snacks",
-            "ternera", "verduras", "yogur")
+            "ternera", "verduras", "yogur")*/
 
        // val adapter:FoodListAdapter = FoodListAdapter(this, arrayAlimentos)
        // binding.foodListRecycler.adapter = adapter
@@ -170,6 +172,9 @@ class FoodList : SuperActivity() {
                   val adapter = SearchAdapter(this, itemsSearched)
                   binding.recyclerSearch.adapter = adapter
                   adapter.notifyDataSetChanged()
+
+                  //val adapterFoodList = FoodListAdapter(this, itemsFoodList)
+                  //binding.foodListRecycler.adapter = adapterFoodList
               }else{
                  val firstChar = searchText[0]
                   db.collection(FirestoreCollections.ITEMS).document(firstChar.toString()).get().addOnCompleteListener{
@@ -182,6 +187,9 @@ class FoodList : SuperActivity() {
                           val adapter = SearchAdapter(this, itemsSearched)
                           binding.recyclerSearch.adapter = adapter
                           adapter.notifyDataSetChanged()
+
+                          //val adapterFoodList = FoodListAdapter(this, itemsFoodList)
+                          //binding.foodListRecycler.adapter = adapterFoodList
                       }
                   }
               }

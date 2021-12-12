@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.appverse.hitthecooks.R
 import com.appverse.hitthecooks.model.Item
+import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 
 /**
@@ -19,7 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore
  * @param activity Actividad donde se implementa el Recycler.
  * @param list ArrayList con los alimentos que se pueden agregar a la lista de la compra.
  */
-class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):RecyclerView.Adapter<FoodListHolder>(){
+class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):RecyclerView.Adapter<FoodListHolder>() {
 
     private val db= FirebaseFirestore.getInstance()
     /**
@@ -34,7 +35,8 @@ class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):Recycler
      */
     override fun onBindViewHolder(holder: FoodListHolder, position: Int) {
         val context: Context = holder.imageFood.context
-
+        Glide.with(context).load(list[position].picUrl).into(holder.imageFood)
+        holder.textFood.text = list[position].name
     }
 
     /**
