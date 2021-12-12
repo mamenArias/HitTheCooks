@@ -21,6 +21,16 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import androidx.annotation.NonNull
+import com.appverse.hitthecooks.model.User
+
+import com.google.android.gms.tasks.OnCompleteListener
+
+import com.google.firebase.auth.UserProfileChangeRequest
+
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.SetOptions
+
 
 /**
  * Activity que contiene la pantalla de editar perfil
@@ -39,8 +49,6 @@ class EditProfile : SuperActivity() {
     private val db= FirebaseFirestore.getInstance()
     /** Objeto que permite obstener el autentificador de Firebase **/
     private lateinit var auth : FirebaseAuth
-    /** Objeto que permite obstener la referencia de la base de datos **/
-    private lateinit var databaseReference: DatabaseReference
     /** Objeto que permite obstener la referencia del storage de Firebase **/
     private lateinit var storageReference: StorageReference
     /** Ruta de la imagen **/
@@ -50,6 +58,9 @@ class EditProfile : SuperActivity() {
      * Inicializa la actividad, infla el layout y carga el usuario logado
      */
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        lateinit var email:String
+
         super.onCreate(savedInstanceState)
         //Infla la vista en el layout de la actividad superior
         drawerLayout.addView(binding.root, 1)
@@ -70,7 +81,12 @@ class EditProfile : SuperActivity() {
          * Función que permite navegar a la actividad principal
          */
         binding.profileIcon.setOnClickListener{
-            selectImage()
+            if(!binding.userName.text.toString().endsWith("gmail.com")){
+                selectImage()
+            } else{
+                Toast.makeText(this, "No puedes cambiar la foto de un perfil de Gmail", Toast.LENGTH_SHORT).show()
+            }
+            
         }
 
         binding.registerButton.setOnClickListener{
@@ -92,6 +108,15 @@ class EditProfile : SuperActivity() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         selectImageResultLauncher.launch(intent)
+
+
+
+
+        //user.updateProfile()
+
+
+
+
     }
 
     /**
@@ -119,16 +144,10 @@ class EditProfile : SuperActivity() {
     private fun uploadProfilePic(){
         val path = "imagenesPerfil/"+auth.uid
         storageReference = FirebaseStorage.getInstance().getReference(path)
-        storageReference.putFile(Uri.parse(path) ).addOnSuccessListener { taskSnapshot ->
-            val uriTask: Task<Uri> = taskSnapshot.storage.downloadUrl
-            while (!uriTask.isSuccessful);
-            val imageURL = "${uriTask.result}"
+        var reference = FirebaseDatabase.getInstance().getReference(FirestoreCollections.USERS)
+        reference.child("imageProfile").setValue(Uri.parse(binding.profileIcon.toString()))
 
-            updateImage(imageURL)
-            Toast.makeText(this@EditProfile, "Foto cambiada con éxito", Toast.LENGTH_LONG).show()
-        }.addOnFailureListener{
-            Toast.makeText(this@EditProfile, "Error al subir la foto", Toast.LENGTH_LONG).show()
-        }
+
     }
 
     /**
@@ -140,8 +159,35 @@ class EditProfile : SuperActivity() {
             if(result.resultCode == Activity.RESULT_OK){
                 val data = result.data
                 image = data!!.data!!
+                auth= FirebaseAuth.getInstance()
 
                 binding.profileIcon.setImageURI(image)
+
+              val reference= FirebaseStorage.getInstance().getReference("imagenesPerfil/"+auth.currentUser!!.email.toString())
+
+                reference.putFile(image).addOnSuccessListener {
+                    Toast.makeText(this, "Exito", Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener {
+                    Toast.makeText(this, "Fallo", Toast.LENGTH_SHORT).show()
+                }
+
+                val referenceImages = FirebaseStorage.getInstance().getReference("imagenesPerfil").child(auth.currentUser!!.email.toString())
+
+
+
+                referenceImages.downloadUrl.addOnSuccessListener {url->
+
+                    val mapa = hashMapOf<String, Any>("profileImage" to url.toString())
+
+                    db.collection( FirestoreCollections.USERS).document(auth.currentUser!!.email.toString()).update(
+                        mapa
+                    )
+                }
+
+
+
+
+
             }else{
                 Toast.makeText(this, "Cancelado", Toast.LENGTH_LONG).show()
             }
