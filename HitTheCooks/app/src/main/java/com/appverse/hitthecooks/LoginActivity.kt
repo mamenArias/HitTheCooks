@@ -53,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
      * Inicializa la actividad
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.SplashScreen)
+      //  setTheme(R.style.SplashScreen)
         Thread.sleep(2000)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
