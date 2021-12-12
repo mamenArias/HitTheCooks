@@ -24,4 +24,6 @@ class SearchHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
      * ImageView con la imagen del alimento que buscamos.
      */
     val iconFood : ImageView by lazy { itemView.findViewById(R.id.imageFood) }
+
+    val recyclerFood: RecyclerView by lazy { itemView.findViewById(R.id.foodListRecycler) }
 }

@@ -160,6 +160,7 @@ class FoodList : SuperActivity() {
 
     }
 
+    //val info = this.intent.extras
     /***
      * Función que ejecuta una query a la base de datos cada vez que es insertado un caracter en el buscador.
      * Pasa por argumentos al Adapter la lista recibida de los items buscados en la base de datos.
@@ -173,8 +174,9 @@ class FoodList : SuperActivity() {
                   binding.recyclerSearch.adapter = adapter
                   adapter.notifyDataSetChanged()
 
-                  //val adapterFoodList = FoodListAdapter(this, itemsFoodList)
-                  //binding.foodListRecycler.adapter = adapterFoodList
+                  /*itemsFoodList.add(info!!.getSerializable("item") as Item)
+                  val adapterFoodList = FoodListAdapter(this, itemsFoodList)
+                  binding.foodListRecycler.adapter = adapterFoodList*/
               }else{
                  val firstChar = searchText[0]
                   db.collection(FirestoreCollections.ITEMS).document(firstChar.toString()).get().addOnCompleteListener{

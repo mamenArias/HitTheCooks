@@ -2,6 +2,8 @@ package com.appverse.hitthecooks.recyclers
 
 import android.app.Activity
 import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.appverse.hitthecooks.R
@@ -27,7 +29,9 @@ class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):Recycler
      * Función que infla el layout.
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodListHolder {
-        return FoodListHolder(activity.layoutInflater.inflate(R.layout.recycler_food_list, parent, false))
+        //return FoodListHolder(activity.layoutInflater.inflate(R.layout.recycler_food_list, parent, false))
+        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.recycler_food_list,parent,false)
+        return FoodListHolder(view)
     }
 
     /**
