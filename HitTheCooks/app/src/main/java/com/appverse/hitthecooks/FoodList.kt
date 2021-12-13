@@ -22,6 +22,7 @@ import com.appverse.hitthecooks.recyclers.SearchAdapter
 import android.app.Activity
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.view.GravityCompat
 import com.appverse.hitthecooks.interfaces.RecyclerTransferItem
 
 
@@ -36,8 +37,7 @@ import com.appverse.hitthecooks.interfaces.RecyclerTransferItem
  */
 class FoodList : SuperActivity(), RecyclerTransferItem {
     private lateinit var itemsSearched : ArrayList<Item>
-    private val  itemsFoodList : ArrayList<Item> by lazy { arrayListOf() }
-    private var item : Item = Item()
+    private var itemsFoodList : ArrayList<Item> = arrayListOf()
     /**Constante que nos permite enlazar cada elemento de la vista directamente.*/
     private val binding by lazy { ActivityFoodListBinding.inflate(layoutInflater) }
     /**Constante para enlazar con Firebase.*/
@@ -160,8 +160,15 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
             }
         })
 
+        /**
+         * Despliega el menú de navegación lateral
+         */
+        binding.menuButton.setOnClickListener {
+            super.drawerLayout.openDrawer(GravityCompat.START)
+        }
 
     }
+
     /***
      * Función que ejecuta una query a la base de datos cada vez que es insertado un caracter en el buscador.
      * Pasa por argumentos al Adapter la lista recibida de los items buscados en la base de datos.

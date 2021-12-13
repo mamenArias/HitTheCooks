@@ -73,4 +73,10 @@
     <string name="campoVacio">Por favor, no dejes ningún campo vacío</string>
     <string name="passCorto">El password debe tener 8 caraceteres como mínimo</string>
     <string name="googleLogin">Iniciar sesión con Google</string>
+    <string name="irAPantallaListas">Botón para ir a la pantalla de crear listas</string>
+    <string name="irAPerfilUsuario">Botón para ir al perfil del usuario</string>
+    <string name="searcViewImagen">Scroll del SearchView</string>
+    <string name="imagenWhatsapp">Imagen del icono de Whatsapp</string>
+    <string name="carritoCompra">Imagen de un carrito de la compra</string>
+    <string name="botonCompartir">Imagen del botón compartir</string>
 </resources>

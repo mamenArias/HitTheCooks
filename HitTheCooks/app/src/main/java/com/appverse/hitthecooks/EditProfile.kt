@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.GravityCompat
 import com.appverse.hitthecooks.databinding.ActivityEditProfileBinding
 import com.appverse.hitthecooks.utils.FirestoreCollections
 import com.bumptech.glide.Glide
@@ -53,6 +54,10 @@ class EditProfile : SuperActivity() {
     private lateinit var storageReference: StorageReference
     /** Ruta de la imagen **/
     private lateinit var image: Uri
+    /** Variable que sirve para instanciar la clase StorageReference**/
+    private lateinit var storageRef : StorageReference
+    /** Constante que instancia un objeto de la clase FirebaseStorage**/
+    val dbStorage = FirebaseStorage.getInstance()
 
     /**
      * Inicializa la actividad, infla el layout y carga el usuario logado
@@ -99,6 +104,14 @@ class EditProfile : SuperActivity() {
             startActivity(intent)
             finish()
         }
+
+        /**
+         * Despliega el menú de navegación lateral
+         */
+        binding.menuButton.setOnClickListener {
+            super.drawerLayout.openDrawer(GravityCompat.START)
+        }
+
     }
 
     /**
@@ -163,7 +176,7 @@ class EditProfile : SuperActivity() {
 
                 binding.profileIcon.setImageURI(image)
 
-              val reference= FirebaseStorage.getInstance().getReference("imagenesPerfil/"+auth.currentUser!!.email.toString())
+              val reference= FirebaseStorage.getInstance().getReference("imagenesPerfil/"+auth.currentUser!!.email.toString()+".jpg")
 
                 reference.putFile(image).addOnSuccessListener {
                     Toast.makeText(this, "Exito", Toast.LENGTH_SHORT).show()
@@ -171,16 +184,21 @@ class EditProfile : SuperActivity() {
                     Toast.makeText(this, "Fallo", Toast.LENGTH_SHORT).show()
                 }
 
-                val referenceImages = FirebaseStorage.getInstance().getReference("imagenesPerfil").child(auth.currentUser!!.email.toString())
-
+                /*val referenceImages = FirebaseStorage.getInstance().getReference("imagenesPerfil").child(""+"".startsWith(auth.currentUser!!.email.toString()))
 
 
                 referenceImages.downloadUrl.addOnSuccessListener {url->
+                    var userToInsert = User(auth.currentUser!!.email.toString(),url.toString())
 
-                    val mapa = hashMapOf<String, Any>("profileImage" to url.toString())
+                    db.collection( FirestoreCollections.USERS).document(auth.currentUser!!.email.toString()).
+                }*/
 
-                    db.collection( FirestoreCollections.USERS).document(auth.currentUser!!.email.toString()).update(
-                        mapa
+                storageRef =
+                    dbStorage.reference.child("imagenesPerfil").child(auth.currentUser!!.email.toString()+".jpg")
+                storageRef.downloadUrl.addOnSuccessListener { url ->
+                    var user = User(binding.userName.text.toString(), url.toString())
+                    db.collection(FirestoreCollections.USERS).document(user.email).set(
+                        user
                     )
                 }
 
