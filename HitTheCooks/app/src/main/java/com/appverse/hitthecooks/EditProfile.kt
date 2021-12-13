@@ -97,6 +97,24 @@ class EditProfile : SuperActivity() {
             binding.profileIcon.visibility = View.VISIBLE
             binding.userName.visibility = View.VISIBLE
         }
+            Glide.with(this).load(it.get("profileImage")).circleCrop().into(binding.profileIcon as ImageView)
+
+            binding.profileIcon.visibility = View.VISIBLE
+
+        }
+
+        binding.newPhoto!!.setOnClickListener{
+
+                if (!binding.userName.text.toString().endsWith("gmail.com")) {
+                    //checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE)
+                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), STORAGE_PERMISSION_CODE)
+                } else {
+                    Toast.makeText(
+                        this,
+                        "No puedes cambiar la foto de un perfil de Gmail",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
 
         /**
          * Al hacer click en la imagen, permite acceder a la galeria del movil y usar una imagen de la misma como perfil
@@ -164,6 +182,8 @@ class EditProfile : SuperActivity() {
                 val reference = FirebaseStorage.getInstance()
                     .getReference("imagenesPerfil/" + auth.currentUser!!.email.toString() + ".jpg")
 
+              val reference= FirebaseStorage.getInstance().getReference("imagenesPerfil/"+auth.currentUser!!.email.toString()+".jpg")
+
                 reference.putFile(image).addOnSuccessListener {
                     Toast.makeText(this, "Exito", Toast.LENGTH_SHORT).show()
                 }.addOnFailureListener {
@@ -180,6 +200,27 @@ class EditProfile : SuperActivity() {
                 }.addOnFailureListener { it ->
                     Toast.makeText(this, "Fallo bbdd", Toast.LENGTH_SHORT).show()
                     Log.d("Fallo BD", "" + it.stackTrace)
+                /*val referenceImages = FirebaseStorage.getInstance().getReference("imagenesPerfil").child(""+"".startsWith(auth.currentUser!!.email.toString()))
+
+
+                referenceImages.downloadUrl.addOnSuccessListener {url->
+                    var userToInsert = User(auth.currentUser!!.email.toString(),url.toString())
+
+                    db.collection( FirestoreCollections.USERS).document(auth.currentUser!!.email.toString()).
+                }*/
+
+                //storageRef =
+                   // dbStorage.reference.child("imagenesPerfil").child(auth.currentUser!!.email.toString()+".jpg")
+
+               /* PARTE BUENA*/
+
+               reference.downloadUrl.addOnSuccessListener { url ->
+                 var user = User(binding.userName.text.toString(), url.toString())
+                    db.collection(FirestoreCollections.USERS).document(auth.currentUser!!.email.toString()).set(
+                       user
+                    )}.addOnFailureListener { it ->
+                    Toast.makeText(this, "Fallo bbdd", Toast.LENGTH_SHORT).show()
+
                 }
 
             } else {

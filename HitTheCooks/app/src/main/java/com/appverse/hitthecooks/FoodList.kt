@@ -272,7 +272,7 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
             }
             querySnapshot.let {
                 val shoppingList = it?.toObject<ShoppingList>()
-                val adapter = FoodListAdapter(this,shoppingList?.items!!)
+                val adapter = FoodListAdapter(this,shoppingList?.items!!,listId)
                 binding.foodListRecycler.adapter = adapter
                 binding.foodListRecycler.layoutManager = GridLayoutManager(this, 3)
                 adapter.notifyDataSetChanged()

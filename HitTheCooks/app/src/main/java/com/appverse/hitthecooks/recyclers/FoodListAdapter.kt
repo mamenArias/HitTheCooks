@@ -11,18 +11,22 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.appverse.hitthecooks.R
 import com.appverse.hitthecooks.interfaces.RecyclerTransferItem
 import com.appverse.hitthecooks.model.Item
 import com.appverse.hitthecooks.model.Product
+import com.appverse.hitthecooks.utils.FirestoreCollections
 import com.bumptech.glide.Glide
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.skydoves.balloon.*
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import kotlin.concurrent.thread
+import kotlin.properties.Delegates
 import kotlin.random.Random
 
 /**
@@ -36,12 +40,14 @@ import kotlin.random.Random
  * @param activity Actividad donde se implementa el Recycler.
  * @param list ArrayList con los alimentos que se pueden agregar a la lista de la compra.
  */
-class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):RecyclerView.Adapter<FoodListHolder>() {
-    private var flag : Boolean = false
+class FoodListAdapter (private val activity:Activity, private val list:ArrayList<Item>, private val listId : String):RecyclerView.Adapter<FoodListHolder>() {
+
     private val transfer: RecyclerTransferItem by lazy { activity as RecyclerTransferItem }
 
     /** Objeto que contiene la instancia a base de datos de Firebase **/
     private val db= FirebaseFirestore.getInstance()
+
+
     /**
      * Función que infla el layout.
      */
@@ -64,8 +70,10 @@ class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):Recycler
          */
         holder.imageFood.setOnClickListener {
             if(holder.absoluteAdapterPosition!=-1) {
-                list.removeAt(holder.absoluteAdapterPosition)
+                Toast.makeText(context, "$position", Toast.LENGTH_SHORT).show()
+                db.collection(FirestoreCollections.LISTS).document(listId).update("items",FieldValue.arrayRemove(list[holder.absoluteAdapterPosition])).addOnCompleteListener {  }
                 notifyItemRemoved(holder.absoluteAdapterPosition)
+                list.removeAt(holder.absoluteAdapterPosition)
             }
         }
         
