@@ -263,5 +263,13 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
 
     }
 
+    override fun deleteItem(item: Item) {
+        itemsFoodList.remove(item)
+        val adapter = FoodListAdapter(this, itemsFoodList)
+        binding.foodListRecycler.adapter = adapter
+        binding.foodListRecycler.layoutManager = GridLayoutManager(this, 3)
+        adapter.notifyDataSetChanged()
+    }
+
 
 }

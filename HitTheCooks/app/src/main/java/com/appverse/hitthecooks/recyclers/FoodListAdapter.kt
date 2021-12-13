@@ -1,7 +1,9 @@
 package com.appverse.hitthecooks.recyclers
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.appverse.hitthecooks.R
+import com.appverse.hitthecooks.interfaces.RecyclerTransferItem
 import com.appverse.hitthecooks.model.Item
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
@@ -32,6 +35,9 @@ import kotlin.concurrent.thread
  * @param list ArrayList con los alimentos que se pueden agregar a la lista de la compra.
  */
 class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):RecyclerView.Adapter<FoodListHolder>() {
+
+    private val transfer: RecyclerTransferItem by lazy { activity as RecyclerTransferItem }
+
     /** Objeto que contiene la instancia a base de datos de Firebase **/
     private val db= FirebaseFirestore.getInstance()
     /**
@@ -50,6 +56,27 @@ class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):Recycler
         val context: Context = holder.imageFood.context
         Glide.with(context).load(list[position].picUrl).into(holder.imageFood)
         holder.textFood.text = list[position].name
+
+        holder.imageFood.setOnClickListener {
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle(R.string.borrarElemento)
+            builder.setMessage(R.string.borrarElementoConfirmacion)
+            builder.setPositiveButton(R.string.yes,
+                DialogInterface.OnClickListener { dialogInterface, i ->
+                //Borra el elemento del recycler
+                    transfer.deleteItem(list[position])
+                dialogInterface.cancel()
+            })
+            //Cancela el borrado del elemento
+            builder.setNegativeButton(R.string.no,
+                DialogInterface.OnClickListener { dialogInterface, i ->
+                dialogInterface.cancel()
+            })
+            var alert = builder.create()
+            alert.show()
+
+        }
+    }
         holder.imageFood.setOnClickListener {
             list.removeAt(holder.absoluteAdapterPosition)
             notifyItemRemoved(holder.absoluteAdapterPosition)

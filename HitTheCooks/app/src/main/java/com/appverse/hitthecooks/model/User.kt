@@ -10,7 +10,7 @@ package com.appverse.hitthecooks.model
  * @since 1.4
  * @param email Email del usuario
  * @param profileImage imagen de perfil del usuario
- * @param listsIds
+ * @param listsIds listas de la compra del usuario
  */
 data class User(var email:String ="",var profileImage :String ="",var listsIds :ArrayList<String> = arrayListOf()) {
 
