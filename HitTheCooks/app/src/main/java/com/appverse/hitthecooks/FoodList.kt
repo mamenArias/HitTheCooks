@@ -21,6 +21,7 @@ import com.appverse.hitthecooks.recyclers.FoodListAdapter
 import com.appverse.hitthecooks.recyclers.SearchAdapter
 import android.app.Activity
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import com.appverse.hitthecooks.interfaces.RecyclerTransferItem
 
@@ -41,15 +42,12 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
     private val binding by lazy { ActivityFoodListBinding.inflate(layoutInflater) }
     /**Constante para enlazar con Firebase.*/
     private val db= FirebaseFirestore.getInstance()
-
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
     /**
      * Función que inicializa las vistas.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
 
         //Infla la vista en el layout de la actividad superior
         drawerLayout.addView(binding.root, 1)
@@ -71,6 +69,7 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
             peekHeight = 200
             state = BottomSheetBehavior.STATE_COLLAPSED
         }
+
 
 
         /***
@@ -132,9 +131,7 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
             "dulces", "fruta", "huevos", "leche", "legumbres", "pan", "pasta", "patatas", "pescado", "pollo", "queso", "sal", "snacks",
             "ternera", "verduras", "yogur")*/
 
-       // val adapter:FoodListAdapter = FoodListAdapter(this, arrayAlimentos)
-       // binding.foodListRecycler.adapter = adapter
-       // binding.foodListRecycler.layoutManager = GridLayoutManager(this, 3)
+
 
         binding.recyclerSearch.layoutManager = GridLayoutManager(this,3,
             LinearLayoutManager.VERTICAL,false)
@@ -153,6 +150,8 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
                 binding.searchView.isFocusable = true
                 var  searchViewText : String = p0.toString()
                 if(searchViewText.isNotEmpty()) {
+                    binding.emptySearchRecycler.visibility = View.GONE
+                    binding.recyclerSearch.visibility = View.VISIBLE
                     searchInFirestore(searchViewText.lowercase())
                 }
                 return false
@@ -181,24 +180,17 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
                   binding.recyclerSearch.adapter = adapter
                   adapter.notifyDataSetChanged()
 
-                  /*itemsFoodList.add(info!!.getSerializable("item") as Item)
-                  val adapterFoodList = FoodListAdapter(this, itemsFoodList)
-                  binding.foodListRecycler.adapter = adapterFoodList*/
               }else{
                  val firstChar = searchText[0]
                   db.collection(FirestoreCollections.ITEMS).document(firstChar.toString()).get().addOnCompleteListener{
                       if(it.isSuccessful){
-
                           it.result.toObject(Item::class.java)
                               ?.let { it1 ->
                                   it1.name = searchText
                                   itemsSearched.add(it1) }
-                          val adapter = SearchAdapter(this, itemsSearched,this)
+                          val adapter = SearchAdapter(this, itemsSearched, this)
                           binding.recyclerSearch.adapter = adapter
                           adapter.notifyDataSetChanged()
-
-                          //val adapterFoodList = FoodListAdapter(this, itemsFoodList)
-                          //binding.foodListRecycler.adapter = adapterFoodList
                       }
                   }
               }
@@ -262,16 +254,13 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    /**
-     * Función para pasar los elementos que seleccionamos de un recycler a otro, que será nuestra lista de la compra.
-     * @param item Elemento que pasamos de un recycler a otro
-     */
     override fun passItem(item: Item) {
         itemsFoodList.add(item)
-        val adapter = FoodListAdapter(this, itemsFoodList)
+        val adapter = FoodListAdapter(this,itemsFoodList)
         binding.foodListRecycler.adapter = adapter
         binding.foodListRecycler.layoutManager = GridLayoutManager(this, 3)
         adapter.notifyDataSetChanged()
+
     }
 
     override fun deleteItem(item: Item) {

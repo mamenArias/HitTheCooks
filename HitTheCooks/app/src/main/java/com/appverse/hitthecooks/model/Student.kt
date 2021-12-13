@@ -10,6 +10,7 @@ package com.appverse.hitthecooks.model
  * @author Sergio López
  * @since 1.1
  * @param name Nombre del alumno
+ * @param email eMail del alumno
  * @param image Nombre del archivo de imagen con la foto del alumno
  */
 class Student(val name: String, val email:String, val image: String) {

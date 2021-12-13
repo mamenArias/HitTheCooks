@@ -1,6 +1,7 @@
 package com.appverse.hitthecooks.recyclers
 
 import android.app.Activity
+import android.graphics.Color
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -24,9 +25,10 @@ import com.bumptech.glide.Glide
  * @param context Contexto de la actividad donde mostrar el Recycler
  * @param items Coleccion de productos a mostrar
  */
-class SearchAdapter(private val context: Context, private val items: ArrayList<Item>, activity: Activity): RecyclerView.Adapter<SearchHolder>() {
+class SearchAdapter(private val context: FoodList, private val items: ArrayList<Item>, private val activity: Activity): RecyclerView.Adapter<SearchHolder>() {
 
-    private val transfer:RecyclerTransferItem by lazy { activity as RecyclerTransferItem }
+    private lateinit var itemsFoodList: ArrayList<Item>
+    private val transfer: RecyclerTransferItem by lazy { activity as RecyclerTransferItem }
 
     /**
      * Infla el layout del Recycler de busqueda de productos
@@ -42,9 +44,9 @@ class SearchAdapter(private val context: Context, private val items: ArrayList<I
     override fun onBindViewHolder(holder: SearchHolder, position: Int) {
         val animation : Animation = AnimationUtils.loadAnimation(holder.itemView.context,R.anim.rotate_in)
         Glide.with(context).load(items[position].picUrl).into(holder.iconFood)
+        holder.cardView.setCardBackgroundColor(activity.resources.getColor(R.color.green,activity.theme))
         holder.name.text = items[position].name
         holder.itemView.startAnimation(animation)
-
         holder.iconFood.setOnClickListener {
             transfer.passItem(items[position])
         }
