@@ -16,12 +16,14 @@ import com.airbnb.lottie.LottieAnimationView
 import com.appverse.hitthecooks.R
 import com.appverse.hitthecooks.interfaces.RecyclerTransferItem
 import com.appverse.hitthecooks.model.Item
+import com.appverse.hitthecooks.model.Product
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.skydoves.balloon.*
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import kotlin.concurrent.thread
+import kotlin.random.Random
 
 /**
  * Adapter para el RecylerView de los alimentos a agregar a la lista de la compra.
@@ -56,7 +58,7 @@ class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):Recycler
         val context: Context = holder.imageFood.context
         Glide.with(context).load(list[position].picUrl).into(holder.imageFood)
         holder.textFood.text = list[position].name
-        
+
         holder.imageFood.setOnClickListener {
             if(holder.absoluteAdapterPosition!=-1) {
                 list.removeAt(holder.absoluteAdapterPosition)
@@ -75,29 +77,29 @@ class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):Recycler
                                 )
                             }"
                         ).get()
-                    var title = ""
-                    var image = ""
-                    var price = ""
+                        val productsList = arrayListOf<Product>()
                     for (row in doc.select("div.product-list__item")) {
+                        val productToList = Product()
                         var product = row.select("span.details").text()
                         if (product.lowercase().contains("${list[position].name}")) {
-                            println(row.select("span.details").text())
-                            title = row.select("span.details").text()
-                            image = row.select("img").attr("src")
-                            price = row.select("p.price").text()
+                            productToList.name = row.select("span.details").text()
+                            productToList.imageUrl = row.select("img").attr("src")
+                            productToList.price = row.select("p.price").text()
+                            productsList.add(productToList)
                         }
                     }
                     activity.runOnUiThread {
+                        val randomProduct = productsList[Random.nextInt(productsList.size)]
                         val view : View = LayoutInflater.from(context).inflate(R.layout.balloon_layout,null)
                         val imageProduct = view.findViewById<ImageView>(R.id.imageProduct)
                         val nameProduct = view.findViewById<TextView>(R.id.nameProduct)
                         val diaLogo = view.findViewById<ImageView>(R.id.diaLogo)
                         val priceProduct = view.findViewById<TextView>(R.id.priceTextView)
                         val productNotFound = view.findViewById<LottieAnimationView>(R.id.productNotFound)
-                        if(title.isNotEmpty()) {
-                            Glide.with(context).load(image).into(imageProduct)
-                            nameProduct.text = title
-                            priceProduct.text = price
+                        if(randomProduct.name.isNotEmpty()) {
+                            Glide.with(context).load(randomProduct.imageUrl).into(imageProduct)
+                            nameProduct.text = randomProduct.name
+                            priceProduct.text = randomProduct.price
                             diaLogo.visibility = View.VISIBLE
                         }else{
                             productNotFound.visibility = View.VISIBLE
