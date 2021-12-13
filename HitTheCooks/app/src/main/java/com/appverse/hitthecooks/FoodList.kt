@@ -301,9 +301,11 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
                        Snackbar.LENGTH_SHORT
                    ).show()
                } else {
+                   Toast.makeText(this, "fsfsf", Toast.LENGTH_SHORT).show()
                    db.collection(FirestoreCollections.LISTS).document(listId).update("items", FieldValue.arrayUnion(item)).addOnCompleteListener {}
                }
            }
+
        }
    }
 }
