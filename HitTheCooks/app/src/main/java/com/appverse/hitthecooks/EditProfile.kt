@@ -152,7 +152,7 @@ class EditProfile : SuperActivity() {
                     .getReference("imagenesPerfil/" + auth.currentUser!!.email.toString() + ".jpg")
 
                 reference.putFile(image).addOnSuccessListener {
-                    Toast.makeText(this, "Exito", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Éxito", Toast.LENGTH_SHORT).show()
                 }.addOnFailureListener {
                     Toast.makeText(this, "Fallo", Toast.LENGTH_SHORT).show()
                 }
@@ -163,8 +163,6 @@ class EditProfile : SuperActivity() {
                             user
                         )
                 }.addOnFailureListener { it ->
-                    Toast.makeText(this, "Fallo bbdd", Toast.LENGTH_SHORT).show()
-                    Log.d("Fallo BD", "" + it.stackTrace)
                     reference.downloadUrl.addOnSuccessListener { url ->
                         var user = User(binding.userName.text.toString(), url.toString())
                         db.collection(FirestoreCollections.USERS)
@@ -195,7 +193,7 @@ class EditProfile : SuperActivity() {
         if (requestCode == STORAGE_PERMISSION_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 //Realiza la acción
-                Toast.makeText(this, "Permisos garantizados", Toast.LENGTH_LONG).show()
+
                 selectImage()
             } else {
                 //Informa sobre la denegación del permiso
