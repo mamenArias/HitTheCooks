@@ -116,7 +116,6 @@ class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):Recycler
                             setAlpha(0.9f)
                             setTextColorResource(R.color.black)
                             setTextIsHtml(true)
-                            setIconDrawable(ContextCompat.getDrawable(context, R.drawable.add_icon))
                             setBackgroundColorResource(R.color.white)
                             setBalloonAnimation(BalloonAnimation.ELASTIC)
                             setLifecycleOwner(lifecycleOwner)
