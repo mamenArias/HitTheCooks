@@ -293,16 +293,19 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
                shoppingList = it.result.toObject(ShoppingList::class.java) as ShoppingList
            }
        }.addOnSuccessListener {
-           for (item in shoppingList?.items!!) {
-               if (item == itemToInsert) {
-                   Snackbar.make(
-                       binding.foodListConstraint,
-                       resources.getString(R.string.cannotAddRepeatedItem) + ": ${itemToInsert.name}",
-                       Snackbar.LENGTH_SHORT
-                   ).show()
-               } else {
-                   Toast.makeText(this, "fsfsf", Toast.LENGTH_SHORT).show()
-                   db.collection(FirestoreCollections.LISTS).document(listId).update("items", FieldValue.arrayUnion(item)).addOnCompleteListener {}
+           if(shoppingList?.items?.isEmpty()!!){
+               db.collection(FirestoreCollections.LISTS).document(listId)
+                   .update("items", FieldValue.arrayUnion(itemToInsert))
+                   .addOnCompleteListener {}
+           }else {
+               for (item in shoppingList?.items!!) {
+                   if (item == itemToInsert) {
+                       Toast.makeText(this, resources.getString(R.string.cannotAddRepeatedItem)+": ${itemToInsert.name}", Toast.LENGTH_SHORT).show()
+                   } else {
+                       db.collection(FirestoreCollections.LISTS).document(listId)
+                           .update("items", FieldValue.arrayUnion(itemToInsert))
+                           .addOnCompleteListener {}
+                   }
                }
            }
 
