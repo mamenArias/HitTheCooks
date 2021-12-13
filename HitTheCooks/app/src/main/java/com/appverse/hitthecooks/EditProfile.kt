@@ -156,8 +156,6 @@ class EditProfile : SuperActivity() {
                 }.addOnFailureListener {
                     Toast.makeText(this, "Fallo", Toast.LENGTH_SHORT).show()
                 }
-
-                Toast.makeText(this, auth.currentUser.toString(), Toast.LENGTH_LONG).show()
                 reference.downloadUrl.addOnSuccessListener { url ->
                     var user = User(binding.userName.text.toString(), url.toString())
                     db.collection(FirestoreCollections.USERS)
@@ -174,7 +172,7 @@ class EditProfile : SuperActivity() {
                                 user
                             )
                     }.addOnFailureListener { it ->
-                        Toast.makeText(this, "Fallo bbdd", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Subida de imagen fallida, vuelva a intentarlo por favor", Toast.LENGTH_LONG).show()
 
                     }
 
