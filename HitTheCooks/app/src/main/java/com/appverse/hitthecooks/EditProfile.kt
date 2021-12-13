@@ -80,7 +80,6 @@ class EditProfile : SuperActivity() {
      * Inicializa la actividad, infla el layout y carga el usuario logado
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         //Infla la vista en el layout de la actividad superior
         drawerLayout.addView(binding.root, 1)
@@ -96,18 +95,19 @@ class EditProfile : SuperActivity() {
                     .into(binding.profileIcon as ImageView)
                 binding.profileIcon.visibility = View.VISIBLE
                 binding.userName.visibility = View.VISIBLE
-
+                //Coloca la imagen de perfil
                 Glide.with(this).load(it.get("profileImage")).circleCrop()
                     .into(binding.profileIcon as ImageView)
-
+                //Hace visible la imagen de perfil
                 binding.profileIcon.visibility = View.VISIBLE
             }
 
-
+        /**
+         * Al hacer click en la imagen, permite acceder a la galeria del movil
+         * y usar una imagen de la misma como perfil
+         */
         binding.newPhoto!!.setOnClickListener {
-
             if (!binding.userName.text.toString().endsWith("gmail.com")) {
-                //checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE)
                 ActivityCompat.requestPermissions(
                     this,
                     arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
@@ -119,27 +119,6 @@ class EditProfile : SuperActivity() {
                     "No puedes cambiar la foto de un perfil de Gmail",
                     Toast.LENGTH_SHORT
                 ).show()
-            }
-
-            /**
-             * Al hacer click en la imagen, permite acceder a la galeria del movil y usar una imagen de la misma como perfil
-             */
-            binding.profileIcon.setOnClickListener {
-                if (!binding.userName.text.toString().endsWith("gmail.com")) {
-                    ActivityCompat.requestPermissions(
-                        this,
-                        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                        STORAGE_PERMISSION_CODE
-                    )
-                } else {
-                    Toast.makeText(
-                        this,
-                        "No puedes cambiar la foto de un perfil de Gmail",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-
             }
 
             /**
@@ -158,10 +137,8 @@ class EditProfile : SuperActivity() {
             binding.menuButton.setOnClickListener {
                 super.drawerLayout.openDrawer(GravityCompat.START)
             }
-
         }
     }
-
 
     /**
      * Función para coger una foto de la galería
@@ -170,7 +147,6 @@ class EditProfile : SuperActivity() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         selectImageResultLauncher.launch(intent)
-
     }
 
     /**
@@ -185,7 +161,6 @@ class EditProfile : SuperActivity() {
                 auth = FirebaseAuth.getInstance()
 
                 binding.profileIcon.setImageURI(image)
-
 
                 val reference = FirebaseStorage.getInstance()
                     .getReference("imagenesPerfil/" + auth.currentUser!!.email.toString() + ".jpg")
@@ -224,29 +199,26 @@ class EditProfile : SuperActivity() {
         }
     )
 
-
-
-
-                /**
-                 * Sobreescribe la función de recibir permisos para, en caso de que se acepte, inicie la acción directamente
-                 */
-                override fun onRequestPermissionsResult(
-                    requestCode: Int,
-                    permissions: Array<out String>,
-                    grantResults: IntArray
-                ) {
-                    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-                    if (requestCode == STORAGE_PERMISSION_CODE) {
-                        if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                            //Realiza la acción
-                            Toast.makeText(this, "Permisos garantizados", Toast.LENGTH_LONG).show()
-                            selectImage()
-                        } else {
-                            //Informa sobre la denegación del permiso
-                            Toast.makeText(this, "Permisos denegados", Toast.LENGTH_LONG).show()
-                        }
-                    }
-                }
+    /**
+     * Sobreescribe la función de recibir permisos para, en caso de que se acepte, inicie la acción directamente
+     */
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //Realiza la acción
+                Toast.makeText(this, "Permisos garantizados", Toast.LENGTH_LONG).show()
+                selectImage()
+            } else {
+                //Informa sobre la denegación del permiso
+                Toast.makeText(this, "Permisos denegados", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
 
 
 }
