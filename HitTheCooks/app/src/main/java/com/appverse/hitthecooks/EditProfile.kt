@@ -100,9 +100,8 @@ class EditProfile : SuperActivity() {
          * Función que permite navegar a la actividad principal
          */
         binding.profileIcon.setOnClickListener{
-            if (Build.VERSION.SDK_INT >= 25){
+         
                 //checkAndRequestForPermission();
-            }else {
                 if (!binding.userName.text.toString().endsWith("gmail.com")) {
                     selectImage()
                 } else {
@@ -112,7 +111,7 @@ class EditProfile : SuperActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            }
+
             
         }
 
