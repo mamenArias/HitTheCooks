@@ -35,7 +35,7 @@ import kotlin.concurrent.thread
  * @param list ArrayList con los alimentos que se pueden agregar a la lista de la compra.
  */
 class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):RecyclerView.Adapter<FoodListHolder>() {
-
+    private var flag : Boolean = false
     private val transfer: RecyclerTransferItem by lazy { activity as RecyclerTransferItem }
 
     /** Objeto que contiene la instancia a base de datos de Firebase **/

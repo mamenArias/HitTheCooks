@@ -109,7 +109,6 @@ class MainActivity : SuperActivity() {
                 val listId = deepLink.getQueryParameter("list")
                 db.collection(FirestoreCollections.USERS).document(Firebase.auth.currentUser?.email.toString()).update("listIds",FieldValue.arrayUnion(listId)).addOnCompleteListener {  }
                 db.collection(FirestoreCollections.LISTS).document(listId.toString()).update("users",FieldValue.arrayUnion(Firebase.auth.currentUser?.email.toString())).addOnCompleteListener {  }
-                Toast.makeText(this, "$listId", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this,FoodList::class.java))
             }
         }
