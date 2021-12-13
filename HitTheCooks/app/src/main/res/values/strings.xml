@@ -76,4 +76,6 @@
     <string name="imagenWhatsapp">Imagen del icono de Whatsapp</string>
     <string name="carritoCompra">Imagen de un carrito de la compra</string>
     <string name="botonCompartir">Imagen del botón compartir</string>
+    <string name="borrarElemento">¿Quieres borrar el elemento seleccionado?</string>
+    <string name="borrarElementoConfirmacion">Se eliminará este alimento de tu lista de la compra</string>
 </resources>
