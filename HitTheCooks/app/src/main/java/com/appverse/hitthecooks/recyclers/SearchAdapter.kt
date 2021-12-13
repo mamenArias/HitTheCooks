@@ -1,18 +1,17 @@
 package com.appverse.hitthecooks.recyclers
 
 import android.app.Activity
+import android.graphics.Color
 import android.content.Context
-import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.appverse.hitthecooks.FoodList
 import com.appverse.hitthecooks.R
+import com.appverse.hitthecooks.interfaces.RecyclerTransferItem
 import com.appverse.hitthecooks.model.Item
 import com.bumptech.glide.Glide
 
@@ -27,10 +26,10 @@ import com.bumptech.glide.Glide
  * @param context Contexto de la actividad donde mostrar el Recycler
  * @param items Coleccion de productos a mostrar
  */
-class SearchAdapter(private val context : Context, private val items : ArrayList<Item>): RecyclerView.Adapter<SearchHolder>() {
-
+class SearchAdapter(private val context: FoodList, private val items: ArrayList<Item>, private val activity: Activity): RecyclerView.Adapter<SearchHolder>() {
 
     private lateinit var itemsFoodList: ArrayList<Item>
+    private val transfer: RecyclerTransferItem by lazy { activity as RecyclerTransferItem }
 
     /**
      * Infla el layout del Recycler de busqueda de productos
@@ -46,21 +45,11 @@ class SearchAdapter(private val context : Context, private val items : ArrayList
     override fun onBindViewHolder(holder: SearchHolder, position: Int) {
         val animation : Animation = AnimationUtils.loadAnimation(holder.itemView.context,R.anim.rotate_in)
         Glide.with(context).load(items[position].picUrl).into(holder.iconFood)
+        holder.cardView.setCardBackgroundColor(activity.resources.getColor(R.color.green,activity.theme))
         holder.name.text = items[position].name
         holder.itemView.startAnimation(animation)
-
         holder.iconFood.setOnClickListener {
-
-            /*itemsFoodList.add(Item(items[position].name, items[position].picUrl))
-            val adapterFoodList = FoodListAdapter(R.layout.activity_food_list as Activity, itemsFoodList)
-            holder.recyclerFood.adapter = adapterFoodList*/
-            /*val intent:Intent = Intent(context, FoodList::class.java)
-            val datos:Bundle = Bundle()
-            datos.putSerializable("items", Item(items[position].name, items[position].picUrl))
-
-            intent.putExtras(datos)
-            context.startActivity(intent)*/
-
+            transfer.passItem(items[position])
         }
     }
 

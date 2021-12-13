@@ -3,6 +3,7 @@ package com.appverse.hitthecooks
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.appverse.hitthecooks.model.ShoppingList
@@ -50,9 +51,16 @@ class ShoppingListActivity : SuperActivity() {
         //Infla la vista en el layout de la actividad superior
         drawerLayout.addView(binding.root, 1)
         navigationView.setCheckedItem(R.id.nav_lists)
-        fetchData(true)
+        fetchData()
         //Aplica el modo oscuro en el caso de que esté activado
         applyDarkMode(binding.root)
+
+        /**
+         * Despliega el menú de navegación lateral
+         */
+        binding.menuButton.setOnClickListener {
+            super.drawerLayout.openDrawer(GravityCompat.START)
+        }
 
     }
 
@@ -60,7 +68,7 @@ class ShoppingListActivity : SuperActivity() {
      * Muestra la animación de carga y configura el adapter del recycler de listas
      * cargando las registradas por el usuario en la base de datos
      */
-    private fun fetchData(alert : Boolean){
+    private fun fetchData(){
         var user :User = User()
         val builderAlertDialog = AlertDialog.Builder(this)
         builderAlertDialog.setView(R.layout.loading)

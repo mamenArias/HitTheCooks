@@ -63,8 +63,11 @@
     <string name="cerrarSesion">Cerrando Sesión</string>
     <string name="confirmar">Confirmar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="searchQuestion">¿Qué quieres comprar?</string>
+    <string name="productNotFound">Producto No Encontrado</string>
     <string name="cierreSesionPregunta">¿Estás segur@ de que deseas cerrar sesión?</string>
     <string name="goToList">Ir a la lista</string>
+    <string name="startSearching">¡Empieza buscando tus primeros productos!</string>
     <string name="defaultPhoto">https://firebasestorage.googleapis.com/v0/b/hit-the-cooks.appspot.com/o/imagenesPerfil%2Fdefault.png?alt=media&amp;token=0e9ac66a-dca5-47c9-8059-ff4028e3cdb0</string>
     <string name="imageFood">Imagen del alimento</string>
     <string name="campoVacio">Por favor, no dejes ningún campo vacío</string>
@@ -76,4 +79,6 @@
     <string name="imagenWhatsapp">Imagen del icono de Whatsapp</string>
     <string name="carritoCompra">Imagen de un carrito de la compra</string>
     <string name="botonCompartir">Imagen del botón compartir</string>
+    <string name="borrarElemento">¿Quieres borrar el elemento seleccionado?</string>
+    <string name="borrarElementoConfirmacion">Se eliminará este alimento de tu lista de la compra</string>
 </resources>
