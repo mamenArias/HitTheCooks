@@ -12,7 +12,7 @@ import com.appverse.hitthecooks.R
  * @author Manuel Carrillo
  * @author Christian García
  * @author Sergio López
- * @since 1.1
+ * @since 1.2
  */
 class UserProfileImageHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
