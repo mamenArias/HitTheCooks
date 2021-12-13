@@ -106,22 +106,23 @@ class EditProfile : SuperActivity() {
                 ).show()
             }
 
-            /**
-             * Función que permite navegar a la actividad principal
-             */
-            binding.goBackButton.setOnClickListener {
-                val intent: Intent = Intent(this, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                startActivity(intent)
-                finish()
-            }
 
-            /**
-             * Despliega el menú de navegación lateral
-             */
-            binding.menuButton.setOnClickListener {
-                super.drawerLayout.openDrawer(GravityCompat.START)
-            }
+        }
+        /**
+         * Función que permite navegar a la actividad principal
+         */
+        binding.goBackButton.setOnClickListener {
+            val intent: Intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            finish()
+        }
+
+        /**
+         * Despliega el menú de navegación lateral
+         */
+        binding.menuButton.setOnClickListener {
+            super.drawerLayout.openDrawer(GravityCompat.START)
         }
     }
 
