@@ -59,7 +59,6 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
 
     private lateinit var listId : String
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
-    lateinit var listId:String
     /**
      * Función que inicializa las vistas.
      */
@@ -267,20 +266,6 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    /**
-     * Actúa de listener en la colección lista, en la lista pasada por id. Si hay alguna modifación,
-     * refresca los elementos
-     */
-    override fun passItem(item: Item) {
-        itemsFoodList.add(item)
-        val adapter = FoodListAdapter(this,itemsFoodList)
-        binding.foodListRecycler.adapter = adapter
-        binding.foodListRecycler.layoutManager = GridLayoutManager(this, 3)
-        adapter.notifyDataSetChanged()
-
-        db.collection(FirestoreCollections.LISTS).document(listId).update("items", FieldValue.arrayUnion(item)).addOnCompleteListener {
-
-        }
 
     private fun updateLists() {
         db.collection(FirestoreCollections.LISTS).document(listId).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
@@ -302,19 +287,23 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
      * Función para añadir elementos al recycler de los alimentos que vamos a comprar
      */
     override fun passItem(itemToInsert: Item) {
-            var shoppingList :ShoppingList? = null;
+            var shoppingList :ShoppingList? = null
        db.collection(FirestoreCollections.LISTS).document(listId).get().addOnCompleteListener {
            if(it.isSuccessful){
                shoppingList = it.result.toObject(Item::class.java) as ShoppingList
            }
        }.addOnSuccessListener {
-           for (item in shoppingList?.items!!){
-               if(item==itemToInsert){
-                  Snackbar.make(binding.foodListConstraint,resources.getString(R.string.cannotAddRepeatedItem)+": ${itemToInsert.name}",Snackbar.LENGTH_SHORT).show()
-               }else{
-                   //Insertar en base de datos
+           for (item in shoppingList?.items!!) {
+               if (item == itemToInsert) {
+                   Snackbar.make(
+                       binding.foodListConstraint,
+                       resources.getString(R.string.cannotAddRepeatedItem) + ": ${itemToInsert.name}",
+                       Snackbar.LENGTH_SHORT
+                   ).show()
+               } else {
+                   db.collection(FirestoreCollections.LISTS).document(listId).update("items", FieldValue.arrayUnion(item)).addOnCompleteListener {}
                }
            }
        }
-    }
    }
+}
