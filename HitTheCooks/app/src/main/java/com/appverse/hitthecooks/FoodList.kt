@@ -50,8 +50,6 @@ class FoodList : SuperActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-
         //Infla la vista en el layout de la actividad superior
         drawerLayout.addView(binding.root, 1)
 

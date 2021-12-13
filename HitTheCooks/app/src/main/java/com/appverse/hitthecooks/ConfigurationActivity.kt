@@ -42,7 +42,9 @@ class ConfigurationActivity : SuperActivity() {
         //Aplica el modo oscuro en el caso de que el valor sea true
         applyDarkMode(binding.root)
 
-        /** Botón para cambiar de pantalla **/
+        /**
+         * Navega a la actividad de Configuración
+         */
         buttonProfile.setOnClickListener {
             val intent:Intent = Intent(this@ConfigurationActivity, EditProfile::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -50,7 +52,9 @@ class ConfigurationActivity : SuperActivity() {
             finish()
         }
 
-        //Hace el logout de la aplicación
+        /**
+         * Hace el logout de la aplicación
+         */
         binding.buttonLogOut.setOnClickListener {
             val dialog = AlertDialog.Builder(this)
             .setTitle(R.string.cerrarSesion)

@@ -29,7 +29,6 @@ import com.bumptech.glide.Glide
  */
 class SearchAdapter(private val context : Context, private val items : ArrayList<Item>): RecyclerView.Adapter<SearchHolder>() {
 
-
     private lateinit var itemsFoodList: ArrayList<Item>
 
     /**

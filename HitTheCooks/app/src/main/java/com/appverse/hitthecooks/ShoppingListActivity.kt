@@ -3,6 +3,7 @@ package com.appverse.hitthecooks
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.appverse.hitthecooks.model.ShoppingList
@@ -53,6 +54,13 @@ class ShoppingListActivity : SuperActivity() {
         fetchData(true)
         //Aplica el modo oscuro en el caso de que esté activado
         applyDarkMode(binding.root)
+
+        /**
+         * Despliega el menú de navegación lateral
+         */
+        binding.menuButton.setOnClickListener {
+            super.drawerLayout.openDrawer(GravityCompat.START)
+        }
 
     }
 
