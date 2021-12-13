@@ -9,6 +9,7 @@
         android:id="@+id/imageProduct"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:contentDescription="@string/imageProductDescription"
         app:layout_constraintBottom_toTopOf="@+id/nameProduct"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -60,9 +61,10 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="8dp"
+        android:contentDescription="@string/dialogoDescriptionç"
+        android:src="@drawable/dia"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageProduct"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"
-        android:src="@drawable/dia" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

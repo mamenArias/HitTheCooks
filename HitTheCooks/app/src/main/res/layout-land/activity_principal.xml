@@ -13,10 +13,12 @@
         android:layout_height="30dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:contentDescription="@string/menuBurguerDescription"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/menu_icon"
-        app:tint="@color/orangeEgg" />
+        app:tint="@color/orangeEgg"
+        tools:ignore="ImageContrastCheck" />
 
     <ImageButton
         android:id="@+id/configButton"
@@ -32,7 +34,7 @@
         app:layout_constraintTop_toTopOf="@+id/menuButton"
         app:srcCompat="@drawable/conf_icon"
         app:tint="@color/orangeEgg"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
 
     <ImageButton
         android:id="@+id/userButton"

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:id="@+id/cardViewBackground"
-    android:clickable="true"
-    android:layout_margin="3dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardViewBackground"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="3dp"
+    android:clickable="true"
     app:cardCornerRadius="10dp"
     app:cardElevation="3dp"
-    android:layout_height="wrap_content">
+    tools:ignore="SpeakableTextPresentCheck"
+    android:focusable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,23 +19,25 @@
         <ImageView
             android:id="@+id/backgroundImageShoppingList"
             android:layout_width="0dp"
-            android:scaleType="centerCrop"
             android:layout_height="0dp"
+            android:contentDescription="@string/backgroundShopListDescription"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck"
             tools:srcCompat="@tools:sample/avatars" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/checkAnimation"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:lottie_rawRes="@raw/checked"
             app:layout_constraintBottom_toBottomOf="@+id/backgroundImageShoppingList"
             app:layout_constraintEnd_toEndOf="@+id/backgroundImageShoppingList"
             app:layout_constraintStart_toStartOf="@+id/backgroundImageShoppingList"
-            app:layout_constraintTop_toTopOf="@+id/backgroundImageShoppingList">
+            app:layout_constraintTop_toTopOf="@+id/backgroundImageShoppingList"
+            app:lottie_rawRes="@raw/checked">
 
         </com.airbnb.lottie.LottieAnimationView>
     </androidx.constraintlayout.widget.ConstraintLayout>

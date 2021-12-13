@@ -20,16 +20,18 @@
             android:layout_marginStart="20dp"
 
             android:layout_marginTop="20dp"
+            android:contentDescription="@string/menuBurguerDescription"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/menu_icon"
-            app:tint="@color/orangeEgg" />
+            app:tint="@color/orangeEgg"
+            tools:ignore="ImageContrastCheck" />
 
         <ImageButton
             android:id="@+id/goBackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="20dp"
             android:background="@color/noColor"
             android:contentDescription="@string/backArrow"
             android:minWidth="48dp"
@@ -105,7 +107,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editProfileText"
-                app:srcCompat="@drawable/profile" />
+                app:srcCompat="@drawable/profile"
+                tools:ignore="ImageContrastCheck" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -125,13 +128,15 @@
                 android:layout_height="120dp"
 
                 android:background="@color/transparentWhite"
+                android:contentDescription="@string/userImageDescription"
                 app:layout_constraintBottom_toBottomOf="@+id/profileIcon"
                 app:layout_constraintEnd_toEndOf="@+id/profileIcon"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/profileIcon"
                 app:layout_constraintTop_toTopOf="@+id/profileIcon"
                 app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/exportarfoto" />
+                app:srcCompat="@drawable/exportarfoto"
+                tools:ignore="ImageContrastCheck" />
 
         </androidx.cardview.widget.CardView>
 

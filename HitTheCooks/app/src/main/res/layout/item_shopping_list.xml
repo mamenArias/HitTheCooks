@@ -26,12 +26,14 @@
                 android:layout_height="130dp"
                 app:cardCornerRadius="10dp"
                 app:cardUseCompatPadding="true"
-                app:cardElevation="2dp">
+                app:cardElevation="2dp"
+                android:focusable="true">
 
                 <ImageView
                     android:id="@+id/backgroundImageShoppingList"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:contentDescription="@string/backgroundImageList"
                     android:scaleType="centerCrop"
                     android:src="@drawable/background_list_1"></ImageView>
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -81,13 +83,15 @@
                                 android:layout_marginStart="10dp"
                                 android:clickable="true"
                                 android:focusable="true"
-                                app:cardCornerRadius="30dp">
+                                app:cardCornerRadius="30dp"
+                                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck">
 
                                 <ImageView
                                     android:id="@+id/addMemberButton"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@color/grey"
+                                    android:contentDescription="@string/addList"
                                     app:srcCompat="@drawable/add_icon" />
 
                             </androidx.cardview.widget.CardView>
