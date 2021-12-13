@@ -25,6 +25,7 @@ import android.widget.Toast
 import androidx.core.view.GravityCompat
 import com.appverse.hitthecooks.interfaces.RecyclerTransferItem
 import com.appverse.hitthecooks.model.ShoppingList
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -280,10 +281,23 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
         }
     }
 
-        /**
+    /**
      * Función para añadir elementos al recycler de los alimentos que vamos a comprar
      */
-    override fun passItem(item: Item) {
-        //Aqui debería insertar
+    override fun passItem(itemToInsert: Item) {
+            var shoppingList :ShoppingList? = null;
+       db.collection(FirestoreCollections.LISTS).document(listId).get().addOnCompleteListener {
+           if(it.isSuccessful){
+               shoppingList = it.result.toObject(Item::class.java) as ShoppingList
+           }
+       }.addOnSuccessListener {
+           for (item in shoppingList?.items!!){
+               if(item==itemToInsert){
+                  Snackbar.make(binding.foodListConstraint,resources.getString(R.string.cannotAddRepeatedItem)+": ${itemToInsert.name}",Snackbar.LENGTH_SHORT).show()
+               }else{
+                   //Insertar en base de datos
+               }
+           }
+       }
     }
    }
