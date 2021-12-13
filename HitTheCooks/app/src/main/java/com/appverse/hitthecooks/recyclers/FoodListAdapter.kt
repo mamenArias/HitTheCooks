@@ -35,7 +35,7 @@ import kotlin.concurrent.thread
  * @param list ArrayList con los alimentos que se pueden agregar a la lista de la compra.
  */
 class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):RecyclerView.Adapter<FoodListHolder>() {
-
+    private var flag : Boolean = false
     private val transfer: RecyclerTransferItem by lazy { activity as RecyclerTransferItem }
 
     /** Objeto que contiene la instancia a base de datos de Firebase **/
@@ -57,7 +57,7 @@ class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):Recycler
         Glide.with(context).load(list[position].picUrl).into(holder.imageFood)
         holder.textFood.text = list[position].name
 
-       /* holder.imageFood.setOnClickListener {
+        holder.imageFood.setOnClickListener {
             val builder = AlertDialog.Builder(context)
             builder.setTitle(R.string.borrarElemento)
             builder.setMessage(R.string.borrarElementoConfirmacion)
@@ -75,11 +75,11 @@ class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):Recycler
             var alert = builder.create()
             alert.show()
 
-        }*/
+        }
 
         holder.imageFood.setOnClickListener {
-            list.removeAt(holder.absoluteAdapterPosition)
-            notifyItemRemoved(holder.absoluteAdapterPosition)
+                list.removeAt(holder.bindingAdapterPosition)
+                notifyItemRemoved(holder.bindingAdapterPosition)
             //Borrar de la base de datos
         }
         holder.imageFood.setOnLongClickListener {
