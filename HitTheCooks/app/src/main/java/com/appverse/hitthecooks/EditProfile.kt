@@ -1,5 +1,6 @@
 package com.appverse.hitthecooks
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -101,7 +102,7 @@ class EditProfile : SuperActivity() {
          */
         binding.profileIcon.setOnClickListener{
          
-                //checkAndRequestForPermission();
+                checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
                 if (!binding.userName.text.toString().endsWith("gmail.com")) {
                     selectImage()
                 } else {
@@ -214,4 +215,19 @@ class EditProfile : SuperActivity() {
         }
     }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if(requestCode==STORAGE_PERMISSION_CODE){
+            if(grantResults.isNotEmpty() && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this, "Permisos garantizados", Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this, "Permisos denegados", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
 }
