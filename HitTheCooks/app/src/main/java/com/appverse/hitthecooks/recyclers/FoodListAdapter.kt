@@ -69,10 +69,10 @@ class FoodListAdapter (private val activity:Activity, private val list:ArrayList
          */
         holder.imageFood.setOnClickListener {
             if(holder.absoluteAdapterPosition!=-1) {
-                Toast.makeText(context, "$position", Toast.LENGTH_SHORT).show()
                 db.collection(FirestoreCollections.LISTS).document(listId).update("items",FieldValue.arrayRemove(list[holder.absoluteAdapterPosition])).addOnCompleteListener {  }
-                notifyItemRemoved(holder.absoluteAdapterPosition)
+
                 list.removeAt(holder.absoluteAdapterPosition)
+                notifyItemRemoved(holder.absoluteAdapterPosition)
             }
         }
         
