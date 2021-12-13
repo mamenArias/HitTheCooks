@@ -89,4 +89,15 @@
     <string name="backgroundShopListDescription">Fondo de las listas de la compra</string>
     <string name="emptyImage">Imagen Lista Vacia</string>
     <string name="backgroundImageList">Imagen del fondo de la lista</string>
+    <string name="miguelAngelArcos">Miguel Ángel Arcos</string>
+    <string name="mamenArias">Mamen Arias</string>
+    <string name="manuelCarrillo">Manuel Carrillo</string>
+    <string name="christianGarcia">Christian García</string>
+    <string name="sergioLopez">Sergio López</string>
+    <string name="moneite">moneite@gmail.com</string>ç
+    <string name="mamenCorreo">mamen8191@gmail.com</string>
+    <string name="manuelCorreo">m.carrillo44@gmail.com</string>
+    <string name="christianCorreo">chrisak96@gmail.com</string>
+    <string name="sergioCorreo">sergiolopeztorres97@gmail.com</string>
+    <string name="icono">icono</string>
 </resources>
