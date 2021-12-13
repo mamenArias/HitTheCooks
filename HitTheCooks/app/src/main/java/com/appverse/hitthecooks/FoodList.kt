@@ -290,7 +290,7 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
             var shoppingList :ShoppingList? = null
        db.collection(FirestoreCollections.LISTS).document(listId).get().addOnCompleteListener {
            if(it.isSuccessful){
-               shoppingList = it.result.toObject(Item::class.java) as ShoppingList
+               shoppingList = it.result.toObject(ShoppingList::class.java) as ShoppingList
            }
        }.addOnSuccessListener {
            for (item in shoppingList?.items!!) {
