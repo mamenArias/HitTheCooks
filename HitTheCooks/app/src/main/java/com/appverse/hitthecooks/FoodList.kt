@@ -16,14 +16,13 @@ import com.google.firebase.ktx.Firebase
 
 import android.view.MotionEvent
 import android.widget.SearchView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.appverse.hitthecooks.recyclers.FoodListAdapter
 import com.appverse.hitthecooks.recyclers.SearchAdapter
 import android.app.Activity
 import android.view.inputmethod.InputMethodManager
 import androidx.core.view.GravityCompat
+import com.appverse.hitthecooks.interfaces.RecyclerTransferItem
 
 
 /**
@@ -35,9 +34,9 @@ import androidx.core.view.GravityCompat
  * @author Sergio López
  * @since 1.4
  */
-class FoodList : SuperActivity() {
+class FoodList : SuperActivity(), RecyclerTransferItem {
     private lateinit var itemsSearched : ArrayList<Item>
-    private lateinit var itemsFoodList : ArrayList<Item>
+    private var itemsFoodList : ArrayList<Item> = arrayListOf()
     /**Constante que nos permite enlazar cada elemento de la vista directamente.*/
     private val binding by lazy { ActivityFoodListBinding.inflate(layoutInflater) }
     /**Constante para enlazar con Firebase.*/
@@ -178,7 +177,7 @@ class FoodList : SuperActivity() {
           if(it.isSuccessful){
               itemsSearched = it.result.toObjects(Item::class.java) as ArrayList<Item>
               if(itemsSearched.isNotEmpty()) {
-                  val adapter = SearchAdapter(this, itemsSearched)
+                  val adapter = SearchAdapter(this, itemsSearched,this)
                   binding.recyclerSearch.adapter = adapter
                   adapter.notifyDataSetChanged()
 
@@ -194,7 +193,7 @@ class FoodList : SuperActivity() {
                               ?.let { it1 ->
                                   it1.name = searchText
                                   itemsSearched.add(it1) }
-                          val adapter = SearchAdapter(this, itemsSearched)
+                          val adapter = SearchAdapter(this, itemsSearched,this)
                           binding.recyclerSearch.adapter = adapter
                           adapter.notifyDataSetChanged()
 
@@ -263,7 +262,17 @@ class FoodList : SuperActivity() {
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-
+    /**
+     * Función para pasar los elementos que seleccionamos de un recycler a otro, que será nuestra lista de la compra.
+     * @param item Elemento que pasamos de un recycler a otro
+     */
+    override fun passItem(item: Item) {
+        itemsFoodList.add(item)
+        val adapter = FoodListAdapter(this, itemsFoodList)
+        binding.foodListRecycler.adapter = adapter
+        binding.foodListRecycler.layoutManager = GridLayoutManager(this, 3)
+        adapter.notifyDataSetChanged()
+    }
 
 
 }
