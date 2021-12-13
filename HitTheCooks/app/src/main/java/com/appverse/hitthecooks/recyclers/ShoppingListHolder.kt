@@ -10,6 +10,12 @@ import com.appverse.hitthecooks.R
 
 /**
  * ViewHolder personalizado para el RecyclerView de las listas, contiene los elementos personalizables del layout del Recycler
+ * @author Miguel Àngel Arcos
+ * @author Mamen Arias
+ * @author Manuel Carrillo
+ * @author Christian García
+ * @author Sergio López
+ * @since 1.4
  */
 class ShoppingListHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 

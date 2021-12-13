@@ -20,10 +20,9 @@ class FoodListHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
     /** ImageView con la imagen del alimento a agregar a la lista **/
     val imageFood:ImageView by lazy { itemView.findViewById(R.id.imageFood) }
-
     /** TextView con el nombre del alimento a agregar a la lista **/
     val textFood:TextView by lazy { itemView.findViewById(R.id.nameFood) }
-
+    /** CardView que contiene la imagen y el texto del alimento **/
     val cardView : CardView by lazy { itemView.findViewById(R.id.foodCardView)}
 
 }

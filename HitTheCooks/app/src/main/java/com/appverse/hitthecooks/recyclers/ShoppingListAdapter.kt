@@ -32,7 +32,8 @@ import com.google.firebase.ktx.Firebase
  * @since 1.4
  * @param activity Actividad de referencia donde mostrar el Recycler
  * @param shoppingList Lista que contiene los diferentes objetos de tipo lista
- * @param
+ * @param context Contexto donde mostrar el recycler
+ * @param view Contexto necesario para mostrar el snackbar de advertencia al usuario
  */
 class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, private val view: View, private val activity: Activity,private val context: Context): RecyclerView.Adapter<ShoppingListHolder>(){
 
