@@ -59,6 +59,9 @@ class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):Recycler
         Glide.with(context).load(list[position].picUrl).into(holder.imageFood)
         holder.textFood.text = list[position].name
 
+        /**
+         *
+         */
         holder.imageFood.setOnClickListener {
             if(holder.absoluteAdapterPosition!=-1) {
                 list.removeAt(holder.absoluteAdapterPosition)

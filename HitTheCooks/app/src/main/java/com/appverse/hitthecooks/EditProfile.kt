@@ -41,10 +41,6 @@ import com.google.firebase.firestore.SetOptions
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
-
-
-
-
 /**
  * Activity que contiene la pantalla de editar perfil
  * @author Miguel Àngel Arcos
@@ -58,27 +54,32 @@ class EditProfile : SuperActivity() {
 
     /** Objeto que permite enlazar con las vistas del layout **/
     private val binding by lazy { ActivityEditProfileBinding.inflate(layoutInflater) }
+
     /** Objeto que permite obstener la instancia a la base de datos **/
-    private val db= FirebaseFirestore.getInstance()
+    private val db = FirebaseFirestore.getInstance()
+
     /** Objeto que permite obstener el autentificador de Firebase **/
-    private lateinit var auth : FirebaseAuth
+    private lateinit var auth: FirebaseAuth
+
     /** Objeto que permite obstener la referencia del storage de Firebase **/
     private lateinit var storageReference: StorageReference
+
     /** Ruta de la imagen **/
     private lateinit var image: Uri
+
     /** Variable que sirve para instanciar la clase StorageReference**/
-    private lateinit var storageRef : StorageReference
+    private lateinit var storageRef: StorageReference
+
     /** Constante que instancia un objeto de la clase FirebaseStorage**/
     val dbStorage = FirebaseStorage.getInstance()
 
-    private val STORAGE_PERMISSION_CODE=123
+    /** Código de permiso del almacenamiento **/
+    private val STORAGE_PERMISSION_CODE = 123
 
     /**
      * Inicializa la actividad, infla el layout y carga el usuario logado
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        lateinit var email:String
 
         super.onCreate(savedInstanceState)
         //Infla la vista en el layout de la actividad superior
@@ -87,32 +88,35 @@ class EditProfile : SuperActivity() {
         //Aplica el modo oscuro si está activado
         applyDarkMode(binding.root)
         //Obtiene los datos del usuario actualmente logado
-        db.collection(FirestoreCollections.USERS).document(Firebase.auth.currentUser!!.email.toString()).get().addOnSuccessListener {
+        db.collection(FirestoreCollections.USERS)
+            .document(Firebase.auth.currentUser!!.email.toString()).get().addOnSuccessListener {
             //Recupera el nombre y la imagen del usuario
             binding.userName.text = it.get("email").toString()
-            Glide.with(this).load(it.get("profileImage")).circleCrop().into(binding.profileIcon as ImageView)
+            Glide.with(this).load(it.get("profileImage")).circleCrop()
+                .into(binding.profileIcon as ImageView)
             binding.profileIcon.visibility = View.VISIBLE
             binding.userName.visibility = View.VISIBLE
         }
-        /*auth = FirebaseAuth.getInstance()
-        val uid = auth.currentUser?.uid
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users")*/
+
+        /**
+         * Al hacer click en la imagen, permite acceder a la galeria del movil y usar una imagen de la misma como perfil
+         */
+        binding.profileIcon.setOnClickListener {
+            if (!binding.userName.text.toString().endsWith("gmail.com")) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    STORAGE_PERMISSION_CODE
+                )
+            } else {
+                Toast.makeText(
+                    this,
+                    "No puedes cambiar la foto de un perfil de Gmail",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
 
 
-        binding.profileIcon.setOnClickListener{
-
-                if (!binding.userName.text.toString().endsWith("gmail.com")) {
-                    //checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE)
-                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), STORAGE_PERMISSION_CODE)
-                } else {
-                    Toast.makeText(
-                        this,
-                        "No puedes cambiar la foto de un perfil de Gmail",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-            
         }
 
         /**
@@ -142,31 +146,23 @@ class EditProfile : SuperActivity() {
         intent.type = "image/*"
         selectImageResultLauncher.launch(intent)
 
-
-
-
-        //user.updateProfile()
-
-
-
-
     }
 
-    
     /**
      * Para usar los resultados del intent de la galería
      */
     private val selectImageResultLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult(),
         ActivityResultCallback<ActivityResult> { result ->
-            if(result.resultCode == Activity.RESULT_OK){
+            if (result.resultCode == Activity.RESULT_OK) {
                 val data = result.data
                 image = data!!.data!!
-                auth= FirebaseAuth.getInstance()
+                auth = FirebaseAuth.getInstance()
 
                 binding.profileIcon.setImageURI(image)
 
-              val reference= FirebaseStorage.getInstance().getReference("imagenesPerfil/"+auth.currentUser!!.email.toString()+".jpg")
+                val reference = FirebaseStorage.getInstance()
+                    .getReference("imagenesPerfil/" + auth.currentUser!!.email.toString() + ".jpg")
 
                 reference.putFile(image).addOnSuccessListener {
                     Toast.makeText(this, "Exito", Toast.LENGTH_SHORT).show()
@@ -174,60 +170,40 @@ class EditProfile : SuperActivity() {
                     Toast.makeText(this, "Fallo", Toast.LENGTH_SHORT).show()
                 }
 
-                /*val referenceImages = FirebaseStorage.getInstance().getReference("imagenesPerfil").child(""+"".startsWith(auth.currentUser!!.email.toString()))
-
-
-                referenceImages.downloadUrl.addOnSuccessListener {url->
-                    var userToInsert = User(auth.currentUser!!.email.toString(),url.toString())
-
-                    db.collection( FirestoreCollections.USERS).document(auth.currentUser!!.email.toString()).
-                }*/
-
-                //storageRef =
-                   // dbStorage.reference.child("imagenesPerfil").child(auth.currentUser!!.email.toString()+".jpg")
-
-               /* PARTE BUENA*/
-                Toast.makeText(this,auth.currentUser.toString(),Toast.LENGTH_LONG).show()
-               reference.downloadUrl.addOnSuccessListener { url ->
-                 var user = User(binding.userName.text.toString(), url.toString())
-                    db.collection(FirestoreCollections.USERS).document(auth.currentUser!!.email.toString()).set(
-                       user
-                    )}.addOnFailureListener { it ->
+                Toast.makeText(this, auth.currentUser.toString(), Toast.LENGTH_LONG).show()
+                reference.downloadUrl.addOnSuccessListener { url ->
+                    var user = User(binding.userName.text.toString(), url.toString())
+                    db.collection(FirestoreCollections.USERS)
+                        .document(auth.currentUser!!.email.toString()).set(
+                        user
+                    )
+                }.addOnFailureListener { it ->
                     Toast.makeText(this, "Fallo bbdd", Toast.LENGTH_SHORT).show()
-                   Log.d("Fallo BD",""+it.stackTrace)
+                    Log.d("Fallo BD", "" + it.stackTrace)
                 }
 
-
-
-
-
-
-            }else{
+            } else {
                 Toast.makeText(this, "Cancelado", Toast.LENGTH_LONG).show()
             }
         }
     )
 
-    private fun checkPermission(permission:String, requestCode:Int){
-        //if(ContextCompat.checkSelfPermission(this, permission)==PackageManager.PERMISSION_DENIED){
-            ActivityCompat.requestPermissions(this, arrayOf(permission), requestCode)
-        //}else{
-           // Toast.makeText(this, "El permiso ya ha sido otorgado", Toast.LENGTH_LONG).show()
-        //}
-    }
-
+    /**
+     * Sobreescribe la función de recibir permisos para, en caso de que se acepte, inicie la acción directamente
+     */
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        if(requestCode==STORAGE_PERMISSION_CODE){
-            if(grantResults.isNotEmpty() && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //Realiza la acción
                 Toast.makeText(this, "Permisos garantizados", Toast.LENGTH_LONG).show()
                 selectImage()
-            }else{
+            } else {
+                //Informa sobre la denegación del permiso
                 Toast.makeText(this, "Permisos denegados", Toast.LENGTH_LONG).show()
             }
         }
