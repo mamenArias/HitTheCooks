@@ -68,23 +68,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/profileIcon"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="32dp"
-            android:contentDescription="@string/profileImageDescription"
-            android:visibility="invisible"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/profileImageContainer"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="212dp"
+            app:cardCornerRadius="60dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editProfileText"
-            app:srcCompat="@drawable/profile" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/profileIcon"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:contentDescription="@string/profileImageDescription"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editProfileText"
+                app:srcCompat="@drawable/profile"
+                />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:fontFamily="sans-serif-medium"
             android:text="@string/userName"
             android:textColor="@color/whiteEgg"
@@ -92,18 +102,39 @@
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileIcon"
+            app:layout_constraintTop_toBottomOf="@+id/profileImageContainer"
             tools:ignore="TextContrastCheck" />
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            app:layout_constraintBottom_toBottomOf="@+id/profileIcon"
-            app:layout_constraintEnd_toEndOf="@+id/profileIcon"
-            app:layout_constraintStart_toStartOf="@+id/profileIcon"
-            app:layout_constraintTop_toTopOf="@+id/profileIcon"
-            app:srcCompat="@drawable/add_icon" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imageContainer"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="212dp"
+            app:cardCornerRadius="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:alpha="0.5"
+            >
+
+            <ImageView
+                android:id="@+id/newPhoto"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+
+                android:background="@color/transparentWhite"
+                app:layout_constraintBottom_toBottomOf="@+id/profileIcon"
+                app:layout_constraintEnd_toEndOf="@+id/profileIcon"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/profileIcon"
+                app:layout_constraintTop_toTopOf="@+id/profileIcon"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/exportarfoto" />
+
+        </androidx.cardview.widget.CardView>
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

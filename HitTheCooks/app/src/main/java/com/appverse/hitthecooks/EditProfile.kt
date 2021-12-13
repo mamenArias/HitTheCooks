@@ -91,15 +91,12 @@ class EditProfile : SuperActivity() {
             //Recupera el nombre y la imagen del usuario
             binding.userName.text = it.get("email").toString()
             Glide.with(this).load(it.get("profileImage")).circleCrop().into(binding.profileIcon as ImageView)
+
             binding.profileIcon.visibility = View.VISIBLE
-            binding.userName.visibility = View.VISIBLE
+
         }
-        /*auth = FirebaseAuth.getInstance()
-        val uid = auth.currentUser?.uid
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users")*/
 
-
-        binding.profileIcon.setOnClickListener{
+        binding.newPhoto!!.setOnClickListener{
 
                 if (!binding.userName.text.toString().endsWith("gmail.com")) {
                     //checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE)
@@ -166,6 +163,7 @@ class EditProfile : SuperActivity() {
 
                 binding.profileIcon.setImageURI(image)
 
+
               val reference= FirebaseStorage.getInstance().getReference("imagenesPerfil/"+auth.currentUser!!.email.toString()+".jpg")
 
                 reference.putFile(image).addOnSuccessListener {
@@ -187,14 +185,14 @@ class EditProfile : SuperActivity() {
                    // dbStorage.reference.child("imagenesPerfil").child(auth.currentUser!!.email.toString()+".jpg")
 
                /* PARTE BUENA*/
-                Toast.makeText(this,auth.currentUser.toString(),Toast.LENGTH_LONG).show()
+
                reference.downloadUrl.addOnSuccessListener { url ->
                  var user = User(binding.userName.text.toString(), url.toString())
                     db.collection(FirestoreCollections.USERS).document(auth.currentUser!!.email.toString()).set(
                        user
                     )}.addOnFailureListener { it ->
                     Toast.makeText(this, "Fallo bbdd", Toast.LENGTH_SHORT).show()
-                   Log.d("Fallo BD",""+it.stackTrace)
+
                 }
 
 
