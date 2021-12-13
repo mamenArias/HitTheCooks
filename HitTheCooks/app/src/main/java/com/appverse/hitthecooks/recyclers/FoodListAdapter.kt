@@ -76,7 +76,7 @@ class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):Recycler
             alert.show()
 
         }
-    }
+
         holder.imageFood.setOnClickListener {
             list.removeAt(holder.absoluteAdapterPosition)
             notifyItemRemoved(holder.absoluteAdapterPosition)

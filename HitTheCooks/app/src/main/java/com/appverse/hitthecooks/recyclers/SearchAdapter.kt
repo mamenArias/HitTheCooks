@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
+import com.appverse.hitthecooks.FoodList
 import com.appverse.hitthecooks.R
 import com.appverse.hitthecooks.interfaces.RecyclerTransferItem
 import com.appverse.hitthecooks.model.Item
