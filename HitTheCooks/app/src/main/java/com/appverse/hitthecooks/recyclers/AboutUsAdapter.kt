@@ -55,6 +55,8 @@ class AboutUsAdapter(val activity: Activity, val list: ArrayList<Student>) :
                 )
 
             }
+        }.addOnFailureListener {
+
         }
     }
 

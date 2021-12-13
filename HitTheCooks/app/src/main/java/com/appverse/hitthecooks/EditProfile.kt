@@ -102,7 +102,8 @@ class EditProfile : SuperActivity() {
         binding.profileIcon.setOnClickListener{
 
                 if (!binding.userName.text.toString().endsWith("gmail.com")) {
-                    checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE)
+                    //checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE)
+                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), STORAGE_PERMISSION_CODE)
                 } else {
                     Toast.makeText(
                         this,
