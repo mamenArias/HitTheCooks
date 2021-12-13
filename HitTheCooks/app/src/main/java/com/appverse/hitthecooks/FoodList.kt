@@ -23,8 +23,14 @@ import android.app.Activity
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.appverse.hitthecooks.interfaces.RecyclerTransferItem
 import com.appverse.hitthecooks.model.ShoppingList
+import com.appverse.hitthecooks.recyclers.ShoppingListAdapter
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FieldValue
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -67,7 +73,7 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
         itemsSearched = arrayListOf()
 
         //Recoge el id de la lista por bundle
-         listId = intent.extras?.getString("listId") as String
+        listId = intent.extras?.getString("listId") as String
 
 
         //Da el comportamiento al panel
@@ -170,7 +176,7 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
         binding.menuButton.setOnClickListener {
             super.drawerLayout.openDrawer(GravityCompat.START)
         }
-
+        
     }
 
     /***
@@ -260,10 +266,7 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    /**
-     * Actúa de listener en la colección lista, en la lista pasada por id. Si hay alguna modifación,
-     * refresca los elementos
-     */
+
     private fun updateLists() {
         db.collection(FirestoreCollections.LISTS).document(listId).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
             firebaseFirestoreException?.let {
@@ -280,10 +283,27 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
         }
     }
 
-        /**
+    /**
      * Función para añadir elementos al recycler de los alimentos que vamos a comprar
      */
-    override fun passItem(item: Item) {
-        //Aqui debería insertar
-    }
+    override fun passItem(itemToInsert: Item) {
+            var shoppingList :ShoppingList? = null
+       db.collection(FirestoreCollections.LISTS).document(listId).get().addOnCompleteListener {
+           if(it.isSuccessful){
+               shoppingList = it.result.toObject(Item::class.java) as ShoppingList
+           }
+       }.addOnSuccessListener {
+           for (item in shoppingList?.items!!) {
+               if (item == itemToInsert) {
+                   Snackbar.make(
+                       binding.foodListConstraint,
+                       resources.getString(R.string.cannotAddRepeatedItem) + ": ${itemToInsert.name}",
+                       Snackbar.LENGTH_SHORT
+                   ).show()
+               } else {
+                   db.collection(FirestoreCollections.LISTS).document(listId).update("items", FieldValue.arrayUnion(item)).addOnCompleteListener {}
+               }
+           }
+       }
    }
+}

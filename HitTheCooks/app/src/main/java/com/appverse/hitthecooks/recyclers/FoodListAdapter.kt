@@ -52,7 +52,6 @@ class FoodListAdapter (private val activity:Activity, private val list:ArrayList
      * Función que infla el layout.
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodListHolder {
-        //return FoodListHolder(activity.layoutInflater.inflate(R.layout.recycler_food_list, parent, false))
         val view : View = LayoutInflater.from(parent.context).inflate(R.layout.recycler_food_list,parent,false)
         return FoodListHolder(view)
     }
