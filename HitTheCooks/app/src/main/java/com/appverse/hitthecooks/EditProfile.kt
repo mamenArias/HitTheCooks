@@ -104,7 +104,6 @@ class EditProfile : SuperActivity() {
 
                 if (!binding.userName.text.toString().endsWith("gmail.com")) {
                     checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE)
-                    selectImage()
                 } else {
                     Toast.makeText(
                         this,
@@ -225,6 +224,7 @@ class EditProfile : SuperActivity() {
         if(requestCode==STORAGE_PERMISSION_CODE){
             if(grantResults.isNotEmpty() && grantResults[0]==PackageManager.PERMISSION_GRANTED){
                 Toast.makeText(this, "Permisos garantizados", Toast.LENGTH_LONG).show()
+                selectImage()
             }else{
                 Toast.makeText(this, "Permisos denegados", Toast.LENGTH_LONG).show()
             }
