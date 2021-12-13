@@ -3,6 +3,7 @@ package com.appverse.hitthecooks.recyclers
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.appverse.hitthecooks.R
 
@@ -22,5 +23,5 @@ class SearchHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     /** ImageView con la imagen del alimento que buscamos **/
     val iconFood : ImageView by lazy { itemView.findViewById(R.id.imageFood) }
 
-    val recyclerFood: RecyclerView by lazy { itemView.findViewById(R.id.foodListRecycler) }
+    val cardView : CardView by lazy { itemView.findViewById(R.id.foodCardView) }
 }

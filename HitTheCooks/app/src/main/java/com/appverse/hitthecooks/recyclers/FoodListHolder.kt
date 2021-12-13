@@ -3,6 +3,7 @@ package com.appverse.hitthecooks.recyclers
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.appverse.hitthecooks.R
 
@@ -22,5 +23,7 @@ class FoodListHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
     /** TextView con el nombre del alimento a agregar a la lista **/
     val textFood:TextView by lazy { itemView.findViewById(R.id.nameFood) }
+
+    val cardView : CardView by lazy { itemView.findViewById(R.id.foodCardView)}
 
 }
