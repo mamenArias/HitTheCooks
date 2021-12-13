@@ -64,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
         var text:TextView = binding.googleButton.getChildAt(0) as TextView
         text.text = resources.getString(R.string.googleLogin)
 
-
+        /** Objeto que gestiona el login con Google **/
         val gso = GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.webid))
