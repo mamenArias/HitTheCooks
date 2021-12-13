@@ -64,6 +64,9 @@ class FoodListAdapter (private val activity:Activity, private val list:ArrayList
         Glide.with(context).load(list[position].picUrl).into(holder.imageFood)
         holder.textFood.text = list[position].name
 
+        /**
+         *
+         */
         holder.imageFood.setOnClickListener {
             if(holder.absoluteAdapterPosition!=-1) {
                 Toast.makeText(context, "$position", Toast.LENGTH_SHORT).show()
