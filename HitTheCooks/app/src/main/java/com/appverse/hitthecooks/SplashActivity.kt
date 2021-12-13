@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import com.appverse.hitthecooks.databinding.ActivityShoppingListBinding
 import com.appverse.hitthecooks.databinding.ActivitySplashBinding
-import com.bumptech.glide.Glide
 /**
  * Clase que contiene el SplashScreen que aparece al abrir la aplicación
  * @author Miguel Àngel Arcos

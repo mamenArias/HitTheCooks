@@ -108,6 +108,7 @@ class ListCreationActivity : SuperActivity(),RecyclerTransferData {
 
     /**
      * Función que permite recoger el valor de referencia de la imagen seleccionada en el recycler
+     * @param value ID de la imagen recogido del adapter
      */
     override fun passData(value: Int ) {
         imageId=  value

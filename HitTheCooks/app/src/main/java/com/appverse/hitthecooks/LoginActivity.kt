@@ -40,16 +40,22 @@ import com.google.firebase.storage.StorageReference
  * @since   1.0
  */
 class LoginActivity : AppCompatActivity() {
+
     /** Constante que permite enlazar directamente con las vistas del layout **/
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+
     /** Variable que sirve para instanciar la clase FirebaseAuth**/
     private lateinit var auth: FirebaseAuth
+
     /** Variable que sirve para instanciar la clase GoogleSignInClient**/
     private lateinit var googleSignInClient: GoogleSignInClient
+
     /** Constante que instancia un objeto de la clase FirebaseFirestore**/
-    private val db=FirebaseFirestore.getInstance()
+    private val db = FirebaseFirestore.getInstance()
+
     /** Variable que sirve para instanciar la clase StorageReference**/
-    private lateinit var storageRef : StorageReference
+    private lateinit var storageRef: StorageReference
+
     /** Constante que instancia un objeto de la clase FirebaseStorage**/
     val dbStorage = FirebaseStorage.getInstance()
 
@@ -57,11 +63,11 @@ class LoginActivity : AppCompatActivity() {
      * Inicializa la actividad
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-      //  setTheme(R.style.SplashScreen)
+        //  setTheme(R.style.SplashScreen)
         Thread.sleep(2000)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        var text:TextView = binding.googleButton.getChildAt(0) as TextView
+        var text: TextView = binding.googleButton.getChildAt(0) as TextView
         text.text = resources.getString(R.string.googleLogin)
 
         /** Objeto que gestiona el login con Google **/
@@ -70,18 +76,22 @@ class LoginActivity : AppCompatActivity() {
             .requestIdToken(getString(R.string.webid))
             .requestEmail()
             .build()
-        googleSignInClient = GoogleSignIn.getClient(this,gso)
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         /**
          * Función que comprueba si el campo email y contraseña no están vacíos. Si no lo están registra un usuario
          * en la base de datos con dicho email y contraseña
          */
-       binding.registerButton.setOnClickListener {
-            if(binding.nameGap.text.isEmpty()|| binding.passwordGap.text.isEmpty()){
+        binding.registerButton.setOnClickListener {
+            if (binding.nameGap.text.isEmpty() || binding.passwordGap.text.isEmpty()) {
                 Toast.makeText(this, R.string.campoVacio, Toast.LENGTH_LONG).show()
 
-            }else if (binding.nameGap.text.toString().endsWith("gmail.com")){
-                Toast.makeText(this, "Si quiere registrarse con una cuenta de Gmail pulse en el botón inferior para ello", Toast.LENGTH_SHORT).show()
+            } else if (binding.nameGap.text.toString().endsWith("gmail.com")) {
+                Toast.makeText(
+                    this,
+                    "Si quiere registrarse con una cuenta de Gmail pulse en el botón inferior para ello",
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
                 val auth = FirebaseAuth.getInstance()
                 //pasamos por argumentos el usuario y contraseña
@@ -125,12 +135,12 @@ class LoginActivity : AppCompatActivity() {
          * ya guardado en la base de datos con dicho email y contraseña
          */
         binding.signInButton.setOnClickListener {
-            if(binding.nameGap.text.isEmpty()|| binding.passwordGap.text.isEmpty()){
+            if (binding.nameGap.text.isEmpty() || binding.passwordGap.text.isEmpty()) {
                 Toast.makeText(this, R.string.campoVacio, Toast.LENGTH_LONG).show()
 
-            }else if(binding.passwordGap.text.toString().length<8) {
+            } else if (binding.passwordGap.text.toString().length < 8) {
                 Toast.makeText(this, R.string.passCorto, Toast.LENGTH_SHORT).show()
-            }else{
+            } else {
                 val auth = FirebaseAuth.getInstance()
                 //pasamos por argumentos el usuario y contraseña
                 val tarea = auth.signInWithEmailAndPassword(
@@ -151,7 +161,6 @@ class LoginActivity : AppCompatActivity() {
                             ).show()
                         }
                     }
-
 
                 })
             }
@@ -204,23 +213,25 @@ class LoginActivity : AppCompatActivity() {
     /**
      * Constante que a partir de los datos de la cuenta de Google guarda el usuario en base de datos
      */
-    private val responseLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-        if(it.resultCode== Activity.RESULT_OK){
-            val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
-            val account = task.getResult(ApiException::class.java)
-            val acct = GoogleSignIn.getLastSignedInAccount(this)
-            var userToInsert = User(acct!!.email as String,acct.photoUrl!!.toString() as String)
-            db.collection( FirestoreCollections.USERS).document(acct.email as String).set(
-                userToInsert
-            )
-            if(account!=null) {
-                val credential = GoogleAuthProvider.getCredential(account.idToken,null)
-                auth.signInWithCredential(credential).addOnCompleteListener {
-                    updateUI(auth.currentUser)
+    private val responseLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
+                val account = task.getResult(ApiException::class.java)
+                val acct = GoogleSignIn.getLastSignedInAccount(this)
+                var userToInsert =
+                    User(acct!!.email as String, acct.photoUrl!!.toString() as String)
+                db.collection(FirestoreCollections.USERS).document(acct.email as String).set(
+                    userToInsert
+                )
+                if (account != null) {
+                    val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+                    auth.signInWithCredential(credential).addOnCompleteListener {
+                        updateUI(auth.currentUser)
+                    }
                 }
             }
         }
-    }
 
     /***
      * No permite ir hacia atrás

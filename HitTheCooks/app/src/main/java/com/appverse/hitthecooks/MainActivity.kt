@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.core.view.GravityCompat
 import com.appverse.hitthecooks.databinding.ActivityPrincipalBinding
 import com.appverse.hitthecooks.utils.FirestoreCollections
