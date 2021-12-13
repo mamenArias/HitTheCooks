@@ -76,12 +76,7 @@ class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):Recycler
             alert.show()
 
         }
-
-        holder.imageFood.setOnClickListener {
-                list.removeAt(holder.bindingAdapterPosition)
-                notifyItemRemoved(holder.bindingAdapterPosition)
-            //Borrar de la base de datos
-        }
+        
         holder.imageFood.setOnLongClickListener {
                 thread {
                     val doc: Document =
