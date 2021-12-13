@@ -2,7 +2,9 @@ package com.appverse.hitthecooks
 
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -25,6 +27,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import androidx.annotation.NonNull
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.appverse.hitthecooks.model.User
 
 import com.google.android.gms.tasks.OnCompleteListener
@@ -66,6 +70,8 @@ class EditProfile : SuperActivity() {
     /** Constante que instancia un objeto de la clase FirebaseStorage**/
     val dbStorage = FirebaseStorage.getInstance()
 
+    private val STORAGE_PERMISSION_CODE=123
+
     /**
      * Inicializa la actividad, infla el layout y carga el usuario logado
      */
@@ -94,10 +100,18 @@ class EditProfile : SuperActivity() {
          * Función que permite navegar a la actividad principal
          */
         binding.profileIcon.setOnClickListener{
-            if(!binding.userName.text.toString().endsWith("gmail.com")){
-                selectImage()
-            } else{
-                Toast.makeText(this, "No puedes cambiar la foto de un perfil de Gmail", Toast.LENGTH_SHORT).show()
+            if (Build.VERSION.SDK_INT >= 25){
+                //checkAndRequestForPermission();
+            }else {
+                if (!binding.userName.text.toString().endsWith("gmail.com")) {
+                    selectImage()
+                } else {
+                    Toast.makeText(
+                        this,
+                        "No puedes cambiar la foto de un perfil de Gmail",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
             
         }
@@ -192,5 +206,13 @@ class EditProfile : SuperActivity() {
             }
         }
     )
+
+    private fun checkPermission(permission:String, requestCode:Int){
+        if(ContextCompat.checkSelfPermission(this, permission)==PackageManager.PERMISSION_DENIED){
+            ActivityCompat.requestPermissions(this, arrayOf(permission), requestCode)
+        }else{
+            Toast.makeText(this, "El permiso ya ha sido otorgado", Toast.LENGTH_LONG).show()
+        }
+    }
 
 }

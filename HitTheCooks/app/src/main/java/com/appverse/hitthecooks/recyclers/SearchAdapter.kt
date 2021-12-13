@@ -28,7 +28,6 @@ import com.bumptech.glide.Glide
  */
 class SearchAdapter(private val context: FoodList, private val items: ArrayList<Item>, private val activity: Activity): RecyclerView.Adapter<SearchHolder>() {
 
-    private lateinit var itemsFoodList: ArrayList<Item>
     private val transfer: RecyclerTransferItem by lazy { activity as RecyclerTransferItem }
 
     /**
