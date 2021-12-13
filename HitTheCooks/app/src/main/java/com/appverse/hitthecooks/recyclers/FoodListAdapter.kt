@@ -122,6 +122,7 @@ class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):Recycler
                             setLifecycleOwner(lifecycleOwner)
                         }
                         holder.cardView.showAlignTop(balloon)
+                        balloon.dismissWithDelay(1500L)
                 }
         }
             return@setOnLongClickListener true
