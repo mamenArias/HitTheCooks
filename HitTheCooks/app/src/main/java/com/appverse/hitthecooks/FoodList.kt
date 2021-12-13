@@ -36,7 +36,9 @@ import com.appverse.hitthecooks.interfaces.RecyclerTransferItem
  * @since 1.4
  */
 class FoodList : SuperActivity(), RecyclerTransferItem {
+    /** Constante de la lista de los elementos buscados */
     private lateinit var itemsSearched : ArrayList<Item>
+    /**Constante de los elementos que añadimos a la lista de la compra*/
     private var itemsFoodList : ArrayList<Item> = arrayListOf()
     /**Constante que nos permite enlazar cada elemento de la vista directamente.*/
     private val binding by lazy { ActivityFoodListBinding.inflate(layoutInflater) }
@@ -69,8 +71,6 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
             peekHeight = 200
             state = BottomSheetBehavior.STATE_COLLAPSED
         }
-
-
 
         /***
          * Función que expande el panel escondido cuando pulsas la lupa del buscador
@@ -123,14 +123,6 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
         db.collection(FirestoreCollections.USERS).document(Firebase.auth.currentUser!!.email.toString()).get().addOnSuccessListener {
             Glide.with(this).load(it.get("profileImage")).circleCrop().into(binding.buttonUser as ImageView)
         }
-
-       // db.collection(FirestoreCollections.ITEMS).document(list[position].name).get().addOnSuccessListener {
-       // }
-
-        /*val arrayAlimentos:ArrayList<String> = arrayListOf("aceite", "agua", "azucar", "cerdo", "cereales", "chocolate", "congelados",
-            "dulces", "fruta", "huevos", "leche", "legumbres", "pan", "pasta", "patatas", "pescado", "pollo", "queso", "sal", "snacks",
-            "ternera", "verduras", "yogur")*/
-
 
 
         binding.recyclerSearch.layoutManager = GridLayoutManager(this,3,
@@ -254,6 +246,9 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
+    /**
+     * Función para añadir elementos al recycler de los alimentos que vamos a comprar
+     */
     override fun passItem(item: Item) {
         itemsFoodList.add(item)
         val adapter = FoodListAdapter(this,itemsFoodList)
@@ -263,6 +258,9 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
 
     }
 
+    /**
+     * Función para eliminar elementos del recycler de nuestra lista de la compra
+     */
     override fun deleteItem(item: Item) {
         itemsFoodList.remove(item)
         val adapter = FoodListAdapter(this, itemsFoodList)

@@ -15,7 +15,7 @@ import java.io.Serializable
  * @param id ID de la lista
  * @param users Lista de usuarios que comparten la lista
  */
-data class ShoppingList( val name: String="",val imageId:Int=0, var id :String ="",val users : ArrayList<String> = arrayListOf() ) :Serializable {
+data class ShoppingList( val name: String="",val imageId:Int=0, var id :String ="",val users : ArrayList<String> = arrayListOf(), val items : ArrayList<Item> = arrayListOf()) :Serializable {
 
     /**
      * Genera un informe en modo texto con los atributos de la lista
