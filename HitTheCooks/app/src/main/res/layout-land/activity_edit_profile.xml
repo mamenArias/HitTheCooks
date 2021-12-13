@@ -15,9 +15,10 @@
 
         <ImageView
             android:id="@+id/menuButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="20dp"
+
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -28,76 +29,46 @@
             android:id="@+id/goBackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginEnd="8dp"
             android:background="@color/noColor"
             android:contentDescription="@string/backArrow"
+            android:minWidth="48dp"
             android:scaleX="2"
             android:scaleY="2"
             app:layout_constraintBottom_toBottomOf="@+id/menuButton"
-            app:layout_constraintStart_toEndOf="@+id/menuButton"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/menuButton"
             app:srcCompat="?attr/homeAsUpIndicator"
             app:tint="@color/orangeEgg"
             tools:ignore="ImageContrastCheck" />
 
-        <Button
-            android:id="@+id/registerButton"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/editProfileText"
+            android:layout_width="683dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:backgroundTint="@color/orangeEgg"
             android:fontFamily="sans-serif-black"
-            android:text="@string/update"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@+id/appVerseIcon"
+            android:text="@string/editProfileText"
+            android:textAlignment="center"
+            android:textColor="@color/whiteEgg"
+            android:textSize="40sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/profileImageContainer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userName"
-            tools:ignore="TextContrastCheck" />
+            app:layout_constraintTop_toBottomOf="@+id/goBackButton" />
 
         <ImageView
             android:id="@+id/appVerseIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:contentDescription="@string/appVerseLogoDescription"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/registerButton"
+            app:layout_constraintTop_toBottomOf="@+id/userName"
             app:srcCompat="@drawable/logoappverse"
             tools:ignore="ImageContrastCheck" />
-
-        <TextView
-            android:id="@+id/editProfileText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
-            android:text="@string/editProfileText"
-            android:textColor="@color/whiteEgg"
-            android:textSize="40sp"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toTopOf="@+id/profileIcon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/profileIcon"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:contentDescription="@string/profileImageDescription"
-            app:layout_constraintBottom_toTopOf="@+id/userName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editProfileText"
-            app:srcCompat="@drawable/profile" />
 
         <TextView
             android:id="@+id/userName"
@@ -107,12 +78,63 @@
             android:text="@string/userName"
             android:textColor="@color/whiteEgg"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/registerButton"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/appVerseIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profileImageContainer"
+            tools:ignore="TextContrastCheck" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/profileImageContainer"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:cardCornerRadius="60dp"
+            app:layout_constraintBottom_toTopOf="@+id/userName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileIcon"
-            tools:ignore="TextContrastCheck" />
+            app:layout_constraintTop_toBottomOf="@+id/editProfileText">
+
+            <ImageView
+                android:id="@+id/profileIcon"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:contentDescription="@string/profileImageDescription"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editProfileText"
+                app:srcCompat="@drawable/profile" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imageContainer"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:alpha="0.5"
+            app:cardCornerRadius="60dp"
+            app:layout_constraintBottom_toBottomOf="@+id/profileImageContainer"
+            app:layout_constraintEnd_toEndOf="@+id/profileImageContainer"
+            app:layout_constraintStart_toStartOf="@+id/profileImageContainer"
+            app:layout_constraintTop_toTopOf="@+id/profileImageContainer">
+
+            <ImageView
+                android:id="@+id/newPhoto"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+
+                android:background="@color/transparentWhite"
+                app:layout_constraintBottom_toBottomOf="@+id/profileIcon"
+                app:layout_constraintEnd_toEndOf="@+id/profileIcon"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/profileIcon"
+                app:layout_constraintTop_toTopOf="@+id/profileIcon"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/exportarfoto" />
+
+        </androidx.cardview.widget.CardView>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
