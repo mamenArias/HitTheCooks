@@ -1,7 +1,6 @@
 package com.appverse.hitthecooks
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -15,8 +14,6 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.appverse.hitthecooks.recyclers.ShoppingListAdapter
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 
 /**
  * Actividad que contiene la pantalla con las listas creadas o compartidas por el usuario
@@ -29,9 +26,6 @@ import com.google.firebase.storage.StorageReference
  */
 class ShoppingListActivity : SuperActivity() {
 
-    /** Objeto que recupera la instancia al storage de Firebase **/
-    private val dbStorage = FirebaseStorage.getInstance()
-    private lateinit var storageRef : StorageReference
     /** Objeto que que contiene el autentificador de Firebase **/
     private lateinit var auth: FirebaseAuth
     /** ArrayList que contiene la coleccion de listas de la compra **/

@@ -43,6 +43,8 @@ class SwipeToDelete(private var adapter: ShoppingListAdapter, private val contex
     /**
      * Muestra un mensaje de advertencia, si el usuario acepta, elimina la lista del recycler
      * y la borra de la base de datos
+     * @param viewHolder ViewHolder del Recycler de listas
+     * @param direction Dirección
      */
      override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         var pos = viewHolder.absoluteAdapterPosition

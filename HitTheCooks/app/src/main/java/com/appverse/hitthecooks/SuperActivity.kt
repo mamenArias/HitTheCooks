@@ -39,8 +39,6 @@ abstract class SuperActivity : AppCompatActivity(), NavigationView.OnNavigationI
     /** Menú que contiene los diferentes items de navegación **/
     val navigationView : NavigationView by lazy { findViewById(R.id.navigation_view) }
 
-    private lateinit var auth: FirebaseAuth
-
     /** Gestiona las preferencias de la app **/
     lateinit var preferences : SharedPreferences
 
