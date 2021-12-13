@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.appverse.hitthecooks.model.Student
 import com.appverse.hitthecooks.R
+import com.appverse.hitthecooks.model.User
 import com.appverse.hitthecooks.utils.FirestoreCollections
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
@@ -49,14 +50,11 @@ class AboutUsAdapter(val activity: Activity, val list: ArrayList<Student>) :
         db.collection(FirestoreCollections.USERS).document(list[position].email).get().addOnCompleteListener {
             if(it.isSuccessful){
                 Glide.with(activity).load(it.result.getString("profileImage")).into(holder.image)
-            }else{
-                holder.image.setImageResource(
-                    activity.resources.getIdentifier(list[position].image, "drawable", activity.packageName)
-                )
-
             }
         }.addOnFailureListener {
-
+            holder.image.setImageResource(
+                activity.resources.getIdentifier(list[position].image, "drawable", activity.packageName)
+            )
         }
     }
 
