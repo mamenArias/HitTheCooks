@@ -102,14 +102,20 @@ class FoodListAdapter (private val activity:Activity, private val list:ArrayList
                         }
                     }
                     activity.runOnUiThread {
-                        val randomProduct = productsList[Random.nextInt(productsList.size)]
-                        val view : View = LayoutInflater.from(context).inflate(R.layout.balloon_layout,null)
-                        val imageProduct = view.findViewById<ImageView>(R.id.imageProduct)
-                        val nameProduct = view.findViewById<TextView>(R.id.nameProduct)
-                        val diaLogo = view.findViewById<ImageView>(R.id.diaLogo)
-                        val priceProduct = view.findViewById<TextView>(R.id.priceTextView)
-                        val productNotFound = view.findViewById<LottieAnimationView>(R.id.productNotFound)
-                        if(randomProduct.name.isNotEmpty()) {
+                             var randomProduct : Product? = null
+                             if(productsList.isNotEmpty()) {
+                                  randomProduct = productsList[Random.nextInt(productsList.size)]
+                             }
+
+                            val view: View =
+                                LayoutInflater.from(context).inflate(R.layout.balloon_layout, null)
+                            val imageProduct = view.findViewById<ImageView>(R.id.imageProduct)
+                            val nameProduct = view.findViewById<TextView>(R.id.nameProduct)
+                            val diaLogo = view.findViewById<ImageView>(R.id.diaLogo)
+                            val priceProduct = view.findViewById<TextView>(R.id.priceTextView)
+                            val productNotFound =
+                                view.findViewById<LottieAnimationView>(R.id.productNotFound)
+                        if(randomProduct!=null) {
                             Glide.with(context).load(randomProduct.imageUrl).into(imageProduct)
                             nameProduct.text = randomProduct.name
                             priceProduct.text = randomProduct.price
