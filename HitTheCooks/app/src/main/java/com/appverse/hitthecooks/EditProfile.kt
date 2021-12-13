@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
@@ -82,6 +84,7 @@ class EditProfile : SuperActivity() {
             //Recupera el nombre y la imagen del usuario
             binding.userName.text = it.get("email").toString()
             Glide.with(this).load(it.get("profileImage")).circleCrop().into(binding.profileIcon as ImageView)
+            binding.profileIcon.visibility = View.VISIBLE
         }
         /*auth = FirebaseAuth.getInstance()
         val uid = auth.currentUser?.uid
@@ -99,9 +102,6 @@ class EditProfile : SuperActivity() {
             
         }
 
-        binding.registerButton.setOnClickListener{
-            uploadProfilePic()
-        }
 
         binding.goBackButton.setOnClickListener {
             val intent: Intent = Intent(this, MainActivity::class.java)
@@ -137,37 +137,7 @@ class EditProfile : SuperActivity() {
 
     }
 
-    /**
-     * Función para actualizar la información de la imagen de perfil en base de datos
-     */
-    private fun updateImage(uploadedImageUrl: String) {
-        val hashmap: HashMap<String, Any> = HashMap()
-        hashmap["email"] = binding.userName
-        if (image != null){
-            hashmap["profileImage"] = uploadedImageUrl
-        }
-
-        val reference = FirebaseDatabase.getInstance().getReference("Users")
-        reference.child(auth.uid!!).updateChildren(hashmap).addOnSuccessListener {
-            Toast.makeText(this, "Imagen actualizada con éxito", Toast.LENGTH_LONG).show()
-
-        }.addOnFailureListener{
-            Toast.makeText(this, "Error al actualizar la imagen", Toast.LENGTH_LONG).show()
-        }
-    }
-
-    /**
-     * Función para subir la foto a Firebase
-     */
-    private fun uploadProfilePic(){
-        val path = "imagenesPerfil/"+auth.uid
-        storageReference = FirebaseStorage.getInstance().getReference(path)
-        var reference = FirebaseDatabase.getInstance().getReference(FirestoreCollections.USERS)
-        reference.child("imageProfile").setValue(Uri.parse(binding.profileIcon.toString()))
-
-
-    }
-
+    
     /**
      * Para usar los resultados del intent de la galería
      */
@@ -201,14 +171,17 @@ class EditProfile : SuperActivity() {
                 //storageRef =
                    // dbStorage.reference.child("imagenesPerfil").child(auth.currentUser!!.email.toString()+".jpg")
 
-
-                reference.downloadUrl.addOnSuccessListener { url ->
+               /* PARTE BUENA*/
+                Toast.makeText(this,auth.currentUser.toString(),Toast.LENGTH_LONG).show()
+               reference.downloadUrl.addOnSuccessListener { url ->
                  var user = User(binding.userName.text.toString(), url.toString())
                     db.collection(FirestoreCollections.USERS).document(auth.currentUser!!.email.toString()).set(
                        user
-                    )}.addOnFailureListener {
-                    Toast.makeText(this, "Fallo", Toast.LENGTH_SHORT).show()
+                    )}.addOnFailureListener { it ->
+                    Toast.makeText(this, "Fallo bbdd", Toast.LENGTH_SHORT).show()
+                   Log.d("Fallo BD",""+it.stackTrace)
                 }
+
 
 
 
