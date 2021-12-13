@@ -207,11 +207,11 @@ class EditProfile : SuperActivity() {
     )
 
     private fun checkPermission(permission:String, requestCode:Int){
-        if(ContextCompat.checkSelfPermission(this, permission)==PackageManager.PERMISSION_DENIED){
+        //if(ContextCompat.checkSelfPermission(this, permission)==PackageManager.PERMISSION_DENIED){
             ActivityCompat.requestPermissions(this, arrayOf(permission), requestCode)
-        }else{
-            Toast.makeText(this, "El permiso ya ha sido otorgado", Toast.LENGTH_LONG).show()
-        }
+        //}else{
+           // Toast.makeText(this, "El permiso ya ha sido otorgado", Toast.LENGTH_LONG).show()
+        //}
     }
 
     override fun onRequestPermissionsResult(
