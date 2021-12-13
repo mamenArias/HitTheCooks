@@ -56,25 +56,12 @@ class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):Recycler
         val context: Context = holder.imageFood.context
         Glide.with(context).load(list[position].picUrl).into(holder.imageFood)
         holder.textFood.text = list[position].name
-
+        
         holder.imageFood.setOnClickListener {
-            val builder = AlertDialog.Builder(context)
-            builder.setTitle(R.string.borrarElemento)
-            builder.setMessage(R.string.borrarElementoConfirmacion)
-            builder.setPositiveButton(R.string.yes,
-                DialogInterface.OnClickListener { dialogInterface, i ->
-                //Borra el elemento del recycler
-                    transfer.deleteItem(list[position])
-                dialogInterface.cancel()
-            })
-            //Cancela el borrado del elemento
-            builder.setNegativeButton(R.string.no,
-                DialogInterface.OnClickListener { dialogInterface, i ->
-                dialogInterface.cancel()
-            })
-            var alert = builder.create()
-            alert.show()
-
+            if(holder.absoluteAdapterPosition!=-1) {
+                list.removeAt(holder.absoluteAdapterPosition)
+                notifyItemRemoved(holder.absoluteAdapterPosition)
+            }
         }
         
         holder.imageFood.setOnLongClickListener {
