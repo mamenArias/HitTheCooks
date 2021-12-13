@@ -24,6 +24,12 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.view.GravityCompat
 import com.appverse.hitthecooks.interfaces.RecyclerTransferItem
+import com.appverse.hitthecooks.model.ShoppingList
+import com.google.firebase.firestore.ktx.toObject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 /**
@@ -44,6 +50,8 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
     private val binding by lazy { ActivityFoodListBinding.inflate(layoutInflater) }
     /**Constante para enlazar con Firebase.*/
     private val db= FirebaseFirestore.getInstance()
+
+    private lateinit var listId : String
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
     /**
      * Función que inicializa las vistas.
@@ -59,7 +67,7 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
         itemsSearched = arrayListOf()
 
         //Recoge el id de la lista por bundle
-        val listId = intent.extras?.getString("listId")
+         listId = intent.extras?.getString("listId") as String
 
 
         //Da el comportamiento al panel
@@ -71,6 +79,12 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
             peekHeight = 200
             state = BottomSheetBehavior.STATE_COLLAPSED
         }
+
+
+        //Recoger la lista en cuestión y además se queda escuchando por hay algún cambio
+        updateLists()
+
+
 
         /***
          * Función que expande el panel escondido cuando pulsas la lupa del buscador
@@ -247,27 +261,29 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
     }
 
     /**
+     * Actúa de listener en la colección lista, en la lista pasada por id. Si hay alguna modifación,
+     * refresca los elementos
+     */
+    private fun updateLists() {
+        db.collection(FirestoreCollections.LISTS).document(listId).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+            firebaseFirestoreException?.let {
+                Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                return@addSnapshotListener
+            }
+            querySnapshot.let {
+                val shoppingList = it?.toObject<ShoppingList>()
+                val adapter = FoodListAdapter(this,shoppingList?.items!!)
+                binding.foodListRecycler.adapter = adapter
+                binding.foodListRecycler.layoutManager = GridLayoutManager(this, 3)
+                adapter.notifyDataSetChanged()
+            }
+        }
+    }
+
+        /**
      * Función para añadir elementos al recycler de los alimentos que vamos a comprar
      */
     override fun passItem(item: Item) {
-        itemsFoodList.add(item)
-        val adapter = FoodListAdapter(this,itemsFoodList)
-        binding.foodListRecycler.adapter = adapter
-        binding.foodListRecycler.layoutManager = GridLayoutManager(this, 3)
-        adapter.notifyDataSetChanged()
-
+        //Aqui debería insertar
     }
-
-    /**
-     * Función para eliminar elementos del recycler de nuestra lista de la compra
-     */
-    override fun deleteItem(item: Item) {
-        itemsFoodList.remove(item)
-        val adapter = FoodListAdapter(this, itemsFoodList)
-        binding.foodListRecycler.adapter = adapter
-        binding.foodListRecycler.layoutManager = GridLayoutManager(this, 3)
-        adapter.notifyDataSetChanged()
-    }
-
-
-}
+   }

@@ -8,8 +8,4 @@ interface RecyclerTransferItem {
      */
     fun passItem(item: Item)
 
-    /**
-     * Función para eliminar un item del Recycler
-     */
-    fun deleteItem(item: Item)
 }
