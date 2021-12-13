@@ -23,7 +23,13 @@ import android.app.Activity
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.appverse.hitthecooks.interfaces.RecyclerTransferItem
+import com.appverse.hitthecooks.model.ShoppingList
+import com.appverse.hitthecooks.recyclers.ShoppingListAdapter
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FieldValue
 
 
 /**
@@ -45,6 +51,7 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
     /**Constante para enlazar con Firebase.*/
     private val db= FirebaseFirestore.getInstance()
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
+    lateinit var listId:String
     /**
      * Función que inicializa las vistas.
      */
@@ -59,7 +66,7 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
         itemsSearched = arrayListOf()
 
         //Recoge el id de la lista por bundle
-        val listId = intent.extras?.getString("listId")
+        listId = intent.extras?.getString("listId") as String
 
 
         //Da el comportamiento al panel
@@ -156,7 +163,7 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
         binding.menuButton.setOnClickListener {
             super.drawerLayout.openDrawer(GravityCompat.START)
         }
-
+        
     }
 
     /***
@@ -255,6 +262,10 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
         binding.foodListRecycler.adapter = adapter
         binding.foodListRecycler.layoutManager = GridLayoutManager(this, 3)
         adapter.notifyDataSetChanged()
+
+        db.collection(FirestoreCollections.LISTS).document(listId).update("items", FieldValue.arrayUnion(item)).addOnCompleteListener {
+
+        }
 
     }
 
