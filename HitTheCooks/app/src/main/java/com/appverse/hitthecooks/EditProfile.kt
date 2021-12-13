@@ -101,9 +101,9 @@ class EditProfile : SuperActivity() {
          * Función que permite navegar a la actividad principal
          */
         binding.profileIcon.setOnClickListener{
-         
-                checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
+
                 if (!binding.userName.text.toString().endsWith("gmail.com")) {
+                    checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE)
                     selectImage()
                 } else {
                     Toast.makeText(
