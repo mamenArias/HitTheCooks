@@ -9,6 +9,8 @@
     android:orientation="vertical"
     tools:context=".FoodList">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,6 +21,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="5">
+
+            <ImageView
+                android:id="@+id/menuButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/menu_icon"
+                app:tint="@color/orangeEgg" />
 
             <TextView
                 android:id="@+id/foodList"
@@ -37,11 +50,10 @@
                 android:id="@+id/buttonBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:backgroundTint="@color/noColor"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/menuButton"
+                app:layout_constraintStart_toEndOf="@+id/menuButton"
+                app:layout_constraintTop_toTopOf="@+id/menuButton"
                 app:srcCompat="@drawable/flechaatras"
                 app:tint="@color/orangeEgg"
                 tools:ignore="SpeakableTextPresentCheck" />
