@@ -14,7 +14,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:baselineAligned="false">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -29,6 +30,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
+                android:contentDescription="@string/carritoCompra"
                 android:src="@drawable/grocery_shopping"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -55,18 +57,23 @@
                 app:layout_constraintEnd_toStartOf="@+id/copyToClipboardButton"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/whatsappImageView" />
+                app:layout_constraintTop_toBottomOf="@+id/whatsappImageView"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+                android:focusable="true" />
 
             <Button
                 android:id="@+id/copyToClipboardButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/orangeEgg"
                 android:text="@string/copy"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/invitationUrl"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/invitationUrl" />
+                app:layout_constraintTop_toTopOf="@+id/invitationUrl"
+                app:layout_constraintVertical_bias="1.0"
+                tools:ignore="TextContrastCheck" />
 
             <TextView
                 android:id="@+id/shareTextView"
@@ -85,6 +92,7 @@
                 android:id="@+id/shareImageView"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:contentDescription="@string/botonCompartir"
                 android:src="@drawable/ic_share"
                 app:layout_constraintBottom_toBottomOf="@+id/whatsappImageView"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -99,16 +107,19 @@
                 android:layout_marginBottom="50dp"
                 android:backgroundTint="@color/orangeEgg"
                 android:text="@string/createList"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/invitationUrl" />
+                app:layout_constraintTop_toBottomOf="@+id/invitationUrl"
+                tools:ignore="TextContrastCheck" />
 
             <ImageView
                 android:id="@+id/whatsappImageView"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:contentDescription="@string/imagenWhatsapp"
                 android:src="@drawable/whatsapp_logo"
                 app:layout_constraintBottom_toTopOf="@+id/invitationUrl"
                 app:layout_constraintEnd_toStartOf="@+id/shareImageView"

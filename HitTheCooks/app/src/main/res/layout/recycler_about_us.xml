@@ -42,14 +42,16 @@
             android:text="@string/studentNameHere"
             android:textColor="@color/whiteEgg"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/studentTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/student"
-            android:textColor="@color/whiteEgg" />
+            android:textColor="@color/whiteEgg"
+            tools:ignore="TextContrastCheck" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

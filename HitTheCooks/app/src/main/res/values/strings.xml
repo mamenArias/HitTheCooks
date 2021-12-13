@@ -9,12 +9,14 @@
     <string name="usernameHere">Username Here</string>
     <string name="myLists">Mis Listas</string>
     <string name="createAList">Crear Una Lista</string>
+    <string name="imageRecycler">Imagen del recycler cuando no hay ninguna búsqueda</string>
     <string name="webid">789300936703-lg585dme27fclh4gfj883gbmk05cc43b.apps.googleusercontent.com</string>
     <string name="aboutUs">Sobre Nosotros</string>
     <string name="aboutUsText">HitTheCooks es una app creada con fines académicos para la asignatura de Programación Multimedia y Dispositivos Móviles.
         Nace de la colaboración de 5 alumnos de segundo curso de Grado Superior de Desarrollo de Aplicaciones Multiplataforma como parte de la evaluación trimestral</string>
     <string name="student">Alumno de 2º DAM</string>
     <string name="configButtonDescription">Botón de configuración</string>
+    <string name="menuBurguerDescription">Botón de Menú</string>
     <string name="userButtonDescription">Foto y botón de usuario</string>
     <string name="logoDescription">Logo de la aplicación</string>
     <string name="backButtonDescription">Botón de volver</string>
@@ -82,6 +84,11 @@
     <string name="cannotAddRepeatedItem">No puedes tener varios elementos de</string>
     <string name="borrarElemento">¿Quieres borrar el elemento seleccionado?</string>
     <string name="borrarElementoConfirmacion">Se eliminará este alimento de tu lista de la compra</string>
+    <string name="imageProductDescription">Imagen del producto</string>
+    <string name="dialogoDescriptionç">Dialogo</string>
+    <string name="backgroundShopListDescription">Fondo de las listas de la compra</string>
+    <string name="emptyImage">Imagen Lista Vacia</string>
+    <string name="backgroundImageList">Imagen del fondo de la lista</string>
     <string name="miguelAngelArcos">Miguel Ángel Arcos</string>
     <string name="mamenArias">Mamen Arias</string>
     <string name="manuelCarrillo">Manuel Carrillo</string>

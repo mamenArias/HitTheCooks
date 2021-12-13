@@ -13,6 +13,11 @@
         <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/drawable-v24/rounded_searchview.xml" value="0.2703125" />
         <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/drawable/splashscreen.xml" value="0.2703125" />
         <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/drawable/text_search_view.xml" value="0.2703125" />
+        <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout-land/activity_configuration.xml" value="0.23802083333333332" />
+        <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout-land/activity_edit_profile.xml" value="0.23802083333333332" />
+        <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout-land/activity_invitation.xml" value="0.23802083333333332" />
+        <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout-land/activity_main.xml" value="0.23802083333333332" />
+        <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout-land/activity_principal.xml" value="0.23802083333333332" />
         <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout/activity_about_us.xml" value="0.25416666666666665" />
         <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout/activity_configuration.xml" value="0.25416666666666665" />
         <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout/activity_edit_profile.xml" value="0.25416666666666665" />
@@ -23,7 +28,17 @@
         <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout/activity_main.xml" value="0.2361111111111111" />
         <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout/activity_principal.xml" value="0.25416666666666665" />
         <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout/activity_shopping_list.xml" value="0.2101851851851852" />
+        <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout/activity_splash.xml" value="0.25416666666666665" />
+        <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout/activity_super.xml" value="0.25416666666666665" />
+        <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout/balloon_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout/item_background_lists.xml" value="0.25416666666666665" />
         <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout/item_creation_list.xml" value="0.2101851851851852" />
+        <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout/item_shopping_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout/item_user_image_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout/loading.xml" value="0.25416666666666665" />
+        <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout/logginout_progressbar.xml" value="0.25416666666666665" />
+        <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout/nav_header.xml" value="0.25416666666666665" />
+        <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout/recycler_about_us.xml" value="0.25416666666666665" />
         <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/layout/recycler_food_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Mamen/GitHub/HitTheCooks/HitTheCooks/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2703125" />
         <entry key="..\:/Users/manue/AndroidStudioProjects/HitTheCooks/app/src/main/res/layout/activity_main.xml" value="0.17753623188405798" />
