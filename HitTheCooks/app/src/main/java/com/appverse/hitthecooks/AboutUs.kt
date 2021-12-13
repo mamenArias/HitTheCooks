@@ -34,11 +34,11 @@ class AboutUs : SuperActivity() {
 
         //Crea el ArrayList de alumnos
         val students : ArrayList<Student> = arrayListOf<Student>()
-        students.add(Student("Miguel Angel Arcos", "icono"))
-        students.add(Student("Mamen Arias", "icono"))
-        students.add(Student("Manuel Carrillo", "icono"))
-        students.add(Student("Christian García", "icono"))
-        students.add(Student("Sergio Lopez", "icono"))
+        students.add(Student("Miguel Angel Arcos","moneite@gmail.com", "icono"))
+        students.add(Student("Mamen Arias","mamen8191@gmail.com", "icono"))
+        students.add(Student("Manuel Carrillo","m.carrillo44@gmail.com", "icono"))
+        students.add(Student("Christian García","chrisak96@gmail.com", "icono"))
+        students.add(Student("Sergio Lopez","sergiolopeztorres97@gmail.com", "icono"))
 
         //Crea el adapter y lo aplica al RecyclerView
         val adapter : AboutUsAdapter = AboutUsAdapter(this, students)
