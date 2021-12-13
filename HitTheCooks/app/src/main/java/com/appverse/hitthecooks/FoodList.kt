@@ -59,7 +59,7 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
 
     private lateinit var listId : String
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
-    lateinit var listId:String
+    //lateinit var listId:String
     /**
      * Función que inicializa las vistas.
      */
@@ -271,7 +271,7 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
      * Actúa de listener en la colección lista, en la lista pasada por id. Si hay alguna modifación,
      * refresca los elementos
      */
-    override fun passItem(item: Item) {
+    /*override fun passItem(item: Item) {
         itemsFoodList.add(item)
         val adapter = FoodListAdapter(this,itemsFoodList)
         binding.foodListRecycler.adapter = adapter
@@ -280,7 +280,7 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
 
         db.collection(FirestoreCollections.LISTS).document(listId).update("items", FieldValue.arrayUnion(item)).addOnCompleteListener {
 
-        }
+        }*/
 
     private fun updateLists() {
         db.collection(FirestoreCollections.LISTS).document(listId).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
@@ -312,7 +312,9 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
                if(item==itemToInsert){
                   Snackbar.make(binding.foodListConstraint,resources.getString(R.string.cannotAddRepeatedItem)+": ${itemToInsert.name}",Snackbar.LENGTH_SHORT).show()
                }else{
-                   //Insertar en base de datos
+                   db.collection(FirestoreCollections.LISTS).document(listId).update("items", FieldValue.arrayUnion(item)).addOnCompleteListener {
+
+                   }
                }
            }
        }
