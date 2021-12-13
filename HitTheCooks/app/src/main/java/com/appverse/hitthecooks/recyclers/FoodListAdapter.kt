@@ -57,7 +57,7 @@ class FoodListAdapter (val activity:Activity, val list:ArrayList<Item>):Recycler
         Glide.with(context).load(list[position].picUrl).into(holder.imageFood)
         holder.textFood.text = list[position].name
 
-        holder.imageFood.setOnClickListener {
+       /* holder.imageFood.setOnClickListener {
             val builder = AlertDialog.Builder(context)
             builder.setTitle(R.string.borrarElemento)
             builder.setMessage(R.string.borrarElementoConfirmacion)
