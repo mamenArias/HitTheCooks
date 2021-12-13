@@ -158,6 +158,13 @@ class ConfigurationActivity : SuperActivity() {
             super.drawerLayout.openDrawer(GravityCompat.START)
         }
 
+        binding.buttonAboutUs.setOnClickListener {
+            val intent:Intent = Intent(this@ConfigurationActivity, AboutUs::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            finish()
+        }
+
     }
 
     /**
