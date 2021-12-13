@@ -32,6 +32,11 @@ import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.SetOptions
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+
+
+
+
 
 /**
  * Activity que contiene la pantalla de editar perfil
@@ -193,13 +198,16 @@ class EditProfile : SuperActivity() {
                     db.collection( FirestoreCollections.USERS).document(auth.currentUser!!.email.toString()).
                 }*/
 
-                storageRef =
-                    dbStorage.reference.child("imagenesPerfil").child(auth.currentUser!!.email.toString()+".jpg")
-                storageRef.downloadUrl.addOnSuccessListener { url ->
-                    var user = User(binding.userName.text.toString(), url.toString())
-                    db.collection(FirestoreCollections.USERS).document(user.email).set(
-                        user
-                    )
+                //storageRef =
+                   // dbStorage.reference.child("imagenesPerfil").child(auth.currentUser!!.email.toString()+".jpg")
+
+
+                reference.downloadUrl.addOnSuccessListener { url ->
+                 var user = User(binding.userName.text.toString(), url.toString())
+                    db.collection(FirestoreCollections.USERS).document(auth.currentUser!!.email.toString()).set(
+                       user
+                    )}.addOnFailureListener {
+                    Toast.makeText(this, "Fallo", Toast.LENGTH_SHORT).show()
                 }
 
 
