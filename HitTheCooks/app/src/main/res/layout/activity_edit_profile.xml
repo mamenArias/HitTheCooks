@@ -41,23 +41,6 @@
             app:tint="@color/orangeEgg"
             tools:ignore="ImageContrastCheck" />
 
-        <Button
-            android:id="@+id/registerButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:backgroundTint="@color/yellowEgg"
-            android:fontFamily="sans-serif-black"
-            android:text="@string/update"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@+id/appVerseIcon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userName"
-            tools:ignore="TextContrastCheck" />
-
         <ImageView
             android:id="@+id/appVerseIcon"
             android:layout_width="wrap_content"
@@ -106,10 +89,21 @@
             android:text="@string/userName"
             android:textColor="@color/whiteEgg"
             android:textSize="18sp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profileIcon"
             tools:ignore="TextContrastCheck" />
+
+        <ImageView
+            android:id="@+id/pencilImage"
+            android:layout_width="26dp"
+            android:layout_height="28dp"
+            app:layout_constraintBottom_toBottomOf="@+id/profileIcon"
+            app:layout_constraintTop_toTopOf="@+id/profileIcon"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@android:drawable/ic_menu_edit"
+            tools:layout_editor_absoluteX="246dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -92,14 +92,13 @@ class EditProfile : SuperActivity() {
             binding.userName.text = it.get("email").toString()
             Glide.with(this).load(it.get("profileImage")).circleCrop().into(binding.profileIcon as ImageView)
             binding.profileIcon.visibility = View.VISIBLE
+            binding.userName.visibility = View.VISIBLE
         }
         /*auth = FirebaseAuth.getInstance()
         val uid = auth.currentUser?.uid
         databaseReference = FirebaseDatabase.getInstance().getReference("Users")*/
 
-        /**
-         * Función que permite navegar a la actividad principal
-         */
+
         binding.profileIcon.setOnClickListener{
 
                 if (!binding.userName.text.toString().endsWith("gmail.com")) {
@@ -115,7 +114,9 @@ class EditProfile : SuperActivity() {
             
         }
 
-
+        /**
+         * Función que permite navegar a la actividad principal
+         */
         binding.goBackButton.setOnClickListener {
             val intent: Intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
