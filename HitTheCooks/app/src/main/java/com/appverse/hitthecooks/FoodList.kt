@@ -23,19 +23,10 @@ import android.app.Activity
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.view.GravityCompat
-import androidx.recyclerview.widget.ItemTouchHelper
 import com.appverse.hitthecooks.interfaces.RecyclerTransferItem
 import com.appverse.hitthecooks.model.ShoppingList
-import com.appverse.hitthecooks.recyclers.ShoppingListAdapter
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FieldValue
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.ktx.toObject
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 /**
@@ -56,9 +47,11 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
     private val binding by lazy { ActivityFoodListBinding.inflate(layoutInflater) }
     /**Constante para enlazar con Firebase.*/
     private val db= FirebaseFirestore.getInstance()
-
+    /** ID de referencia de la lista **/
     private lateinit var listId : String
+    /** Objeto que permite modificar el comportamiento del panel **/
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
+
     /**
      * Función que inicializa las vistas.
      */
@@ -75,9 +68,9 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
         //Recoge el id de la lista por bundle
         listId = intent.extras?.getString("listId") as String
 
-
         //Da el comportamiento al panel
         bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet)
+
         /**
          * Modificador al panel escondido: el tamaño que tiene que asomar y el estado que debe estar
          */
@@ -86,11 +79,8 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
             state = BottomSheetBehavior.STATE_COLLAPSED
         }
 
-
         //Recoger la lista en cuestión y además se queda escuchando por hay algún cambio
         updateLists()
-
-
 
         /***
          * Función que expande el panel escondido cuando pulsas la lupa del buscador
@@ -144,10 +134,8 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
             Glide.with(this).load(it.get("profileImage")).circleCrop().into(binding.buttonUser as ImageView)
         }
 
-
         binding.recyclerSearch.layoutManager = GridLayoutManager(this,3,
             LinearLayoutManager.VERTICAL,false)
-
 
         /**
          * Función para la búsqueda a través del searchView.
@@ -266,7 +254,9 @@ class FoodList : SuperActivity(), RecyclerTransferItem {
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-
+    /**
+     * Actualiza la lista
+     */
     private fun updateLists() {
         db.collection(FirestoreCollections.LISTS).document(listId).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
             firebaseFirestoreException?.let {

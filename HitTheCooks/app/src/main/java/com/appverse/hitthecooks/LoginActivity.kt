@@ -210,9 +210,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * Constante que a partir de los datos de la cuenta de Google guarda el usuario en base de datos
-     */
+    /** Constante que, a partir de los datos de la cuenta de Google, guarda el usuario en base de datos **/
     private val responseLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {

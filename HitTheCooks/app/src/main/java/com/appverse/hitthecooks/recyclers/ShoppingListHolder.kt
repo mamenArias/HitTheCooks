@@ -25,7 +25,7 @@ class ShoppingListHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     val imageBackground : ImageView by lazy { itemView.findViewById(R.id.backgroundImageShoppingList) }
     /** Titulo de la lista **/
     val textViewShoppingListName : TextView by lazy { itemView.findViewById(R.id.shoppingListName) }
-
+    /** Contenedor que se muestra cuando no hay listas que mostrar **/
     val containerEmptyList : LinearLayout by lazy { itemView.findViewById(R.id.containerEmptyList) }
     /** CardView de los usuarios **/
     val shareButton : CardView by lazy { itemView.findViewById(R.id.shareCardView) }

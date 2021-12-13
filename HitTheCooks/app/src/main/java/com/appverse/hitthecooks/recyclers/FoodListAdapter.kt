@@ -65,7 +65,7 @@ class FoodListAdapter (private val activity:Activity, private val list:ArrayList
         holder.textFood.text = list[position].name
 
         /**
-         *
+         * Borra un elemento de la lista de la compra al pulsar sobre el
          */
         holder.imageFood.setOnClickListener {
             if(holder.absoluteAdapterPosition!=-1) {
@@ -75,7 +75,10 @@ class FoodListAdapter (private val activity:Activity, private val list:ArrayList
                 notifyItemRemoved(holder.absoluteAdapterPosition)
             }
         }
-        
+
+        /**
+         * Muestra las ofertas relativas al producto pulsado extraidas del "web scraping"
+         */
         holder.imageFood.setOnLongClickListener {
                 thread {
                     val doc: Document =
