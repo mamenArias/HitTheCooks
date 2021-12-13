@@ -21,6 +21,6 @@ data class ShoppingList( val name: String="",val imageId:Int=0, var id :String =
      * Genera un informe en modo texto con los atributos de la lista
      */
     override fun toString(): String {
-        return "ShoppingList(name='$name', imageId=$imageId, id='$id', users=$users)"
+        return "ShoppingList(name='$name', imageId=$imageId, id='$id', users=$users, items='$items')"
     }
 }
