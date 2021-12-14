@@ -35,7 +35,7 @@
                     android:layout_height="match_parent"
                     android:contentDescription="@string/backgroundImageList"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/background_list_1"></ImageView>
+                    android:src="@drawable/background_list_6"></ImageView>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

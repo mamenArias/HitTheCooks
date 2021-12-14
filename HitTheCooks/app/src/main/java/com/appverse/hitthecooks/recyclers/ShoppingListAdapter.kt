@@ -70,8 +70,8 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
           }
       }else{
           //Resto de posiciones de la lista
-          holder.imageBackground.setImageResource(shoppingList[position].imageId)
-          holder.textViewShoppingListName.text = shoppingList[position].name
+          holder.imageBackground.setImageResource(shoppingList[holder.absoluteAdapterPosition].imageId)
+          holder.textViewShoppingListName.text = shoppingList[holder.absoluteAdapterPosition].name
           holder.cardViewList.setOnClickListener {
               val bundle = Bundle()
               bundle.putString("listId",shoppingList[holder.absoluteAdapterPosition].id)
@@ -79,11 +79,11 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
           }
           holder.shareButton.setOnClickListener {
               val bundle = Bundle()
-              bundle.putString("listId",shoppingList[position].id)
+              bundle.putString("listId",shoppingList[ holder.absoluteAdapterPosition].id)
               context.startActivity(Intent(context, InvitationActivity::class.java).putExtras(bundle))
           }
           userProfileImageList = arrayListOf()
-          for (i in  shoppingList[position].users){
+          for (i in  shoppingList[holder.absoluteAdapterPosition].users){
                     userProfileImageList.add(i)
               }
               val adapter = UserProfileImageAdapter(context,  userProfileImageList)
