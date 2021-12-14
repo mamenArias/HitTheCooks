@@ -86,7 +86,10 @@ class LoginActivity : AppCompatActivity() {
             if (binding.nameGap.text.isEmpty() || binding.passwordGap.text.isEmpty()) {
                 Toast.makeText(this, R.string.campoVacio, Toast.LENGTH_LONG).show()
 
-            } else if (binding.nameGap.text.toString().endsWith("gmail.com")) {
+            } else if(binding.passwordGap.text.toString().length<8){
+                Toast.makeText(
+                    this,"La contraseña debe contener al menos 8 caracteres",Toast.LENGTH_LONG).show()
+            }else if (binding.nameGap.text.toString().endsWith("gmail.com")) {
                 Toast.makeText(
                     this,
                     "Si quiere registrarse con una cuenta de Gmail pulse en el botón inferior para ello",
