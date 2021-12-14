@@ -74,7 +74,7 @@ class ShoppingListAdapter(private val shoppingList: ArrayList<ShoppingList>, pri
           holder.textViewShoppingListName.text = shoppingList[position].name
           holder.cardViewList.setOnClickListener {
               val bundle = Bundle()
-              bundle.putString("listId",shoppingList[position].id)
+              bundle.putString("listId",shoppingList[holder.absoluteAdapterPosition].id)
               context.startActivity(Intent(context,FoodList::class.java).putExtras(bundle))
           }
           holder.shareButton.setOnClickListener {
